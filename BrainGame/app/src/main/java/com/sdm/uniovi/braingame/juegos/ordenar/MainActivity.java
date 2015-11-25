@@ -1,7 +1,6 @@
-package juegos.recordar;
+package com.sdm.uniovi.braingame.juegos.ordenar;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sdm.uniovi.braingame.R;
@@ -12,9 +11,11 @@ import com.sdm.uniovi.braingame.R;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.patrones_activity_main);
+        setContentView(R.layout.ordenar_imagenes_activity_main);
+
+        //Github test 
     }
 }

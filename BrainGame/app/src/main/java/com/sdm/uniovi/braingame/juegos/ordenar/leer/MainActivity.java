@@ -1,4 +1,4 @@
-package juegos.calcular;
+package com.sdm.uniovi.braingame.juegos.ordenar.leer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.calcular_activity_main);
-
-
-
-
-        
+        setContentView(R.layout.leer_colores_activity_main);
     }
 }

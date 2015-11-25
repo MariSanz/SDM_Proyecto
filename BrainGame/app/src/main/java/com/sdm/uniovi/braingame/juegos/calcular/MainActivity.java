@@ -1,4 +1,4 @@
-package juegos.ordenar;
+package com.sdm.uniovi.braingame.juegos.calcular;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ordenar_imagenes_activity_main);
+        setContentView(R.layout.calcular_activity_main);
 
-        //Github test 
+
+
+
+
     }
 }

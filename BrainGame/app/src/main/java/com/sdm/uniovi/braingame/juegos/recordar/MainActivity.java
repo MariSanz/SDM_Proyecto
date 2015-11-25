@@ -1,4 +1,4 @@
-package juegos.ordenar.leer;
+package com.sdm.uniovi.braingame.juegos.recordar;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +11,9 @@ import com.sdm.uniovi.braingame.R;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.leer_colores_activity_main);
+        setContentView(R.layout.patrones_activity_main);
     }
 }

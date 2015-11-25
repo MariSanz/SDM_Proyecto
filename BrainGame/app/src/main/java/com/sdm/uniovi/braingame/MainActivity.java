@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
+import com.sdm.uniovi.braingame.juegos.TipoJuego;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irAPatrones(View view) {
-        Intent intent = new Intent(this, juegos.recordar.MainActivity.class);
-        startActivity(intent);
+        EstadisticasActivity.iniciar(this, TipoJuego.LEER);
+        //Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.MainActivity.class);
+        //startActivity(intent);
     }
 }
