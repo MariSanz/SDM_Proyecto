@@ -8,6 +8,8 @@ public enum TipoJuego {
     LEER,
     ORDENAR,
     CALCULAR,
+    COMPLETAR,
+    CONOCER,
     RECORDAR;
 
     public String getIdServicio() {
