@@ -15,12 +15,8 @@ public class ServidorPuntuaciones extends ConexionServidor {
     private String mIdJuego;
     private int idUsuario = -1;
 
-    private String metodo="puntuaciones";
-
-    private String urlString;
-
     public ServidorPuntuaciones() {
-
+            setMetodo("puntuaciones");
     }
 
     public void setIdUsuario(int idUsuario) {
@@ -38,7 +34,7 @@ public class ServidorPuntuaciones extends ConexionServidor {
     }
 
     @Override
-    protected URL construirURL(String servicio) throws MalformedURLException {
+    protected URL construirURL() throws MalformedURLException {
 
             return new URL(urlString);
 
@@ -47,14 +43,14 @@ public class ServidorPuntuaciones extends ConexionServidor {
 
     public void getPuntuacionesTodas(String juego) {
 
-       this.urlString = URL_SW_DESARROLLO + "/" + metodo + "/" + mIdJuego;
+       setUrlString(getUrlEnUso() + "/" + getMetodo() + "/" + mIdJuego);
     }
 
     public void getPuntuacionesUsuario(int idUsuario) {
-        this.urlString = URL_SW_DESARROLLO + "/" + metodo + "/" + mIdJuego+"/"+idUsuario;
+       setUrlString(getUrlEnUso() +"/" + getMetodo() + "/" + mIdJuego+"/"+idUsuario);
     }
 
     public void setPuntuacionesUsuario(String juego, int idUsuario){
-
+        //TODO
     }
 }

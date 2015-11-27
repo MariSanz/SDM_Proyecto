@@ -21,11 +21,14 @@ import java.util.Scanner;
 public abstract class ConexionServidor extends AsyncTask<Void, Void, Object> {
     private static final String TAG = ConexionServidor.class.getName();
 
-    protected static final String URL_SW_DESARROLLO = "http://10.0.2.2/SDM_PHP/index.php";
-    protected static final String URL_SW_PRODUCCION = "http://braingame.esy.es/index.php";
+    private static final String URL_SW_DESARROLLO = "http://10.0.2.2/SDM_PHP/index.php";
+    private static final String URL_SW_PRODUCCION = "http://braingame.esy.es/index.php";
 
-    private String servicio;
+    protected static final String URL_EN_USO = URL_SW_DESARROLLO;
 
+    private String metodo;
+
+    protected String urlString;
 
     @Override
     protected Object doInBackground(Void... params) {
@@ -33,7 +36,7 @@ public abstract class ConexionServidor extends AsyncTask<Void, Void, Object> {
         HttpURLConnection conexion = null;
         try {
 
-            URL url = construirURL(servicio);// new URL(URL_SW_DESARROLLO + "/puntuaciones/" + mIdJuego);
+            URL url = construirURL();// new URL(URL_SW_DESARROLLO + "/puntuaciones/" + mIdJuego);
 
             conexion = (HttpURLConnection) url.openConnection();
 
@@ -66,7 +69,7 @@ public abstract class ConexionServidor extends AsyncTask<Void, Void, Object> {
 
     protected abstract Object procesarRetorno(String respuesta) throws JSONException;
 
-    protected abstract URL construirURL(String servicio) throws MalformedURLException;
+    protected abstract URL construirURL() throws MalformedURLException;
 
     @Override
     protected void onPostExecute(Object puntuaciones) {///////////////////////////VER
@@ -75,5 +78,21 @@ public abstract class ConexionServidor extends AsyncTask<Void, Void, Object> {
 
     private String getResponseText(InputStream inStream) {
         return new Scanner(inStream).useDelimiter("\\A").next();
+    }
+
+    public void setUrlString(String urlString) {
+        this.urlString = urlString;
+    }
+
+    protected void setMetodo(String metodo) {
+        this.metodo = metodo;
+    }
+
+    protected String getMetodo() {
+        return metodo;
+    }
+
+    protected static String getUrlEnUso() {
+        return URL_EN_USO;
     }
 }

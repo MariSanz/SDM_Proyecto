@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:layout_margin="33dp"
+    >
+
+    <TextView
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/usuario"
+        android:id="@+id/tvUsuario"
+        android:layout_weight="0.04"
+        android:layout_row="10"
+        android:layout_column="0"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="108dp"
+        android:textSize="25sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etUsuario"
+        android:layout_below="@+id/tvUsuario"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/clave"
+        android:id="@+id/tvClave"
+        android:layout_weight="0.04"
+        android:layout_row="10"
+        android:layout_column="0"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="108dp"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/etClave"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvClave"
+        android:layout_alignParentEnd="true"
+        android:password="true"
+        android:textSize="25sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/btLogin"
+        android:layout_below="@+id/etClave"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:textSize="25sp"/>
+
+</RelativeLayout>
