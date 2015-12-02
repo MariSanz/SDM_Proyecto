@@ -5,17 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.sdm.uniovi.braingame.ServicioWeb.ServidorPuntuaciones;
+import com.sdm.uniovi.braingame.ServicioWeb.ObtenerTodasLasPuntuaciones;
+import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
+import com.sdm.uniovi.braingame.usuarios.Login;
 
 /**
  * Created by luism_000 on 11/11/2015.
  */
-public class EstadisticasActivity extends AppCompatActivity {
+public class EstadisticasActivity extends AppCompatActivity
+    implements OnResultadoListener<Puntuaciones> {
 
     public static final String EXTRA_ID_SERVICIO_TIPO_JUEGO = "juego";
 
-    public static void iniciar(Context contexto, TipoJuego juego) {
+    public static void iniciar(Context contexto, TipoJuego juego) { //siempre llamar a metodo iniciar, contexto aplicacion
         Intent intent = new Intent(contexto, EstadisticasActivity.class);
         intent.putExtra(EXTRA_ID_SERVICIO_TIPO_JUEGO, juego.getIdServicio());
         contexto.startActivity(intent);
@@ -31,9 +34,11 @@ public class EstadisticasActivity extends AppCompatActivity {
             throw new RuntimeException("El parámetro juego no se paso a la actividad");
         }
 
-        ServidorPuntuaciones puntuacionesWeb = new ServidorPuntuaciones();
-        puntuacionesWeb.getPuntuacionesTodas(juego);
-        puntuacionesWeb.execute(); //se puede diferenciar entre estadisticas para cada usuario
+        new ObtenerTodasLasPuntuaciones(
+                juego,
+                Login.getInstancia(this.getApplicationContext()).getAutenticacion(),
+                this
+            ).execute();
     }
 
     private void pintarEstadisticas() {
@@ -41,4 +46,8 @@ public class EstadisticasActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onResultado(Puntuaciones resultado) {
+        //si problema en servicio resultado null
+    }
 }

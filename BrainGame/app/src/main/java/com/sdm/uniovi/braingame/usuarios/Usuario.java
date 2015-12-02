@@ -11,6 +11,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Usuario {
 
+    public static final String CAMPO_NOMBRE = "nombre";
+    public static final String CAMPO_CLAVE = "clave";
     private int id;
     private String nombre;
     private String clave;
@@ -19,7 +21,7 @@ public class Usuario {
     public Usuario(String nombre, String clave) {
         this.nombre = nombre;
         this.id = id;
-        this.clave = SHA1(clave);
+        this.clave = clave;
     }
 
 

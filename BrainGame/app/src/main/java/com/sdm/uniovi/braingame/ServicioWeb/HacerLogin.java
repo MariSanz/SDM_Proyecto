@@ -4,6 +4,7 @@ import com.sdm.uniovi.braingame.usuarios.Usuario;
 import com.sdm.uniovi.braingame.usuarios.Usuarios;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,12 +13,17 @@ import java.util.UUID;
 /**
  * Created by luism_000 on 27/11/2015.
  */
-public class ServidorUsuarios extends ConexionServidor {
+public class HacerLogin extends ConexionServidor {
 
     private Usuario usuario;
 
-    public ServidorUsuarios(){
+    public HacerLogin(){
         setMetodo("usuarios");
+    }
+
+    @Override
+    protected Object doInBackground(Object[] params) {
+        return null;
     }
 
 
@@ -29,17 +35,17 @@ public class ServidorUsuarios extends ConexionServidor {
 
     @Override
     protected URL construirURL() throws MalformedURLException {
-        return null;
+        return new URL(getUrlEnUso() + "/login");
     }
 
-    public void buscarUsuario(String nombre, String clave){
+    @Override
+    protected JSONObject getParametros() throws JSONException {
 
-        usuario = new Usuario(nombre, clave);
+        JSONObject parametros = new JSONObject();
+        parametros.put(Usuario.CAMPO_NOMBRE, usuario.getNombre());
+        parametros.put(Usuario.CAMPO_CLAVE, usuario.getClave());
 
-        setUrlString(getUrlEnUso() +"/" + getMetodo() + "/" + usuario.getNombre()+"/"+usuario.getClave());
-
-        //TODO
-
+        return parametros;
     }
 
 
