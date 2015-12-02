@@ -1,5 +1,6 @@
 package com.sdm.uniovi.braingame.ServicioWeb;
 
+import com.sdm.uniovi.braingame.estadisticas.Puntuaciones;
 import com.sdm.uniovi.braingame.usuarios.Usuario;
 import com.sdm.uniovi.braingame.usuarios.Usuarios;
 
@@ -17,8 +18,9 @@ public class HacerLogin extends ConexionServidor {
 
     private Usuario usuario;
 
-    public HacerLogin(){
-        setMetodo("usuarios");
+    public HacerLogin(OnResultadoListener<Usuario> listener){
+        super(listener);
+        //setMetodo("usuarios");
     }
 
     @Override
