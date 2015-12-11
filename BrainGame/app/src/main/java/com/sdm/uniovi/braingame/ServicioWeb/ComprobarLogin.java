@@ -14,30 +14,24 @@ import java.util.UUID;
 /**
  * Created by luism_000 on 27/11/2015.
  */
-public class HacerLogin extends ConexionServidor {
+public class ComprobarLogin extends ConexionServidor<Boolean> {
 
     private Usuario usuario;
 
-    public HacerLogin(OnResultadoListener<Usuario> listener){
+    public ComprobarLogin(Usuario usuario, OnResultadoListener<Boolean> listener){
         super(listener);
-        //setMetodo("usuarios");
+        this.usuario = usuario;
     }
 
     @Override
-    protected Object doInBackground(Object[] params) {
-        return null;
-    }
-
-
-    @Override
-    protected Usuarios procesarRetorno(String respuesta) throws JSONException {
-        return new Usuarios(respuesta);
-
+    protected Boolean procesarRetorno(String respuesta) throws JSONException {
+        JSONObject jsonObject = new JSONObject(respuesta);
+        return jsonObject.getBoolean("valido");
     }
 
     @Override
     protected URL construirURL() throws MalformedURLException {
-        return new URL(getUrlEnUso() + "/login");
+        return new URL(getUrlEnUso() + "/usuarios/comprobar-login");
     }
 
     @Override

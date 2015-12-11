@@ -9,24 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
-import com.sdm.uniovi.braingame.juegos.TipoJuego;
+import com.sdm.uniovi.braingame.ServicioWeb.ComprobarLogin;
+import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.usuarios.Login;
+import com.sdm.uniovi.braingame.usuarios.Usuario;
 
-import org.w3c.dom.Text;
+public class LogingActivity  extends AppCompatActivity
+    implements OnResultadoListener<Boolean> {
 
-/**
- * Created by luism_000 on 11/11/2015.
- */
-public class LogingActivity  extends AppCompatActivity {
-
-
-    private TextView tvUsuario;
-    private TextView tvClave;
     private EditText etUsuario;
     private EditText etClave;
-    private Button btLogin;
-    private TextView tvRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +27,12 @@ public class LogingActivity  extends AppCompatActivity {
 
 
         //Recupero los elementos de la vista
-        tvUsuario = (TextView) findViewById(R.id.tvUsuario);
-        tvClave = (TextView) findViewById(R.id.tvClave);
+        TextView tvUsuario = (TextView) findViewById(R.id.tvUsuario);
+        TextView tvClave = (TextView) findViewById(R.id.tvClave);
         etUsuario = (EditText) findViewById(R.id.etUsuario);
         etClave = (EditText) findViewById(R.id.etClave);
-        btLogin = (Button) findViewById(R.id.btLogin);
-        tvRegistro = (TextView) findViewById(R.id.tvRegistro);
+        Button btLogin = (Button) findViewById(R.id.btLogin);
+        TextView tvRegistro = (TextView) findViewById(R.id.tvRegistro);
 
 
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
@@ -53,22 +45,29 @@ public class LogingActivity  extends AppCompatActivity {
 
     }
 
-    public void hacerLogin(View v){
-
+    private Usuario getUsuario() {
         String nombre = etUsuario.getText().toString();
         String clave = etClave.getText().toString();
-        if( nombre != null && clave !=null){
-            Login.getInstancia(getApplicationContext()).loguear(nombre, clave);
-        }
+        return new Usuario(nombre, clave);
+    }
 
-        Intent intent = new Intent(this, MainActivity.class ); //lanzo actividad
-        startActivity(intent);
-        finish();
+    public void hacerLogin(View v){
+        Usuario usuario = getUsuario();
+        new ComprobarLogin(usuario, this).execute();
     }
 
     public void hacerRegistro(View v){
 
     }
 
-
+    @Override
+    public void onResultado(Boolean resultado) {
+        if (resultado) {
+            Usuario usuario = getUsuario();
+            Login.getInstancia(getApplicationContext()).loguear(usuario);
+            Intent intent = new Intent(this, MainActivity.class ); //lanzo actividad
+            startActivity(intent);
+            finish();
+        }
+    }
 }

@@ -37,8 +37,8 @@ public class Login {
         return autenticacion;
     }
 
-    public void loguear(String usuario, String clave) {
-        String cadena = usuario + ":" + clave;
+    public void loguear(Usuario usuario) {
+        String cadena = usuario.getNombre() + ":" + usuario.getClave();
         cadena = Base64.encodeToString(cadena.getBytes(), Base64.DEFAULT);
         preferencias.edit()
                 .putString(CAMPO_AUTENTICACION, cadena)
