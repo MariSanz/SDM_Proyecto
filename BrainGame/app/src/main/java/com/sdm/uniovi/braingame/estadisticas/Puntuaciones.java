@@ -39,4 +39,8 @@ public class Puntuaciones {
             }
         }
     }
+
+    public List<Puntuacion> getPuntuaciones() {
+        return puntuaciones;
+    }
 }
