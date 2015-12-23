@@ -2,6 +2,7 @@ package com.sdm.uniovi.braingame.juegos.calcular;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.webkit.WebView;
 
 import com.sdm.uniovi.braingame.R;
 
@@ -17,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.calcular_activity_main);
 
 
-
+        WebView webViewFormula = (WebView)findViewById(R.id.webViewFormula);
+        webViewFormula.loadUrl("file:///android_assets/formula/formula.html");
 
 
     }
