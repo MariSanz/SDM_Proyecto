@@ -28,7 +28,7 @@
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".juegos.calcular.MainActivity"
             android:parentActivityName=".MainActivity"/>
-        <activity android:name=".juegos.ordenar.leer.MainActivity"
+        <activity android:name=".juegos.leer.MainActivity"
             android:parentActivityName=".MainActivity"/>
 
     </application>

@@ -1,4 +1,4 @@
-package com.sdm.uniovi.braingame.juegos.ordenar.leer;
+package com.sdm.uniovi.braingame.juegos.leer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
