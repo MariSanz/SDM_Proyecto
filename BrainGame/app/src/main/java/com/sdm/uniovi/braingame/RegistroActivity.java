@@ -4,52 +4,46 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.ServicioWeb.ComprobarLogin;
 import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.ServicioWeb.Registrar;
 import com.sdm.uniovi.braingame.usuarios.Login;
 import com.sdm.uniovi.braingame.usuarios.Usuario;
 
-public class LogingActivity  extends AppCompatActivity
+public class RegistroActivity extends AppCompatActivity
     implements OnResultadoListener<Boolean> {
 
     private EditText etUsuario;
     private EditText etClave;
+    private Button btRegistro;
+    private ProgressBar registrando;
 
-    private boolean logueado= false;
+    private boolean registrado= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loging_activity_main);
-
-        if(logueado){
-
-        }
-
-        //Recupero los elementos de la vista
-        TextView tvUsuario = (TextView) findViewById(R.id.tvUsuarioRegistro);
-        TextView tvClave = (TextView) findViewById(R.id.tvClaveRegistro);
-        etUsuario = (EditText) findViewById(R.id.etUsuarioRegistro);
-        etClave = (EditText) findViewById(R.id.etClave);
-        Button btLogin = (Button) findViewById(R.id.btLogin);
-        TextView tvRegistro = (TextView) findViewById(R.id.btRegistro);
-
+        setContentView(R.layout.registro_activity_main);
 
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
-        tvUsuario.setTypeface(estiloLetra);
-        tvClave.setTypeface(estiloLetra);
-        tvRegistro.setTypeface(estiloLetra);
+
+        etUsuario = (EditText) findViewById(R.id.etUsuarioRegistro);
+        etClave = (EditText) findViewById(R.id.etClaveRegistro);
+        btRegistro = (Button) findViewById(R.id.btRegistro);
+        btRegistro.setTypeface(estiloLetra);
         etUsuario.setTypeface(estiloLetra);
-        btLogin.setTypeface(estiloLetra);
+        etClave.setTypeface(estiloLetra);
 
-
+        registrando = (ProgressBar) findViewById(R.id.pBRegistro);
     }
 
     private Usuario getUsuario() {
@@ -58,38 +52,39 @@ public class LogingActivity  extends AppCompatActivity
         return new Usuario(nombre, clave);
     }
 
-    public void hacerLogin(View v){
+    public void registrar(View v){
         Usuario usuario = getUsuario();
-        new ComprobarLogin(usuario, this).execute();
-        if (logueado) {
+        Registrar registrar = new Registrar(usuario, this);
+        registrar.execute();
+        while(registrar.getStatus()!= AsyncTask.Status.FINISHED){
+            registrando.setVisibility(View.VISIBLE);
+            btRegistro.setEnabled(false);
 
-            Login.getInstancia(getApplicationContext()).loguear(usuario);
-            Intent intent = new Intent(this, MainActivity.class ); //lanzo actividad
-            startActivity(intent);
-            this.finish();
+        }
+        if(registrar.getStatus()== AsyncTask.Status.FINISHED) {
+            if (registrado) {
+                showSimplePopUp("Exito", "Registro satisfactorio");
+                Intent intent = new Intent(this, LogingActivity.class); //lanzo actividad
+                startActivity(intent);
+            } else {
+                showSimplePopUp("Error", "Usuario ocupado");
+            }
         }else{
-            showSimplePopUp();
+            showSimplePopUp("Error", "Error con el servidor");
         }
 
-
-    }
-
-    public void hacerRegistro(View v){
-        Intent intent = new Intent(this, RegistroActivity.class ); //lanzo actividad
-        startActivity(intent);
     }
 
     @Override
     public void onResultado(Boolean resultado) {
-        logueado=resultado;
-
+        registrado=resultado;
     }
 
-    private void showSimplePopUp() {
+    private void showSimplePopUp(String titulo, String mensaje) {
 
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle("Error");
-        helpBuilder.setMessage("Usuario o clave incorrectas");
+        helpBuilder.setTitle(titulo);
+        helpBuilder.setMessage(mensaje);
         helpBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
 

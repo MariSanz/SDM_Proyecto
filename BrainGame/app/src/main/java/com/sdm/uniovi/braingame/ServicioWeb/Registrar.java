@@ -1,25 +1,20 @@
 package com.sdm.uniovi.braingame.ServicioWeb;
 
-import com.sdm.uniovi.braingame.estadisticas.Puntuaciones;
 import com.sdm.uniovi.braingame.usuarios.Usuario;
-import com.sdm.uniovi.braingame.usuarios.Usuarios;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.UUID;
 
-/**
- * Created by luism_000 on 27/11/2015.
- */
-public class ComprobarLogin extends ConexionServidor<Boolean> {
+
+public class Registrar extends ConexionServidor<Boolean> {
 
     private Usuario usuario;
 
 
-    public ComprobarLogin(Usuario usuario, OnResultadoListener<Boolean> listener){
+    public Registrar(Usuario usuario, OnResultadoListener<Boolean> listener){
         super(listener);
         this.usuario = usuario;
     }
@@ -32,7 +27,7 @@ public class ComprobarLogin extends ConexionServidor<Boolean> {
 
     @Override
     protected URL construirURL() throws MalformedURLException {
-        return new URL(getUrlEnUso() + "/usuarios/comprobar-login");
+        return new URL(getUrlEnUso() + "/usuarios/registrar");
     }
 
     @Override

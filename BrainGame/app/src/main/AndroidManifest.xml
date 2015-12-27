@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".LogingActivity"/>
+        <activity android:name=".RegistroActivity"
+            android:parentActivityName=".LogingActivity"/>
+
         <activity android:name=".estadisticas.EstadisticasActivity"/>
 
         <activity android:name=".juegos.recordar.MainActivity"

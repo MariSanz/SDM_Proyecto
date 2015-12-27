@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">BrainGame</string>
+    <string name="app_name">Brain Game</string>
     <string name="usuario">Usuario</string>
     <string name="clave">Clave</string>
     <string name="registrar">Registrarme</string>
+    <string name="evaluar">Evaluar</string>
+    <string name="registro">Registrar</string>
+    <string name="registrarse">Registrarse</string>
 </resources>

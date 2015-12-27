@@ -17,8 +17,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irAPatrones(View view) {
-        EstadisticasActivity.iniciar(this, TipoJuego.LEER);
-        //Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.MainActivity.class);
-        //startActivity(intent);
+        EstadisticasActivity.iniciar(this, TipoJuego.RECORDAR);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void irACalcular(View view){
+        EstadisticasActivity.iniciar(this, TipoJuego.CALCULAR);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.calcular.MainActivity.class);
+        startActivity(intent);
+
     }
 }
