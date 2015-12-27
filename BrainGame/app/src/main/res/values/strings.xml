@@ -6,4 +6,13 @@
     <string name="evaluar">Evaluar</string>
     <string name="registro">Registrar</string>
     <string name="registrarse">Registrarse</string>
+    <string name="ordenar_ok_button">OK</string>
+    <string name="ordenar_InfoText1">Recuerdate del orden de las imagenes arriba</string>
+    <string name="ordenar_InfoText2">Elegir los imagenes correctos de abajo y confirma con el boton "OK"</string>
+    <string name="ordenar_correctoTitulo">Correcto</string>
+    <string name="ordenar_correctoMensaje">Tu orden está correcto. Intenta en menos tiempo!</string>
+    <string name="ordenar_incorrectoTitulo">Incorrecto</string>
+    <string name="ordenar_incorrectoMensaje">Tu orden no está correcto. Intenta otra vez!</string>
+    <string name="ordenar_finTitulo">Fin del Juego</string>
+    <string name="ordenar_finMensaje">Otra vez correcto. Has ganado el juego!</string>
 </resources>

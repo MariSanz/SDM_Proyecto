@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brain Game</string>
+    <string name="clave">Password</string>
+    <string name="evaluar">Evaluate</string>
+    <string name="registrar">Create my account</string>
+    <string name="registro">Create account</string>
+    <string name="registrarse">Create account</string>
+    <string name="usuario">Username</string>
+    <string name="ordenar_ok_button">OK</string>
+    <string name="ordenar_InfoText2">Select the correct images from below and confirm with the "OK" button</string>
+    <string name="ordenar_InfoText1">Remember the order of the images above</string>
+    <string name="ordenar_correctoMensaje">Your order was correct. Try again with less time!</string>
+    <string name="ordenar_correctoTitulo">Correct</string>
+    <string name="ordenar_finMensaje">Correct again. You won the game!</string>
+    <string name="ordenar_finTitulo">Game over</string>
+    <string name="ordenar_incorrectoMensaje">Your order was not correct. Try again!</string>
+    <string name="ordenar_incorrectoTitulo">Incorrect</string>
+</resources>

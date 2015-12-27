@@ -106,4 +106,35 @@
             android:src="@drawable/ordenar_magenta"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/lblTimer"
+        android:textStyle="bold"
+        android:textSize="32dp"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/btnAceptar"
+        android:layout_alignStart="@+id/btnAceptar" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ordenar_ok_button"
+        android:id="@+id/btnAceptar"
+        android:onClick="confirmOrder"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@+id/ordenImagenes"
+        android:layout_toEndOf="@+id/ordenImagenes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ordenar_InfoText1"
+        android:id="@+id/lblInformacion"
+        android:layout_alignTop="@+id/ordenImagenes"
+        android:layout_toStartOf="@+id/ordenImagenes"
+        android:textSize="20dp"
+        android:paddingLeft="20dp" />
+
 </RelativeLayout>
