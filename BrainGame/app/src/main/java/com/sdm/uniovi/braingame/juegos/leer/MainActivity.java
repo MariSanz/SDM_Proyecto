@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.leer_colores_activity_main);
     }
 
-    public void prueba(View view){
+    public void irAEscogerDificultad(View view){
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.ActivityDificultad.class);
 
         startActivity(intent);

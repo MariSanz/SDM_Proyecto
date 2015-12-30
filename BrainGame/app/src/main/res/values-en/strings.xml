@@ -18,10 +18,13 @@
     <string name="ordenar_incorrectoTitulo">Incorrect</string>
     <string name="ordenar_finPerdidoMensaje">You made too many mistakes! You lost the game!</string>
     <string name="ordenar_Puntos">Points:\u0020</string>
-    <string name="leer_siguiente">Next</string>
     <string name="leer_seleccionar_dificultad">Choose the difficulty level:</string>
     <string name="leer_facil">Easy</string>
     <string name="leer_normal">Normal</string>
     <string name="leer_dificil">Expert</string>
-    <string name="siguiente">Next</string>
+    <string name="leer_siguiente">Next</string>
+    <string name="leer_empezar">Start</string>
+    <string name="leer_puntos">Points:</string>
+    <string name="leer_tiempo">Time:</string>
+    <string name="leer_atras">Back</string>
 </resources>

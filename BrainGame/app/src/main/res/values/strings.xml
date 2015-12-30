@@ -19,11 +19,14 @@
     <string name="ordenar_finGanadoMensaje">Otra vez correcto. Has ganado el juego!</string>
     <string name="ordenar_finPerdidoMensaje">Te has equivocado demasiado! Has perdido el juego!</string>
     <string name="ordenar_Puntos">Puntos:\u0020</string>
-    <string name="leer_siguiente">Siguiente</string>
     <string name="leer_seleccionar_dificultad">Selecciona el nivel de dificultad:</string>
     <string name="leer_facil">Fácil</string>
     <string name="leer_normal">Normal</string>
     <string name="leer_dificil">Difícil</string>
-    <string name="siguiente">Siguiente</string>
+    <string name="leer_siguiente">Siguiente</string>
+    <string name="leer_empezar">Empezar</string>
+    <string name="leer_puntos">Puntos:</string>
+    <string name="leer_tiempo">Tiempo:</string>
+    <string name="leer_atras">Atrás</string>
 
 </resources>

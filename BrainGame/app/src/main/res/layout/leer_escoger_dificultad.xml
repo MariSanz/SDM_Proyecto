@@ -28,7 +28,7 @@
     <RadioGroup
         android:layout_width="182dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.34"
+        android:layout_weight="0.39"
         android:paddingStart="30dp"
         android:id="@+id/radioGroupDificultades">
 
@@ -53,4 +53,13 @@
             android:id="@+id/radioButtonDificil"
             android:layout_weight="0.08" />
     </RadioGroup>
+
+    <Button
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:text="@string/leer_empezar"
+        android:id="@+id/buttonEmpezar"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.07"
+        android:onClick="irAJuegoLeer" />
 </LinearLayout>

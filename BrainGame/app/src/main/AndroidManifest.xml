@@ -38,6 +38,8 @@
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".juegos.leer.ActivityDificultad"
             android:parentActivityName=".juegos.leer.ActivityDificultad"/>
+        <activity android:name=".juegos.leer.JuegoLeer"
+            android:parentActivityName=".juegos.leer.JuegoLeer"/>
 
     </application>
 
