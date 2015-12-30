@@ -22,33 +22,35 @@ public class LogingActivity  extends AppCompatActivity
     private EditText etUsuario;
     private EditText etClave;
 
-    private boolean logueado= false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loging_activity_main);
 
-        if(logueado){
-
+        Login login = Login.getInstancia(this.getApplicationContext());
+        if(login.isLogueado()){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
+        else {
 
-        //Recupero los elementos de la vista
-        TextView tvUsuario = (TextView) findViewById(R.id.tvUsuarioRegistro);
-        TextView tvClave = (TextView) findViewById(R.id.tvClaveRegistro);
-        etUsuario = (EditText) findViewById(R.id.etUsuarioRegistro);
-        etClave = (EditText) findViewById(R.id.etClave);
-        Button btLogin = (Button) findViewById(R.id.btLogin);
-        TextView tvRegistro = (TextView) findViewById(R.id.btRegistro);
+            //Recupero los elementos de la vista
+            TextView tvUsuario = (TextView) findViewById(R.id.tvUsuarioRegistro);
+            TextView tvClave = (TextView) findViewById(R.id.tvClaveRegistro);
+            etUsuario = (EditText) findViewById(R.id.etUsuarioRegistro);
+            etClave = (EditText) findViewById(R.id.etClave);
+            Button btLogin = (Button) findViewById(R.id.btLogin);
+            TextView tvRegistro = (TextView) findViewById(R.id.btRegistro);
 
 
-        Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
-        tvUsuario.setTypeface(estiloLetra);
-        tvClave.setTypeface(estiloLetra);
-        tvRegistro.setTypeface(estiloLetra);
-        etUsuario.setTypeface(estiloLetra);
-        btLogin.setTypeface(estiloLetra);
-
+            Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
+            tvUsuario.setTypeface(estiloLetra);
+            tvClave.setTypeface(estiloLetra);
+            tvRegistro.setTypeface(estiloLetra);
+            etUsuario.setTypeface(estiloLetra);
+            btLogin.setTypeface(estiloLetra);
+        }
 
     }
 
@@ -61,15 +63,6 @@ public class LogingActivity  extends AppCompatActivity
     public void hacerLogin(View v){
         Usuario usuario = getUsuario();
         new ComprobarLogin(usuario, this).execute();
-        if (logueado) {
-
-            Login.getInstancia(getApplicationContext()).loguear(usuario);
-            Intent intent = new Intent(this, MainActivity.class ); //lanzo actividad
-            startActivity(intent);
-            this.finish();
-        }else{
-            showSimplePopUp();
-        }
 
 
     }
@@ -81,7 +74,16 @@ public class LogingActivity  extends AppCompatActivity
 
     @Override
     public void onResultado(Boolean resultado) {
-        logueado=resultado;
+        Usuario usuario = getUsuario();
+        if (resultado) {
+
+            Login.getInstancia(getApplicationContext()).loguear(usuario);
+            Intent intent = new Intent(this, MainActivity.class ); //lanzo actividad
+            startActivity(intent);
+            this.finish();
+        }else{
+            showSimplePopUp();
+        }
 
     }
 

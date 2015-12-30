@@ -56,28 +56,22 @@ public class RegistroActivity extends AppCompatActivity
         Usuario usuario = getUsuario();
         Registrar registrar = new Registrar(usuario, this);
         registrar.execute();
-        while(registrar.getStatus()!= AsyncTask.Status.FINISHED){
-            registrando.setVisibility(View.VISIBLE);
-            btRegistro.setEnabled(false);
 
-        }
-        if(registrar.getStatus()== AsyncTask.Status.FINISHED) {
-            if (registrado) {
+
+    }
+
+    @Override
+    public void onResultado(Boolean resultado) {
+
+
+            if (resultado) {
                 showSimplePopUp("Exito", "Registro satisfactorio");
                 Intent intent = new Intent(this, LogingActivity.class); //lanzo actividad
                 startActivity(intent);
             } else {
                 showSimplePopUp("Error", "Usuario ocupado");
             }
-        }else{
-            showSimplePopUp("Error", "Error con el servidor");
-        }
 
-    }
-
-    @Override
-    public void onResultado(Boolean resultado) {
-        registrado=resultado;
     }
 
     private void showSimplePopUp(String titulo, String mensaje) {
