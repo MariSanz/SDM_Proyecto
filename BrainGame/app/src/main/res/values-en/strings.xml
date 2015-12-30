@@ -12,9 +12,14 @@
     <string name="ordenar_InfoText1">Remember the order of the images above</string>
     <string name="ordenar_correctoMensaje">Your order was correct. Try again with less time!</string>
     <string name="ordenar_correctoTitulo">Correct</string>
-    <string name="ordenar_finMensaje">Correct again. You won the game!</string>
+    <string name="ordenar_finGanadoMensaje">Correct again. You won the game!</string>
     <string name="ordenar_finTitulo">Game over</string>
     <string name="ordenar_incorrectoMensaje">Your order was not correct. Try again!</string>
     <string name="ordenar_incorrectoTitulo">Incorrect</string>
+<<<<<<< HEAD
     <string name="siguiente">Next</string>
+=======
+    <string name="ordenar_finPerdidoMensaje">You made too many mistakes! You lost the game!</string>
+    <string name="ordenar_Puntos">Points:\u0020</string>
+>>>>>>> origin/master
 </resources>

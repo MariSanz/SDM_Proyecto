@@ -3,9 +3,7 @@ package com.sdm.uniovi.braingame.juegos.ordenar;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
@@ -15,11 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by luism_000 on 11/11/2015.
@@ -40,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img5;
     private ImageView img6;
 
-    private TextView info;
-    private TextView timer;
+    private TextView tVInfo;
+    private TextView tVTimer;
+    private TextView tVPoints;
     private CountDownTimer countdown;
     private int timerTime = 10000;
 
@@ -49,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private dropListener dropL = new dropListener();
 
     OrdenarColor[] colors;
+
+    private Integer points = 200;
 
 
 
@@ -106,20 +104,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.ordenar_imagenes_activity_main);
-        //Connect views of colored images and set dragListeners for them
+        //Connect views of colored images
         imgAzul =(ImageView)findViewById(R.id.imgAzul);
-        imgAzul.setOnTouchListener(dragL);
         imgAmarillo =(ImageView)findViewById(R.id.imgAmarillo);
-        imgAmarillo.setOnTouchListener(dragL);
         imgRojo =(ImageView)findViewById(R.id.imgRojo);
-        imgRojo.setOnTouchListener(dragL);
         imgVerde =(ImageView)findViewById(R.id.imgVerde);
-        imgVerde.setOnTouchListener(dragL);
         imgNaranja =(ImageView)findViewById(R.id.imgNaranja);
-        imgNaranja.setOnTouchListener(dragL);
         imgMagenta =(ImageView)findViewById(R.id.imgMagenta);
-        imgMagenta.setOnTouchListener(dragL);
-
 
         img1 =(ImageView)findViewById(R.id.img1);
         img2 =(ImageView)findViewById(R.id.img2);
@@ -130,8 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
         placeColors();
 
-        timer = (TextView) findViewById(R.id.lblTimer);
-        info = (TextView) findViewById(R.id.lblInformacion);
+        tVTimer = (TextView) findViewById(R.id.lblTimer);
+        tVInfo = (TextView) findViewById(R.id.lblInformacion);
+        tVPoints = (TextView) findViewById(R.id.lblPuntuacion);
+        tVPoints.setText(this.getString(R.string.ordenar_Puntos) +  points.toString());
 
         startTimer(timerTime);
 
@@ -141,34 +134,42 @@ public class MainActivity extends AppCompatActivity {
         countdown = new CountDownTimer(millis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timer.setText("  " + millisUntilFinished / 1000);
+                tVTimer.setText("  " + millisUntilFinished / 1000);
             }
 
             @Override
             public void onFinish() {
-                timer.setText("  0");
+                tVTimer.setText("  0");
                 deleteImages();
-                info.setText(R.string.ordenar_InfoText2);
+                tVInfo.setText(R.string.ordenar_InfoText2);
             }
         };
 
         countdown.start();
     }
 
-    //Hides the images for the user and enables the Listener to drop pictures on the views
+    //Hides the images for the user and enables the Listener to drag and drop pictures on the views
     private void deleteImages() {
-        img1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ordenar_blanco));
+        img1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
         img1.setOnDragListener(dropL);
-        img2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ordenar_blanco));
+        img2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
         img2.setOnDragListener(dropL);
-        img3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ordenar_blanco));
+        img3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
         img3.setOnDragListener(dropL);
-        img4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ordenar_blanco));
+        img4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
         img4.setOnDragListener(dropL);
-        img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ordenar_blanco));
+        img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
         img5.setOnDragListener(dropL);
-        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ordenar_blanco));
+        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
         img6.setOnDragListener(dropL);
+
+        imgAzul.setOnTouchListener(dragL);
+        imgAmarillo.setOnTouchListener(dragL);
+        imgRojo.setOnTouchListener(dragL);
+        imgVerde.setOnTouchListener(dragL);
+        imgNaranja.setOnTouchListener(dragL);
+        imgMagenta.setOnTouchListener(dragL);
+
     }
 
     public int translateColorToImage(OrdenarColor color){
@@ -208,23 +209,42 @@ public class MainActivity extends AppCompatActivity {
 
       }
       else if (!isOrderCorrect()){
-          AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-          alertDialog.setTitle(R.string.ordenar_incorrectoTitulo);
-          alertDialog.setMessage(this.getString(R.string.ordenar_incorrectoMensaje));
-          alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, this.getString(R.string.ordenar_ok_button),
-                  new DialogInterface.OnClickListener() {
-                      public void onClick(DialogInterface dialog, int which) {
-                          dialog.dismiss();
-                          restartInterface(false);
-                      }
-                  });
-          alertDialog.show();
+          points -= 50;
+          tVPoints.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
+
+          if (points >= 50) {
+
+              AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+              alertDialog.setTitle(R.string.ordenar_incorrectoTitulo);
+              alertDialog.setMessage(this.getString(R.string.ordenar_incorrectoMensaje));
+              alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, this.getString(R.string.ordenar_ok_button),
+                      new DialogInterface.OnClickListener() {
+                          public void onClick(DialogInterface dialog, int which) {
+                              dialog.dismiss();
+                              restartInterface(false);
+                          }
+                      });
+              alertDialog.show();
+          }
+          else{
+              AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+              alertDialog.setTitle(R.string.ordenar_finTitulo);
+              alertDialog.setMessage(this.getString(R.string.ordenar_finPerdidoMensaje));
+              alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, this.getString(R.string.ordenar_ok_button),
+                      new DialogInterface.OnClickListener() {
+                          public void onClick(DialogInterface dialog, int which) {
+                              dialog.dismiss();
+                              closeActivity();
+                          }
+                      });
+              alertDialog.show();
+          }
 
       }
       else{
           AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
           alertDialog.setTitle(R.string.ordenar_finTitulo);
-          alertDialog.setMessage(this.getString(R.string.ordenar_finMensaje));
+          alertDialog.setMessage(this.getString(R.string.ordenar_finGanadoMensaje));
           alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, this.getString(R.string.ordenar_ok_button),
                   new DialogInterface.OnClickListener() {
                       public void onClick(DialogInterface dialog, int which) {
@@ -285,13 +305,29 @@ public class MainActivity extends AppCompatActivity {
         img2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[1])));
         img3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[2])));
         img4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[3])));
-        img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[4])));
-        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[5])));
+        img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[4])));
+        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[5])));
     }
 
     public void restartInterface(boolean won){
         placeColors();
-        info.setText(R.string.ordenar_InfoText1);
+        tVInfo.setText(R.string.ordenar_InfoText1);
+
+        img1.setOnDragListener(null);
+        img2.setOnDragListener(null);
+        img3.setOnDragListener(null);
+        img4.setOnDragListener(null);
+        img5.setOnDragListener(null);
+        img6.setOnDragListener(null);
+
+        imgAzul.setOnTouchListener(null);
+        imgAmarillo.setOnTouchListener(null);
+        imgRojo.setOnTouchListener(null);
+        imgVerde.setOnTouchListener(null);
+        imgNaranja.setOnTouchListener(null);
+        imgMagenta.setOnTouchListener(null);
+
+
         if (won) {
             timerTime -= 2000;
             startTimer(timerTime);
@@ -302,10 +338,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //return Extra-Bundle
+
     private void closeActivity(){
+        //TO DO: send points to server...
         this.finish();
     }
+
 
 }
 
