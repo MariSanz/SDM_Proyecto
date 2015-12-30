@@ -27,7 +27,7 @@ public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
     private static final String URL_SW_DESARROLLO = "http://10.0.2.2/SDM_PHP/index.php";
     private static final String URL_SW_PRODUCCION = "http://braingame.esy.es/index.php";
 
-    protected static final String URL_EN_USO = URL_SW_DESARROLLO;
+    protected static final String URL_EN_USO = URL_SW_PRODUCCION;
 
     private String metodo;
 
@@ -51,7 +51,12 @@ public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
 
             JSONObject parametros = getParametros();
 
-            conexion.setRequestMethod("GET");
+            if (parametros != null) {
+                conexion.setRequestMethod("POST");
+            }
+            else {
+                conexion.setRequestMethod("GET");
+            }
             conexion.setDoInput(true);
             conexion.setDoOutput(parametros != null);
 
@@ -61,6 +66,7 @@ public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
             }
 
             if (parametros != null) {
+                conexion.setRequestProperty("Content-Type", "application/json");
                 Writer salida = new OutputStreamWriter(conexion.getOutputStream());
                 salida.write(parametros.toString());
                 salida.close();
@@ -68,15 +74,15 @@ public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
 
             int codigo = conexion.getResponseCode();
 
-            String respuesta = getResponseText(conexion.getInputStream());
-
-            Log.v(TAG, respuesta);
             if (codigo == HttpURLConnection.HTTP_OK) {
+                String respuesta = getResponseText(conexion.getInputStream());
                 return procesarRetorno(respuesta);
             } else if (codigo == HttpURLConnection.HTTP_UNAUTHORIZED) {
                 Log.w(TAG, "El servicio devolvió acceso no autorizado");
             } else {
+                String respuesta = getResponseText(conexion.getErrorStream());
                 Log.w(TAG, "El servicio devolvió un codigo de respuesta no válido: " + codigo);
+                Log.d(TAG, "Respuesta del servidor: " + respuesta);
             }
 
         } catch (Exception e) {
