@@ -33,4 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.ordenar.MainActivity.class);
         startActivity(intent);
     }
+
+    public void irALeer(View view){
+        EstadisticasActivity.iniciar(this, TipoJuego.LEER);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.MainActivity.class);
+        startActivity(intent);
+    }
 }

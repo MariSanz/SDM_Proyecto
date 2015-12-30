@@ -16,4 +16,5 @@
     <string name="ordenar_finTitulo">Game over</string>
     <string name="ordenar_incorrectoMensaje">Your order was not correct. Try again!</string>
     <string name="ordenar_incorrectoTitulo">Incorrect</string>
+    <string name="siguiente">Next</string>
 </resources>
