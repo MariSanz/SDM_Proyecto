@@ -54,8 +54,8 @@ public class RegistroActivity extends AppCompatActivity
 
     public void registrar(View v){
         Usuario usuario = getUsuario();
-        Registrar registrar = new Registrar(usuario, this);
-        registrar.execute();
+        new Registrar(usuario, this).execute();
+
 
 
     }

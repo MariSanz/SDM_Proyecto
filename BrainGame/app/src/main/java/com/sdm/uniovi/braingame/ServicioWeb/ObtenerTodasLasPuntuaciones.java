@@ -8,9 +8,6 @@ import org.json.JSONException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by luism_000 on 02/12/2015.
- */
 public class ObtenerTodasLasPuntuaciones extends ConexionServidor<Puntuaciones> {
 
     private String autorizacion;

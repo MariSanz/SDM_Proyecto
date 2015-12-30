@@ -1,18 +1,24 @@
 package com.sdm.uniovi.braingame.juegos.calcular;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.juegos.calcular.logica.GeneradorExpresion;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,18 +26,23 @@ public class MainActivity extends AppCompatActivity {
     public static int NIVEL_MINIMO = 1;
     private int nivelActual = NIVEL_MINIMO;
 
+    private Timer timer = new Timer();
+    private Random random = new Random();
+    private GeneradorExpresion generadorExpresion;
+
 
     private TextView textViewFormula = null;
+    private TextView textViewTimer = null;
+    private TextView textViewNivel = null;
 
     private RadioButton[] opciones = new RadioButton[4];
     private RadioButton opcion1;
     private RadioButton opcion2;
     private RadioButton opcion3;
     private RadioButton opcion4;
+    private int level;
+    private CountDownTimer countdown;
 
-    private double[] resultados = new double[12];
-    private String[] operaciones = new String[12];
-    private Map<Integer, List<Double>> erroresPosibles = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
         textViewFormula = (TextView) findViewById(R.id.textViewFormula);
         textViewFormula.setTypeface(estiloLetra);
 
+        textViewTimer = (TextView) findViewById(R.id.tvTimer);
+        textViewTimer.setTypeface(estiloLetra);
+
+        textViewNivel = (TextView) findViewById(R.id.tvNivel);
+        textViewNivel.setTypeface(estiloLetra);
+
         opcion1 = (RadioButton) findViewById(R.id.rBCalcularOp1);
         opcion1.setTypeface(estiloLetra);
         opciones[0] = opcion1;
@@ -61,134 +78,73 @@ public class MainActivity extends AppCompatActivity {
         opcion4.setTypeface(estiloLetra);
         opciones[3] = opcion1;
 
+        generadorExpresion= new GeneradorExpresion();
 
 
-        jugar();
-
+        jugarNivelFacil();
 
     }
 
-    private void jugar() {
-        if (nivelActual == 1) {
-            jugarNivel1();
+    private void jugarNivelFacil() {
+
+        int aciertosMinimos= 7;
+        int aciertos=0;
+        final int[] fallos = new int[1];
+        int jugadas = 0;
+        textViewNivel.setText(R.string.nivel +" "+ R.string.leer_facil);
+
+        while(jugadas <10)
+
+            //genero la expresion
+            generadorExpresion.generarNivel1();
+            textViewFormula.setText(generadorExpresion.getExpresion().mostrar());
+            //designo el resultado correcto
+            opciones[random.nextInt(opciones.length)].setText(String.valueOf(generadorExpresion.getExpresion().valor()));
+
+            new CountDownTimer(20000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    textViewTimer.setText("seconds remaining: " + millisUntilFinished / 1000);
+
+                }
+
+                public void onFinish() {
+                    textViewTimer.setText("done!");
+                    fallos[0]++;
+                }
+            }.start();
+
+
+
         }
-    }
 
 
-    private void jugarNivel1() {
 
-        cargarOperaciones(10);
+    private void showPopUp() {
 
-        Random random = new Random();
-        int operacionNum = random.nextInt(11);
-        textViewFormula.setText(operaciones[operacionNum]);
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Inicio");
+        helpBuilder.setMessage(R.string.nivel + " " + R.string.leer_facil);
+        helpBuilder.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
 
-        int opcionCorrecta = random.nextInt(3);
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing but close the dialog
+                    }
+                });
 
-
-        opciones[opcionCorrecta].setText(String.valueOf(resultados[operacionNum]));
-
-        List<Double> errores = erroresPosibles.get(operacionNum);
-
-        /*int j=0;
-        for(int i=0; i<opciones.length;i++){
-
-            if(i!=opcionCorrecta){
-                opciones[opcionCorrecta].setText(String.valueOf(errores.get(j)));
-                j++;
-            }
-        }*/
+        // Remember, create doesn't show the dialog
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
     }
 
 
 
-    private void cargarOperaciones(int hasta) {
-        Random random = new Random();
-
-        int num1 = random.nextInt(hasta);
-        int num2 = random.nextInt(hasta);
-        int num3 = random.nextInt(hasta);
-
-        double sumaTodo = num1+num2+num3;  String sumaTodoT = num1+" + "+num2+" + "+num3;
-        double combi1 = num1-num2+num3;    String combi1T = num1+" - "+num2+" + "+num3;
-        double combi2 = num1*num2+num3;    String combi2T = num1+" x "+num2+" + "+num3;
-        double restaTodo = num1-num2-num3; String restaTodoT = num1+" - "+num2+" - "+num3;
-        double combi3 = num1+num2-num3;    String combi3T = num1+" + "+num2+" - "+num3;
-        double combi4 = num1*num2-num3;    String combi4T = num1+" x "+num2+" -"+num3;
-        double combi5 = num1*num2/num3;    String combi5T = num1+" x "+num2+" / "+num3;
-        double combi6 = num1+num2/num3;    String combi6T = num1+" + "+num2+" / "+num3;
-        double combi7 = num1-num2/num3;    String combi7T = num1+" - "+num2+" / "+num3;
-        double multiTodo = num1*num2*num3; String multiTodoT = num1+" x "+num2+" x "+num3;
-        double combi8 = num1+num2*num3;    String combi8T = num1+" + "+num2+" x "+num3;
-        double combi9 = num1-num2*num3;    String combi9T = num1+" - "+num2+" x "+num3;
-
-
-        List<Double> malasSoluciones = new ArrayList<>();
-
-        malasSoluciones.add(combi1); malasSoluciones.add(combi2); malasSoluciones.add(combi3); malasSoluciones.clear();
-        erroresPosibles.put(0, malasSoluciones);
-
-        malasSoluciones.add(sumaTodo);malasSoluciones.add(restaTodo); malasSoluciones.add(combi3); malasSoluciones.clear();
-        erroresPosibles.put(1, malasSoluciones);
-
-        malasSoluciones.add(combi1);malasSoluciones.add(sumaTodo); malasSoluciones.add(combi3); malasSoluciones.clear();
-        erroresPosibles.put(2, malasSoluciones);
-
-        malasSoluciones.add(combi1);malasSoluciones.add(combi3); malasSoluciones.add(combi2); malasSoluciones.clear();
-        erroresPosibles.put(3, malasSoluciones); //restaTodo
-
-        malasSoluciones.add(combi1);malasSoluciones.add(sumaTodo); malasSoluciones.add(combi2); malasSoluciones.clear();
-        erroresPosibles.put(4, malasSoluciones);//combi3
-
-        malasSoluciones.add(combi2);malasSoluciones.add(combi5); malasSoluciones.add(multiTodo); malasSoluciones.clear();
-        erroresPosibles.put(5, malasSoluciones);//combi4
-
-        malasSoluciones.add(combi4);malasSoluciones.add(combi5); malasSoluciones.add(combi2); malasSoluciones.clear();
-        erroresPosibles.put(6, malasSoluciones);//combi5
-
-        malasSoluciones.add(combi7);malasSoluciones.add(combi5); malasSoluciones.add(combi8); malasSoluciones.clear();
-        erroresPosibles.put(7, malasSoluciones);//combi6
-
-        malasSoluciones.add(combi6);malasSoluciones.add(combi5); malasSoluciones.add(restaTodo); malasSoluciones.clear();
-        erroresPosibles.put(8, malasSoluciones);//combi7
-
-        malasSoluciones.add(combi5);malasSoluciones.add(combi4); malasSoluciones.add(combi8); malasSoluciones.clear();
-        erroresPosibles.put(9, malasSoluciones);//multiTodo
-
-        malasSoluciones.add(combi4);malasSoluciones.add(combi2); malasSoluciones.add(combi5); malasSoluciones.clear();
-        erroresPosibles.put(10, malasSoluciones);//combi8
-
-        malasSoluciones.add(combi4);malasSoluciones.add(multiTodo); malasSoluciones.add(combi8); malasSoluciones.clear();
-        erroresPosibles.put(11, malasSoluciones);//combi9
 
 
 
-        resultados[0]=sumaTodo;
-        resultados[1]=combi1;
-        resultados[2]= combi2;
-        resultados[3]=restaTodo;
-        resultados[4]=combi3;
-        resultados[5]=combi4;
-        resultados[6]=combi5;
-        resultados[7]=combi6;
-        resultados[8]=combi7;
-        resultados[9]= multiTodo;
-        resultados[10]= combi8;
-        resultados[11]=combi9;
 
-        operaciones[0]=sumaTodoT;
-        operaciones[1]=combi1T;
-        operaciones[2]=combi2T;
-        operaciones[3]=restaTodoT;
-        operaciones[4]= combi3T;
-        operaciones[5]=combi4T;
-        operaciones[6]=combi5T;
-        operaciones[7]=combi6T;
-        operaciones[8]=combi7T;
-        operaciones[9]=multiTodoT;
-        operaciones[10]=combi8T;
-        operaciones[11]=combi9T;
-    }
+
 
 
 }

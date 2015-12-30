@@ -3,7 +3,11 @@
     <string name="usuario">Usuario</string>
     <string name="clave">Clave</string>
     <string name="registrar">Registrarme</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="nivel">Nivel</string>
+    <string name="cerrado_sesion">Usted ha cerrado la sesión</string>
     <string name="evaluar">Evaluar</string>
+    <string name="ayuda">Ayuda</string>
     <string name="registro">Registrar</string>
     <string name="registrarse">Registrarse</string>
     <string name="ordenar_ok_button">OK</string>

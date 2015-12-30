@@ -3,10 +3,14 @@ package com.sdm.uniovi.braingame;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
+import com.sdm.uniovi.braingame.usuarios.Login;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +18,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_cerrar_sesion:
+                Login.getInstancia(getApplicationContext()).desloguear();
+                Intent intent = new Intent(this, LogingActivity.class);
+                Toast.makeText(this, R.string.cerrado_sesion, Toast.LENGTH_LONG).show();
+                this.finish();
+
+                startActivity(intent);
+
+                return true;
+            case R.id.menu_ayuda:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void irAPatrones(View view) {
