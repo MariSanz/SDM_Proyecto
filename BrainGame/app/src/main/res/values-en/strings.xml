@@ -16,10 +16,11 @@
     <string name="ordenar_finTitulo">Game over</string>
     <string name="ordenar_incorrectoMensaje">Your order was not correct. Try again!</string>
     <string name="ordenar_incorrectoTitulo">Incorrect</string>
-<<<<<<< HEAD
-    <string name="siguiente">Next</string>
-=======
     <string name="ordenar_finPerdidoMensaje">You made too many mistakes! You lost the game!</string>
     <string name="ordenar_Puntos">Points:\u0020</string>
->>>>>>> origin/master
+    <string name="leer_siguiente">Next</string>
+    <string name="leer_seleccionar_dificultad">Choose the difficulty level:</string>
+    <string name="leer_facil">Easy</string>
+    <string name="leer_normal">Normal</string>
+    <string name="leer_dificil">Expert</string>
 </resources>

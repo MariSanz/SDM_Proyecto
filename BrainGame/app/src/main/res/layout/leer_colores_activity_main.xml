@@ -30,10 +30,12 @@
     <Button
         android:layout_width="177dp"
         android:layout_height="wrap_content"
-        android:text="@string/siguiente"
+        android:text="@string/leer_siguiente"
         android:id="@+id/btSiguiente"
         android:layout_gravity="right"
-        android:layout_weight="0.03" />
+        android:textColor="#000000"
+        android:layout_weight="0.03"
+        android:onClick="prueba" />
 
 
 </LinearLayout>

@@ -39,4 +39,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.MainActivity.class);
         startActivity(intent);
     }
+
+
 }
