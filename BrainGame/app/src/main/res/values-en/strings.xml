@@ -4,9 +4,7 @@
     <string name="clave">Password</string>
     <string name="evaluar">Evaluate</string>
     <string name="registrar">Create my account</string>
-    <string name="cerrar_sesion">Sign out</string>
-    <string name="cerrado_sesion">You logout</string>
-    <string name="nivel">Level</string>
+    <string name="cerrado_sesion">You have succesfully signed out</string>
     <string name="registro">Create account</string>
     <string name="ayuda">Help</string>
     <string name="registrarse">Create account</string>
@@ -28,7 +26,10 @@
     <string name="leer_dificil">Expert</string>
     <string name="leer_siguiente">Next</string>
     <string name="leer_empezar">Start</string>
-    <string name="leer_puntos">Points:</string>
     <string name="leer_tiempo">Time:</string>
     <string name="leer_atras">Back</string>
+    <string name="nivel">Difficulty</string>
+    <string name="leer_puntos">Points: </string>
+    <string name="descripcion_juego_leer">This game consists in recognizing the color of the words shown on the screen. Once the word is shown, you have to say the correct colour in a limited period of time.</string>
+    <string name="cerrar_sesion">Close session</string>
 </resources>

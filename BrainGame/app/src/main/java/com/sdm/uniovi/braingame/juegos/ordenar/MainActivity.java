@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by luism_000 on 11/11/2015.
  */
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img4;
     private ImageView img5;
     private ImageView img6;
+
+    private ArrayList<ImageView> imagesList;
 
     private TextView tVInfo;
     private TextView tVTimer;
@@ -99,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    //TO DO: Choose dificulty in preActivity and set integer as amount of images to play with. Implement in functions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,12 +118,21 @@ public class MainActivity extends AppCompatActivity {
         imgNaranja =(ImageView)findViewById(R.id.imgNaranja);
         imgMagenta =(ImageView)findViewById(R.id.imgMagenta);
 
+        imagesList = new ArrayList<>();
+
         img1 =(ImageView)findViewById(R.id.img1);
         img2 =(ImageView)findViewById(R.id.img2);
         img3 =(ImageView)findViewById(R.id.img3);
         img4 =(ImageView)findViewById(R.id.img4);
         img5 =(ImageView)findViewById(R.id.img5);
         img6 =(ImageView)findViewById(R.id.img6);
+
+        imagesList.add(img1);
+        imagesList.add(img2);
+        imagesList.add(img3);
+        imagesList.add(img4);
+        imagesList.add(img5);
+        imagesList.add(img6);
 
         placeColors();
 
@@ -150,18 +165,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Hides the images for the user and enables the Listener to drag and drop pictures on the views
     private void deleteImages() {
-        img1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-        img1.setOnDragListener(dropL);
-        img2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-        img2.setOnDragListener(dropL);
-        img3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-        img3.setOnDragListener(dropL);
-        img4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-        img4.setOnDragListener(dropL);
-        img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-        img5.setOnDragListener(dropL);
-        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-        img6.setOnDragListener(dropL);
+
+        for (ImageView i : imagesList){
+            i.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
+            i.setOnDragListener(dropL);
+        }
 
         imgAzul.setOnTouchListener(dragL);
         imgAmarillo.setOnTouchListener(dragL);
@@ -262,11 +270,18 @@ public class MainActivity extends AppCompatActivity {
         boolean correct = true;
 
         ImageView arrayImage = new ImageView(this);
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[0])));
 
         ImageView blancImage = new ImageView(this);
         blancImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
 
+        for (int i = 0; i< imagesList.size(); i++){
+            arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
+            if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)imagesList.get(i).getDrawable()).getBitmap()))){
+                correct = false;
+            }
+        }
+/*
+        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[0])));
         if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img1.getDrawable()).getBitmap()))){
             correct = false;
         }
@@ -295,30 +310,38 @@ public class MainActivity extends AppCompatActivity {
         if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img6.getDrawable()).getBitmap()))){
             correct = false;
         }
-
+*/
         return correct;
     }
 
     public void placeColors(){
         colors = OrdenarLogica.generizeColors(6);
-        img1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[0])));
+
+        for (int i = 0; i< imagesList.size(); i++){
+            imagesList.get(i).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
+        }
+
+       /* img1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[0])));
         img2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[1])));
         img3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[2])));
         img4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[3])));
         img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[4])));
-        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[5])));
+        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[5]))); */
     }
 
     public void restartInterface(boolean won){
         placeColors();
         tVInfo.setText(R.string.ordenar_InfoText1);
 
-        img1.setOnDragListener(null);
+        for (ImageView i : imagesList){
+            i.setOnDragListener(null);
+        }
+    /*    img1.setOnDragListener(null);
         img2.setOnDragListener(null);
         img3.setOnDragListener(null);
         img4.setOnDragListener(null);
         img5.setOnDragListener(null);
-        img6.setOnDragListener(null);
+        img6.setOnDragListener(null); */
 
         imgAzul.setOnTouchListener(null);
         imgAmarillo.setOnTouchListener(null);

@@ -18,7 +18,6 @@
     <string name="ordenar_incorrectoTitulo">Incorrecto</string>
     <string name="ordenar_incorrectoMensaje">Tu orden no está correcto. Intenta otra vez!</string>
     <string name="ordenar_finTitulo">Fin del Juego</string>
-    <string name="ordenar_finMensaje">Otra vez correcto. Has ganado el juego!</string>
     <string name="descripcion_juego_leer">Este juego consiste en reconocer el color del que están pintadas las palabras que aparecen en pantalla. Una vez que aparezca una palabra dispondrás de un periodo de tiempo en el cual tendrás que decir el color que crees que es el correcto.</string>
     <string name="ordenar_finGanadoMensaje">Otra vez correcto. Has ganado el juego!</string>
     <string name="ordenar_finPerdidoMensaje">Te has equivocado demasiado! Has perdido el juego!</string>
