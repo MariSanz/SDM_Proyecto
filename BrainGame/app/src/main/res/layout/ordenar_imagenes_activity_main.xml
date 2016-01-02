@@ -16,7 +16,6 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:id="@+id/img1"
-            android:src="@drawable/ordenar_blanco"
             android:maxWidth="42dp"
             android:maxHeight="42dp" />
 
@@ -24,7 +23,6 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:id="@+id/img2"
-            android:src="@drawable/ordenar_blanco"
             android:maxWidth="42dp"
             android:maxHeight="42dp" />
 
@@ -32,7 +30,6 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:id="@+id/img3"
-            android:src="@drawable/ordenar_blanco"
             android:maxWidth="42dp"
             android:maxHeight="42dp" />
 
@@ -40,7 +37,6 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:id="@+id/img4"
-            android:src="@drawable/ordenar_blanco"
             android:maxWidth="42dp"
             android:maxHeight="42dp" />
 
@@ -48,7 +44,6 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:id="@+id/img5"
-            android:src="@drawable/ordenar_blanco"
             android:maxWidth="42dp"
             android:maxHeight="42dp" />
 
@@ -56,7 +51,6 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:id="@+id/img6"
-            android:src="@drawable/ordenar_blanco"
             android:maxWidth="42dp"
             android:maxHeight="42dp" />
     </GridLayout>
@@ -125,7 +119,8 @@
         android:onClick="confirmOrder"
         android:layout_marginLeft="20dp"
         android:layout_alignTop="@+id/ordenImagenes"
-        android:layout_toEndOf="@+id/ordenImagenes" />
+        android:layout_toEndOf="@+id/ordenImagenes"
+        android:enabled="false" />
 
     <TextView
         android:layout_width="wrap_content"

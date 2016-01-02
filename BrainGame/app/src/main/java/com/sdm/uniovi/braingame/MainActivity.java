@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void irAOrdenar(View view) {
         EstadisticasActivity.iniciar(this, TipoJuego.ORDENAR);
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.ordenar.MainActivity.class);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.ordenar.ActivityDificultad.class);
         startActivity(intent);
     }
 

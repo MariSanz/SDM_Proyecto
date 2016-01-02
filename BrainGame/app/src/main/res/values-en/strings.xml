@@ -32,4 +32,5 @@
     <string name="leer_puntos">Points: </string>
     <string name="descripcion_juego_leer">This game consists in recognizing the color of the words shown on the screen. Once the word is shown, you have to say the correct colour in a limited period of time.</string>
     <string name="cerrar_sesion">Close session</string>
+    <string name="ordenar_actDif_Titulo">Arrange in Order</string>
 </resources>

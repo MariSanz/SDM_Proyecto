@@ -12,35 +12,40 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".MainActivity" >
         </activity>
-
-        <activity android:name=".LogingActivity">
+        <activity android:name=".LogingActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".RegistroActivity"
-            android:parentActivityName=".LogingActivity"/>
-
-        <activity android:name=".estadisticas.EstadisticasActivity"/>
-
-        <activity android:name=".juegos.recordar.MainActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".juegos.calcular.MainActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".juegos.leer.MainActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".juegos.ordenar.MainActivity"
+        <activity
+            android:name=".RegistroActivity"
+            android:parentActivityName=".LogingActivity" />
+        <activity android:name=".estadisticas.EstadisticasActivity" />
+        <activity
+            android:name=".juegos.recordar.MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".juegos.calcular.MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".juegos.leer.MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".juegos.ordenar.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name=".juegos.leer.ActivityDificultad"
-            android:parentActivityName=".juegos.leer.ActivityDificultad"/>
-        <activity android:name=".juegos.leer.JuegoLeer"
-            android:parentActivityName=".juegos.leer.JuegoLeer"/>
-
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".juegos.leer.ActivityDificultad"
+            android:parentActivityName=".juegos.leer.ActivityDificultad" />
+        <activity
+            android:name=".juegos.leer.JuegoLeer"
+            android:parentActivityName=".juegos.leer.JuegoLeer" />
+        <activity
+            android:name=".juegos.ordenar.ActivityDificultad"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.sdm.uniovi.braingame.juegos.ordenar;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
 
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tVInfo;
     private TextView tVTimer;
     private TextView tVPoints;
+    private Button btOkay;
     private CountDownTimer countdown;
     private int timerTime = 10000;
 
@@ -50,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     OrdenarColor[] colors;
 
-    private Integer points = 200;
+    private Integer points = 0;
+    private int equivocar = 3;
+    private int dificultad;
 
 
 
@@ -109,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle extras = getIntent().getExtras();
+        dificultad = extras.getInt("EXTRA_DIFICULTAD",0);
+
+
         setContentView(R.layout.ordenar_imagenes_activity_main);
         //Connect views of colored images
         imgAzul =(ImageView)findViewById(R.id.imgAzul);
@@ -134,11 +144,12 @@ public class MainActivity extends AppCompatActivity {
         imagesList.add(img5);
         imagesList.add(img6);
 
-        placeColors();
+        placeColors(dificultad);
 
         tVTimer = (TextView) findViewById(R.id.lblTimer);
         tVInfo = (TextView) findViewById(R.id.lblInformacion);
         tVPoints = (TextView) findViewById(R.id.lblPuntuacion);
+        btOkay = (Button) findViewById(R.id.btnAceptar);
         tVPoints.setText(this.getString(R.string.ordenar_Puntos) +  points.toString());
 
         startTimer(timerTime);
@@ -163,12 +174,12 @@ public class MainActivity extends AppCompatActivity {
         countdown.start();
     }
 
-    //Hides the images for the user and enables the Listener to drag and drop pictures on the views
+    //Hides the images for the user and enables the Listener to drag and drop pictures on the views and the OK button
     private void deleteImages() {
 
-        for (ImageView i : imagesList){
-            i.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-            i.setOnDragListener(dropL);
+        for (int i = 0; i < dificultad; i++){
+            imagesList.get(i).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
+            imagesList.get(i).setOnDragListener(dropL);
         }
 
         imgAzul.setOnTouchListener(dragL);
@@ -177,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
         imgVerde.setOnTouchListener(dragL);
         imgNaranja.setOnTouchListener(dragL);
         imgMagenta.setOnTouchListener(dragL);
+
+        btOkay.setEnabled(true);
 
     }
 
@@ -202,7 +215,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void confirmOrder (View v){
 
+        btOkay.setEnabled(false);
+
       if (isOrderCorrect() && timerTime > 4000){
+          points += dificultad*10;
+          tVPoints.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
           AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
           alertDialog.setTitle(R.string.ordenar_correctoTitulo);
           alertDialog.setMessage(this.getString(R.string.ordenar_correctoMensaje));
@@ -217,11 +234,13 @@ public class MainActivity extends AppCompatActivity {
 
       }
       else if (!isOrderCorrect()){
-          points -= 50;
-          tVPoints.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
 
-          if (points >= 50) {
-
+          if (equivocar > 0) {
+              equivocar--;
+              if (points >= 10) {
+                  points -= 10;
+                  tVPoints.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
+              }
               AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
               alertDialog.setTitle(R.string.ordenar_incorrectoTitulo);
               alertDialog.setMessage(this.getString(R.string.ordenar_incorrectoMensaje));
@@ -271,77 +290,31 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView arrayImage = new ImageView(this);
 
-        ImageView blancImage = new ImageView(this);
-        blancImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ordenar_blanco));
-
-        for (int i = 0; i< imagesList.size(); i++){
+        for (int i = 0; i< colors.length; i++){
             arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
             if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)imagesList.get(i).getDrawable()).getBitmap()))){
                 correct = false;
             }
         }
-/*
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[0])));
-        if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img1.getDrawable()).getBitmap()))){
-            correct = false;
-        }
-
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[1])));
-        if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img2.getDrawable()).getBitmap()))){
-            correct = false;
-        }
-
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[2])));
-        if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img3.getDrawable()).getBitmap()))){
-            correct = false;
-        }
-
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[3])));
-        if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img4.getDrawable()).getBitmap()))){
-            correct = false;
-        }
-
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[4])));
-        if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img5.getDrawable()).getBitmap()))){
-            correct = false;
-        }
-
-        arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[5])));
-        if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)img6.getDrawable()).getBitmap()))){
-            correct = false;
-        }
-*/
         return correct;
     }
 
-    public void placeColors(){
-        colors = OrdenarLogica.generizeColors(6);
+    public void placeColors(int dificultad){
+        colors = OrdenarLogica.generizeColors(dificultad);
 
-        for (int i = 0; i< imagesList.size(); i++){
+        for (int i = 0; i< dificultad; i++){
             imagesList.get(i).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
         }
 
-       /* img1.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[0])));
-        img2.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[1])));
-        img3.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[2])));
-        img4.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),translateColorToImage(colors[3])));
-        img5.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[4])));
-        img6.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[5]))); */
     }
 
     public void restartInterface(boolean won){
-        placeColors();
+        placeColors(dificultad);
         tVInfo.setText(R.string.ordenar_InfoText1);
 
         for (ImageView i : imagesList){
             i.setOnDragListener(null);
         }
-    /*    img1.setOnDragListener(null);
-        img2.setOnDragListener(null);
-        img3.setOnDragListener(null);
-        img4.setOnDragListener(null);
-        img5.setOnDragListener(null);
-        img6.setOnDragListener(null); */
 
         imgAzul.setOnTouchListener(null);
         imgAmarillo.setOnTouchListener(null);

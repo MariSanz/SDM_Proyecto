@@ -31,5 +31,7 @@
     <string name="leer_puntos">Puntos:</string>
     <string name="leer_tiempo">Tiempo:</string>
     <string name="leer_atras">Atrás</string>
+    <string name="title_activity_activity_dificultad" translatable="false">ActivityDificultad</string>
+    <string name="ordenar_actDif_Titulo">Juego Ordenar</string>
 
 </resources>
