@@ -6,34 +6,100 @@ public class GeneradorExpresion {
 
     private static Random random = new Random();
 
-    private Expresion expresion;
+    public static final int NIVEL_FACIL = 1;
+    public static final int NIVEL_BASICO = 2;
+    public static final int NIVEL_AVANZADO = 3;
 
-    private static Expresion operando(int maximo) {
-        return new Constante(random.nextInt(maximo));
+
+
+    private Expresion[] incorrectas;
+    private Expresion constante;
+
+    private Expresion principal;
+
+
+    private int nivel;
+    private int numOpciones;
+
+    public GeneradorExpresion(int nivel, int numOpciones) {
+        this.nivel=nivel;
+        this.numOpciones=numOpciones;
+        incorrectas= new Expresion[numOpciones];
     }
 
-    private static Operacion operacion(int hasta){
+    public void generarExpresiones(){
+        switch (nivel){
+            case NIVEL_FACIL:
+                generarNivel1();
+                break;
+            case NIVEL_BASICO:
+                generarNivel2();
+                break;
+            case NIVEL_AVANZADO:
+                generarNivel3();
+                break;
+        }
+    }
+
+    public Expresion getPrincipal() {
+        return principal;
+    }
+
+    public Expresion getIncorreta(int i){
+        if(i<=numOpciones) {
+            return incorrectas[i];
+        }
+        return incorrectas[0];
+    }
+
+    private  Expresion operando(int maximo) {
+
+        constante = new Constante(random.nextInt(maximo));
+        return constante;
+    }
+
+    private  Operacion operacion(int hasta){
         return Operacion.values()[hasta];
     }
 
-    public void generarNivel1() {
+    private void generarNivel1() {
 
         Expresion raiz;
 
         Expresion hijo = new ExpresionBinaria(operando(10), operando(10), operacion(2));
 
+
         if (random.nextBoolean()) {
             raiz = new ExpresionBinaria(hijo, operando(10), operacion(2));
+            incorrectas[0] = new ExpresionBinaria(operando(10), hijo, operacion(2));
         }
         else {
             raiz = new ExpresionBinaria(operando(10), hijo, operacion(2));
+            incorrectas[0] = new ExpresionBinaria(hijo, operando(10), operacion(2));
         }
 
 
-        expresion = raiz;
+
+
+
+        principal = raiz;
+        generarIncorrectas(10,2);
     }
 
-    public void generarNivel2() {
+    private void generarIncorrectas(int max, int hasta ) {
+        incorrectas[1] = new ExpresionBinaria(principal, new Constante(-1), Operacion.MULTIPLICACION);
+        incorrectas[2] = new ExpresionBinaria(operando(max), constante, operacion(hasta));
+        incorrectas[3] = new ExpresionBinaria(operando(max), operando(max), operacion(hasta));
+        for (int i=1; i<incorrectas.length; i++){
+            if(incorrectas[i].valor()==0.0){
+                incorrectas[i] = new ExpresionBinaria(operando(max), operando(max), operacion(hasta));
+            }
+        }
+
+
+    }
+
+    private void generarNivel2() {
 
         Expresion raiz;
 
@@ -48,10 +114,13 @@ public class GeneradorExpresion {
         }
 
 
-        expresion= raiz;
+
+
+        principal = raiz;
+        generarIncorrectas(100, 3);
     }
 
-    public void generarNivel3() {
+    private void generarNivel3() {
 
         Expresion raiz;
 
@@ -67,10 +136,13 @@ public class GeneradorExpresion {
         }
 
 
-        expresion= raiz;
+
+
+
+
+        principal = raiz;
+        generarIncorrectas(100, 3);
     }
 
-    public Expresion getExpresion() {
-        return expresion;
-    }
+
 }

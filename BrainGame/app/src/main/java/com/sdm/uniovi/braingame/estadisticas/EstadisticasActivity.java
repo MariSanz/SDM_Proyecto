@@ -12,9 +12,6 @@ import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
-/**
- * Created by luism_000 on 11/11/2015.
- */
 public class EstadisticasActivity extends AppCompatActivity
     implements OnResultadoListener<Puntuaciones> {
 

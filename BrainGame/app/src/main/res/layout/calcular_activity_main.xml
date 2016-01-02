@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_calcular">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,7 +12,7 @@
         android:id="@+id/textViewFormula"
         android:editable="false"
         android:textIsSelectable="false"
-        android:textSize="32sp"
+        android:textSize="40dp"
         android:layout_below="@+id/tvNivel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp" />
@@ -22,10 +23,12 @@
         android:text="opcion1"
         android:id="@+id/rBCalcularOp1"
         android:checked="false"
-        android:layout_below="@+id/textViewFormula"
+        android:layout_marginTop="71dp"
+        android:onClick="evaluar"
+        android:textSize="27dp"
+        android:layout_below="@+id/tvTimer"
         android:layout_alignLeft="@+id/textViewFormula"
-        android:layout_alignStart="@+id/textViewFormula"
-        android:layout_marginTop="141dp" />
+        android:layout_alignStart="@+id/textViewFormula" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -33,7 +36,9 @@
         android:text="opcion2"
         android:id="@+id/rBCalcularOp2"
         android:layout_below="@+id/rBCalcularOp1"
-        android:layout_alignStart="@+id/rBCalcularOp1" />
+        android:layout_alignStart="@+id/rBCalcularOp1"
+        android:onClick="evaluar"
+        android:textSize="27dp" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -41,7 +46,9 @@
         android:text="opcion3"
         android:id="@+id/rBCalcularOp3"
         android:layout_alignTop="@+id/rBCalcularOp2"
-        android:layout_alignStart="@+id/rBCalcularOp4" />
+        android:layout_alignStart="@+id/rBCalcularOp4"
+        android:onClick="evaluar"
+        android:textSize="27dp" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -50,7 +57,9 @@
         android:id="@+id/rBCalcularOp4"
         android:layout_above="@+id/rBCalcularOp3"
         android:layout_alignRight="@+id/textViewFormula"
-        android:layout_alignEnd="@+id/textViewFormula" />
+        android:layout_alignEnd="@+id/textViewFormula"
+        android:onClick="evaluar"
+        android:textSize="27dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,16 +69,31 @@
         android:id="@+id/tvNivel"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+        android:layout_marginTop="51dp"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="timer"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tiempo"
         android:id="@+id/tvTimer"
+        android:textSize="25dp"
+        android:layout_toLeftOf="@+id/rBCalcularOp4"
+        android:layout_alignTop="@+id/ivReloj"
+        android:layout_alignLeft="@+id/rBCalcularOp1"
+        android:layout_alignStart="@+id/rBCalcularOp1" />
+
+    <ImageView
+        android:id="@+id/ivReloj"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/tvNivel"
-        android:layout_alignEnd="@+id/tvNivel" />
+        android:layout_alignRight="@+id/tvTimer"
+        android:layout_alignEnd="@+id/tvTimer"
+        android:src="@drawable/reloj" />
 
 </RelativeLayout>

@@ -5,15 +5,13 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 
-/**
- * Created by luism_000 on 02/12/2015.
- */
 public class Login {
 
     public static final String CAMPO_AUTENTICACION = "autenticacion";
     private static Login instancia = null;
 
     private String autenticacion;
+    private String usuario;
     private SharedPreferences preferencias;
 
     private Login(Context context) {
@@ -37,12 +35,17 @@ public class Login {
         return autenticacion;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
     public void loguear(Usuario usuario) {
         String cadena = usuario.getNombre() + ":" + usuario.getClave();
         cadena = Base64.encodeToString(cadena.getBytes(), Base64.DEFAULT);
         preferencias.edit()
                 .putString(CAMPO_AUTENTICACION, cadena)
                 .apply();
+        this.usuario=usuario.getNombre();
     }
 
     public void desloguear() {

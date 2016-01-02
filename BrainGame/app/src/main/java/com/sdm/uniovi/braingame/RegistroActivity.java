@@ -4,19 +4,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.sdm.uniovi.braingame.ServicioWeb.ComprobarLogin;
 import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.ServicioWeb.Registrar;
-import com.sdm.uniovi.braingame.usuarios.Login;
+
 import com.sdm.uniovi.braingame.usuarios.Usuario;
 
 public class RegistroActivity extends AppCompatActivity
@@ -24,10 +22,6 @@ public class RegistroActivity extends AppCompatActivity
 
     private EditText etUsuario;
     private EditText etClave;
-    private Button btRegistro;
-    private ProgressBar registrando;
-
-    private boolean registrado= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +32,12 @@ public class RegistroActivity extends AppCompatActivity
 
         etUsuario = (EditText) findViewById(R.id.etUsuarioRegistro);
         etClave = (EditText) findViewById(R.id.etClaveRegistro);
-        btRegistro = (Button) findViewById(R.id.btRegistro);
+        Button btRegistro = (Button) findViewById(R.id.btRegistro);
         btRegistro.setTypeface(estiloLetra);
         etUsuario.setTypeface(estiloLetra);
         etClave.setTypeface(estiloLetra);
 
-        registrando = (ProgressBar) findViewById(R.id.pBRegistro);
+
     }
 
     private Usuario getUsuario() {
