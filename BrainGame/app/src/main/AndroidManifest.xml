@@ -34,9 +34,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".juegos.ordenar.MainActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="landscape" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".juegos.leer.ActivityDificultad"
             android:parentActivityName=".juegos.leer.ActivityDificultad" />

@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ordenar_InfoText1"
+        android:id="@+id/lblInformacion"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.05" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LineaInformacion"
+        android:layout_weight="0.02">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblPuntuacion"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.05" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/lblTimer"
+            android:textStyle="bold"
+            android:textSize="32dp"
+            android:paddingLeft="20dp"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.05" />
+
+    </LinearLayout>
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -9,8 +52,11 @@
         android:id="@+id/ordenImagenes"
         android:columnCount="3"
         android:rowCount="2"
-        android:layout_above="@+id/SeleccionImagenes"
-        android:layout_centerHorizontal="true">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:useDefaultMargins="false"
+        android:layout_weight="0.05">
 
         <ImageView
             android:layout_width="90dp"
@@ -57,90 +103,64 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SeleccionImagenes"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.03"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:id="@+id/imgAzul"
             android:src="@drawable/ordenar_azul"/>
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:id="@+id/imgAmarillo"
             android:src="@drawable/ordenar_amarillo"/>
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:id="@+id/imgRojo"
             android:src="@drawable/ordenar_rojo"/>
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:id="@+id/imgVerde"
             android:src="@drawable/ordenar_verde"/>
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:id="@+id/imgNaranja"
             android:src="@drawable/ordenar_naranja"/>
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:id="@+id/imgMagenta"
             android:src="@drawable/ordenar_magenta"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/lblTimer"
-        android:textStyle="bold"
-        android:textSize="32dp"
-        android:paddingLeft="20dp"
-        android:layout_below="@+id/btnAceptar"
-        android:layout_alignStart="@+id/btnAceptar" />
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:text="@string/ordenar_ok_button"
         android:id="@+id/btnAceptar"
         android:onClick="confirmOrder"
-        android:layout_marginLeft="20dp"
         android:layout_alignTop="@+id/ordenImagenes"
         android:layout_toEndOf="@+id/ordenImagenes"
-        android:enabled="false" />
+        android:enabled="false"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ordenar_InfoText1"
-        android:id="@+id/lblInformacion"
-        android:layout_alignTop="@+id/ordenImagenes"
-        android:layout_toStartOf="@+id/ordenImagenes"
-        android:textSize="20dp"
-        android:paddingLeft="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lblPuntuacion"
-        android:layout_above="@+id/SeleccionImagenes"
-        android:layout_toStartOf="@+id/ordenImagenes"
-        android:layout_marginRight="10dp"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-</RelativeLayout>
+</LinearLayout>
