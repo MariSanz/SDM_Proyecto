@@ -1,22 +1,19 @@
 package com.sdm.uniovi.braingame.juegos.leer;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.CountDownTimer;
-import android.os.PowerManager;
-import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by JohanArif on 30/12/2015.
@@ -24,46 +21,80 @@ import java.util.ArrayList;
 public class JuegoLeer extends AppCompatActivity {
 
     private CountDownTimer crono;
-    private SpeechRecognizer reconocedor;
     private TextView textViewTiempo;
     private TextView textViewPalabra;
-    private static final String[] COLORESVALIDOS = { "amarillo", "azul", "rojo", "blanco", "negro",
+    private TextView textViewPuntos;
+    private static final String[] COLORESVALIDOS = { "amarillo", "azul", "rojo", "blanco",
             "verde", "morado", "naranja", "rosa"};
 
-    private static final String TAG = JuegoLeer.class.getName();
-
     private static final int COLORESVALIDOS_LENGTH = COLORESVALIDOS.length;
-    private Intent vozIntent;
-    private PowerManager.WakeLock mWakeLock;
-    private ArrayList<String> resultados;
-    private boolean terminado = false;
-
-    private Handler manejador = new Handler();
+   // private Intent vozIntent;
+    private int dificultad;
+    private int tiempo;
+    private int indexColor;
+    private Integer puntos = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle extras = getIntent().getExtras();
+        dificultad = extras.getInt("EXTRA_DIFICULTAD", 0);
+
         setContentView(R.layout.leer_interfaz);
 
         textViewTiempo = (TextView)findViewById(R.id.textViewTiempoRestante);
         textViewPalabra = (TextView)findViewById(R.id.textViewPalabra);
-        textViewPalabra.setText("Amarillo");
-        textViewPalabra.setTextColor(0xFF00FF00);
+        textViewPuntos = (TextView)findViewById(R.id.textViewPuntos);
 
-    }
+        generarPalabra();
 
-    @Override
-    protected void onStart(){
         iniciarTemporizador();
-        iniciarReconocimientoDeVoz();
-
-        super.onStart();
     }
+
+    private void generarPalabra(){
+        Random r = new Random();
+        int index = r.nextInt(COLORESVALIDOS_LENGTH - 1);
+        indexColor = r.nextInt(COLORESVALIDOS_LENGTH - 1);
+        textViewPalabra.setText(COLORESVALIDOS[index]);
+        int color = -1;
+
+        switch (COLORESVALIDOS[indexColor]){
+            case "amarillo":  color = Color.rgb(255,255,0);
+                break;
+            case "azul": color = Color.rgb(0,0,255);
+                break;
+            case "rojo": color = Color.rgb(255,0,0);
+                break;
+            case "blanco": color = Color.rgb(255,255,255);
+                break;
+            case "verde": color = Color.rgb(0,128,0);
+                break;
+            case "morado": color = Color.rgb(128,0,128);
+                break;
+            case "naranja": color = Color.rgb(255,165,0);
+                break;
+            case "rosa": color = Color.rgb(255,192,203);
+        }
+
+        textViewPalabra.setTextColor(color);
+    }
+
 
     public void iniciarTemporizador(){
-        crono = new CountDownTimer(10000, 1000) {
+
+        switch(dificultad){
+            case 3: tiempo = 6000;
+                break;
+            case 4: tiempo = 4000;
+                break;
+            case 6: tiempo = 3000;
+                break;
+        }
+
+
+        crono = new CountDownTimer(tiempo, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 textViewTiempo.setText("  " + millisUntilFinished / 1000);
@@ -72,6 +103,7 @@ public class JuegoLeer extends AppCompatActivity {
             @Override
             public void onFinish() {
                 textViewTiempo.setText("  0");
+                iniciarReconocimientoDeVoz();
             }
         };
 
@@ -79,147 +111,61 @@ public class JuegoLeer extends AppCompatActivity {
     }
 
     public void iniciarReconocimientoDeVoz(){
-        reconocedor = SpeechRecognizer.createSpeechRecognizer(JuegoLeer.this);
-        ReceptorVoz receptor = new ReceptorVoz();
-        reconocedor.setRecognitionListener(receptor);
-        vozIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
-        vozIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.sdm.uniovi.braingame.juegos" +
-                ".leer");
-
-        vozIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-
-        vozIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
-
-        vozIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
-
-        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, TAG);
-        this.mWakeLock.acquire();
-
+        Intent vozIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        vozIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el color de la palabra");
         startActivityForResult(vozIntent, 0);
-
-        //reconocedor.startListening(vozIntent);
-
     }
 
-    private void tratarResultados(ArrayList<String> resultadosStrings) {
-        Toast.makeText(getApplicationContext(), "Probando",
-                Toast.LENGTH_SHORT).show();
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    { if (resultCode == RESULT_OK) {
+        ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        tratarResultados(matches);
+    }}
 
-        boolean encontrado = false;
+    private void tratarResultados(ArrayList<String> resultadosStrings) {
+
+
         ArrayList<String> coloresValidosTemp = new ArrayList<String>();
 
         for(int i = 0; i < COLORESVALIDOS_LENGTH; i++ ){
             coloresValidosTemp.add(COLORESVALIDOS[i]);
         }
 
-        Toast.makeText(getApplicationContext(), "Probando",
-                Toast.LENGTH_SHORT).show();
-
         if(coloresValidosTemp.contains(resultadosStrings.get(0))){ //En la primera posición está
-            //la respuesta con más prob...
+            if(resultadosStrings.get(0).equals(COLORESVALIDOS[indexColor])){
+                Toast.makeText(getApplicationContext(), "¡Has acertado!",
+                        Toast.LENGTH_LONG).show();
+                puntos += dificultad*10;
+
+            }else{
+                if(puntos > 10){
+                    puntos -= 10;
+                }else{
+                    puntos = 0;
+                }
+            }
+            textViewPuntos.setText("  " + puntos.toString());
 
         }else{
             Toast.makeText(getApplicationContext(), "Lo que ha dicho no es un color válido.",
                     Toast.LENGTH_SHORT).show();
         }
 
-        manejador.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(), "Probando", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
-    @Override
-    protected void onPause(){
-        if(reconocedor != null){
-            reconocedor.destroy();
-            reconocedor = null;
-        }
-        this.mWakeLock.release();
-        super.onPause();
+    public void irAtras(View view){
+        this.finish();
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    { if (resultCode == RESULT_OK) {
-        ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-        textViewPalabra.setText(matches.toString());
-    }}
-
-
-    class ReceptorVoz implements RecognitionListener{
 
 
 
-        @Override
-        public void onReadyForSpeech(Bundle params) {
-            Log.d(TAG, "Listo para iniciar el reconocmiento");
-        }
 
-        @Override
-        public void onBeginningOfSpeech() {
-            Log.d(TAG, "Inicio del reconocimiento");
-        }
 
-        @Override
-        public void onRmsChanged(float rmsdB) {
-            Log.d(TAG, "RMS");
-        }
 
-        @Override
-        public void onBufferReceived(byte[] buffer) {
-            Log.d(TAG, "Buffer recibido");
-        }
 
-        @Override
-        public void onEndOfSpeech() {
-            Log.d(TAG, "Inicio del reconocimiento");
-        }
 
-        @Override
-        public void onError(int error) {
-
-            if(error == SpeechRecognizer.ERROR_CLIENT || error ==
-                                            SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS){
-                Log.d(TAG, "Error del usuario");
-                terminado = true;
-            }else{
-                Log.d(TAG, "Otros errores");
-                reconocedor.startListening(vozIntent);
-            }
-        }
-
-        @Override
-        public void onResults(Bundle results) {
-            Log.d(TAG, "Resultados");
-            resultados = null;
-            if(results != null){
-                resultados = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                final ArrayList<String> resultadosStrings = resultados;
-                tratarResultados(resultadosStrings);
-
-                if(!terminado){
-                    reconocedor.startListening(vozIntent);
-                }else {
-                    finish();
-                }
-            }
-        }
-
-        @Override
-        public void onPartialResults(Bundle partialResults) {
-            Log.d(TAG, "Resultados parciales");
-        }
-
-        @Override
-        public void onEvent(int eventType, Bundle params) {
-            Log.d(TAG, "Evento");
-        }
-    }
 
 
 }

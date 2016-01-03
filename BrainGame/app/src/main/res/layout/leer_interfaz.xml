@@ -88,7 +88,8 @@
         android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:text="@string/leer_atras"
-        android:id="@+id/button"
-        android:layout_gravity="right"/>
+        android:id="@+id/btAtras"
+        android:layout_gravity="right"
+        android:onClick="irAtras" />
 
 </LinearLayout>
