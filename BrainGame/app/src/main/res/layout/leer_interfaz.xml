@@ -89,6 +89,6 @@
         android:layout_height="wrap_content"
         android:text="@string/leer_atras"
         android:id="@+id/button"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"/>
 
 </LinearLayout>

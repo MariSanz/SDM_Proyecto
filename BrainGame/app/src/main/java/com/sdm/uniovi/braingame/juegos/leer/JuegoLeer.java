@@ -3,6 +3,7 @@ package com.sdm.uniovi.braingame.juegos.leer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.CountDownTimer;
 import android.os.PowerManager;
 import android.speech.RecognitionListener;
@@ -34,6 +35,10 @@ public class JuegoLeer extends AppCompatActivity {
     private static final int COLORESVALIDOS_LENGTH = COLORESVALIDOS.length;
     private Intent vozIntent;
     private PowerManager.WakeLock mWakeLock;
+    private ArrayList<String> resultados;
+    private boolean terminado = false;
+
+    private Handler manejador = new Handler();
 
 
     @Override
@@ -44,10 +49,8 @@ public class JuegoLeer extends AppCompatActivity {
 
         textViewTiempo = (TextView)findViewById(R.id.textViewTiempoRestante);
         textViewPalabra = (TextView)findViewById(R.id.textViewPalabra);
-        //textViewPalabra.setText("Amarillo");
-        //textViewPalabra.setTextColor(0xFF00FF00);
-
-
+        textViewPalabra.setText("Amarillo");
+        textViewPalabra.setTextColor(0xFF00FF00);
 
     }
 
@@ -81,7 +84,8 @@ public class JuegoLeer extends AppCompatActivity {
         reconocedor.setRecognitionListener(receptor);
         vozIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
-        vozIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.sdm.uniovi.braingame.juegos.leer");
+        vozIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.sdm.uniovi.braingame.juegos" +
+                ".leer");
 
         vozIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -90,21 +94,66 @@ public class JuegoLeer extends AppCompatActivity {
 
         vozIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
 
-       // final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-       // this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, TAG);
-       // this.mWakeLock.acquire();
+        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, TAG);
+        this.mWakeLock.acquire();
 
-        //startActivityForResult(vozIntent, 0);
+        startActivityForResult(vozIntent, 0);
 
-        reconocedor.startListening(vozIntent);
+        //reconocedor.startListening(vozIntent);
 
     }
+
+    private void tratarResultados(ArrayList<String> resultadosStrings) {
+        Toast.makeText(getApplicationContext(), "Probando",
+                Toast.LENGTH_SHORT).show();
+
+        boolean encontrado = false;
+        ArrayList<String> coloresValidosTemp = new ArrayList<String>();
+
+        for(int i = 0; i < COLORESVALIDOS_LENGTH; i++ ){
+            coloresValidosTemp.add(COLORESVALIDOS[i]);
+        }
+
+        Toast.makeText(getApplicationContext(), "Probando",
+                Toast.LENGTH_SHORT).show();
+
+        if(coloresValidosTemp.contains(resultadosStrings.get(0))){ //En la primera posición está
+            //la respuesta con más prob...
+
+        }else{
+            Toast.makeText(getApplicationContext(), "Lo que ha dicho no es un color válido.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        manejador.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), "Probando", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onPause(){
+        if(reconocedor != null){
+            reconocedor.destroy();
+            reconocedor = null;
+        }
+        this.mWakeLock.release();
+        super.onPause();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    { if (resultCode == RESULT_OK) {
+        ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        textViewPalabra.setText(matches.toString());
+    }}
 
 
     class ReceptorVoz implements RecognitionListener{
 
-        private ArrayList<String> resultados;
-        private boolean terminado = false;
+
 
         @Override
         public void onReadyForSpeech(Bundle params) {
@@ -158,23 +207,6 @@ public class JuegoLeer extends AppCompatActivity {
                 }else {
                     finish();
                 }
-            }
-        }
-
-        private void tratarResultados(ArrayList<String> resultadosStrings) {
-            boolean encontrado = false;
-            ArrayList<String> coloresValidosTemp = new ArrayList<String>();
-
-            for(int i = 0; i < COLORESVALIDOS_LENGTH; i++ ){
-                coloresValidosTemp.add(COLORESVALIDOS[i]);
-            }
-
-            if(coloresValidosTemp.contains(resultadosStrings.get(0))){ //En la primera posición está
-                                                                       //la respuesta con más prob...
-
-            }else{
-                Toast.makeText(getApplicationContext(), "Lo que ha dicho no es un color válido.",
-                        Toast.LENGTH_SHORT).show();
             }
         }
 
