@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -18,13 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.ServicioWeb.ActualizarPuntuaciones;
+import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.juegos.TipoJuego;
+import com.sdm.uniovi.braingame.usuarios.Login;
 
 import java.util.ArrayList;
 
 /**
  * Created by luism_000 on 11/11/2015.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements OnResultadoListener<Boolean> {
 
     private ImageView imgAzul;
     private ImageView imgAmarillo;
@@ -58,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
     private int equivocar = 3;
     private int dificultad;
 
+    @Override
+    public void onResultado(Boolean resultado) {
 
+    }
 
 
     //Listener for the colored images to be dragged
@@ -150,9 +158,16 @@ public class MainActivity extends AppCompatActivity {
         tVInfo = (TextView) findViewById(R.id.lblInformacion);
         tVPoints = (TextView) findViewById(R.id.lblPuntuacion);
         btOkay = (Button) findViewById(R.id.btnAceptar);
-        tVPoints.setText(this.getString(R.string.ordenar_Puntos) +  points.toString());
+        tVPoints.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
 
         startTimer(timerTime);
+
+        Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
+        tVTimer.setTypeface(estiloLetra);
+        tVInfo.setTypeface(estiloLetra);
+        tVPoints.setTypeface(estiloLetra);
+        btOkay.setTypeface(estiloLetra);
+
 
     }
 
@@ -334,9 +349,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void actualizarPuntuacion() {
+        new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
+                , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
+    }
 
     private void closeActivity(){
-        //TO DO: send points to server...
+        actualizarPuntuacion();
         this.finish();
     }
 
