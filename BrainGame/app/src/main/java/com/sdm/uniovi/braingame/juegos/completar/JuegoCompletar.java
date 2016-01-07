@@ -30,19 +30,19 @@ public class JuegoCompletar extends AppCompatActivity {
         textViewPuntos = (TextView) findViewById(R.id.textViewPuntosCompletar);
         textViewPalabras = (TextView) findViewById(R.id.textViewPalabrasAcertadas);
         textViewTiempo = (TextView) findViewById(R.id.textViewTiempoCompletar);
-//        textViewPuntosObtenidos = (TextView) findViewById(R.id.textView2);
+        textViewPuntosObtenidos = (TextView) findViewById(R.id.textViewPuntosNumero);
 
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
         textViewPuntos.setTypeface(estiloLetra);
         textViewPalabras.setTypeface(estiloLetra);
         textViewTiempo.setTypeface(estiloLetra);
-//        textViewPuntosObtenidos.setTypeface(estiloLetra);
+        textViewPuntosObtenidos.setTypeface(estiloLetra);
 
         countdown = new CountDownTimer(10000, 1000){
             public void onTick(long millisUntilFinished) {
                 textViewTiempo.setText(String.valueOf(millisUntilFinished / 1000));
                 puntos+=10;
-//                textViewPuntosObtenidos.setText(""+puntos);
+                textViewPuntosObtenidos.setText(""+puntos);
             }
 
             public void onFinish() {
