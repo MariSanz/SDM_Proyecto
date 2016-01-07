@@ -29,18 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.menu_cerrar_sesion:
-//                Login.getInstancia(getApplicationContext()).desloguear();
-//                Intent intent = new Intent(this, LogingActivity.class);
-//                Toast.makeText(this, R.string.cerrado_sesion, Toast.LENGTH_LONG).show();
-//                this.finish();
-//
-//                startActivity(intent);
-//
-//                return true;
-//            case R.id.menu_ayuda:
-//
-//                return true;
+            case R.id.menu_cerrar_sesion:
+                Login.getInstancia(getApplicationContext()).desloguear();
+                Intent intent = new Intent(this, LogingActivity.class);
+                Toast.makeText(this, R.string.cerrado_sesion, Toast.LENGTH_LONG).show();
+                this.finish();
+
+                startActivity(intent);
+
+                return true;
+            case R.id.menu_ayuda:
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -67,12 +67,6 @@ public class MainActivity extends AppCompatActivity {
     public void irALeer(View view){
         EstadisticasActivity.iniciar(this, TipoJuego.LEER);
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void irACompletar(View view) {
-        EstadisticasActivity.iniciar(this, TipoJuego.COMPLETAR);
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.completar.MainActivity.class);
         startActivity(intent);
     }
 
