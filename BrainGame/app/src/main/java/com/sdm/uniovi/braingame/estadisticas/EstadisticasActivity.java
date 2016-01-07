@@ -56,4 +56,6 @@ public class EstadisticasActivity extends AppCompatActivity
             mListViewPuntuaciones.setAdapter(new PuntuacionesAdapter(this, resultado.getPuntuaciones()));
         }
     }
+
+
 }
