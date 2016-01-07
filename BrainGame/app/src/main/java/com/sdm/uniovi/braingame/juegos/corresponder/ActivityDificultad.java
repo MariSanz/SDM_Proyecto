@@ -2,8 +2,8 @@ package com.sdm.uniovi.braingame.juegos.corresponder;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -11,9 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
-import com.sdm.uniovi.braingame.juegos.corresponder.MainActivity;
 
-public class ActivityDificultad extends ActionBarActivity {
+public class ActivityDificultad extends AppCompatActivity {
 
     private TextView tVTitulo;
     private TextView tVSeleccion;

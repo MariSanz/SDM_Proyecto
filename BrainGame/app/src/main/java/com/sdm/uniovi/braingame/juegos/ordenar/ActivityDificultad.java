@@ -2,8 +2,8 @@ package com.sdm.uniovi.braingame.juegos.ordenar;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
 
-public class ActivityDificultad extends ActionBarActivity {
+public class ActivityDificultad extends AppCompatActivity {
 
     private TextView tVTitulo;
     private TextView tVSeleccion;
@@ -65,6 +65,7 @@ public class ActivityDificultad extends ActionBarActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("EXTRA_DIFICULTAD", dificultad);
         startActivity(intent);
+        this.finish();
 
     }
 }
