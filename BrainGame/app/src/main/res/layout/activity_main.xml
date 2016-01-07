@@ -77,9 +77,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/inicio_recordar"
+            android:src="@drawable/inicio_completar"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside" />
+            android:scaleType="centerInside"
+            android:onClick="irACompletar" />
     </TableRow>
 
     <TableRow

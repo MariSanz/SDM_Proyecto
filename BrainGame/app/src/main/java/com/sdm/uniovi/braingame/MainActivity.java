@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
                 case R.id.menu_cerrar_sesion:
                     Login.getInstancia(getApplicationContext()).desloguear();
                     Intent intent = new Intent(this, LogingActivity.class);
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.menu_ayuda:
 
                     return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -70,9 +72,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void irACorresponder(View view){
         EstadisticasActivity.iniciar(this, TipoJuego.CORRESPONDER);
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.corresponder.ActivityDificultad.class);
+        startActivity(intent);
+    }
+
+    public void irACompletar(View view) {
+        EstadisticasActivity.iniciar(this, TipoJuego.COMPLETAR);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.completar.MainActivity.class);
         startActivity(intent);
     }
 
