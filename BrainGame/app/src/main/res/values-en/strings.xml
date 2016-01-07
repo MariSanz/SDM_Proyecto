@@ -33,4 +33,7 @@
     <string name="descripcion_juego_leer">This game consists in recognizing the color of the words shown on the screen. Once the word is shown, you have to say the correct colour in a limited period of time.</string>
     <string name="cerrar_sesion">Close session</string>
     <string name="ordenar_actDif_Titulo">Arrange in Order</string>
+    <string name="ayuda_ordenar">The goal of the game is to remember the order of the colors in the time limit shown in the upper right corner. After the time has passed, you need to drag and drop the images from the bottom into the panels above in the order you remembered. Once all the images are put, press the OK button.
+If your order was correct, the time limit will decrease.</string>
+    <string name="corresponder_actDif_Titulo">Match or not</string>
 </resources>
