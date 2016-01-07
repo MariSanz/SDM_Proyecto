@@ -27,10 +27,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/inicio_recordar"
+            android:src="@drawable/inicio_ordenar"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:onClick="irAOrdenar" />
+            android:onClick="irAOrdenar"
+            android:id="@+id/imageButtonOrdenar" />
     </TableRow>
 
     <TableRow
@@ -80,6 +81,20 @@
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:onClick="irACompletar" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonCorresponder"
+            android:onClick="irACorresponder"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ordenar_blanco" />
     </TableRow>
 
 </TableLayout>

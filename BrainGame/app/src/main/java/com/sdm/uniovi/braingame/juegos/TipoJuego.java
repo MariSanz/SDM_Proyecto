@@ -10,7 +10,8 @@ public enum TipoJuego {
     CALCULAR,
     COMPLETAR,
     CONOCER,
-    RECORDAR;
+    RECORDAR,
+    CORRESPONDER;
 
     public String getIdServicio() {
         return name().toLowerCase();

@@ -33,6 +33,12 @@
     <string name="leer_atras">Atrás</string>
     <string name="title_activity_activity_dificultad" translatable="false">ActivityDificultad</string>
     <string name="ordenar_actDif_Titulo">Juego Ordenar</string>
+
+    <string name="ayuda_ordenar">La meta del juego es recordar el orden de los colores en el tiempo mostrado a la derecha arriba. Después de que este limite se acaba, tienes que drag and drop las imágenes de abajo en los campos de arriba en el orden recordado. Cuando todas las imágenes son puesto, pulsa el botón OK.
+    Si tu orden esta correcto, el límite de tiempo se reduce.</string>
+
+    <string name="corresponder_actDif_Titulo">Juego Corresponder</string>
+
     <string name="title_activity_main">MainActivity</string>
 
 
@@ -45,5 +51,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_juego_completar">JuegoCompletar</string>
     <string name="title_activity_prueba">prueba</string>
+
 
 </resources>
