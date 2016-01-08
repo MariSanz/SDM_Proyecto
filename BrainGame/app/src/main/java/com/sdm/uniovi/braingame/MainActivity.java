@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irACalcular(View view){
-        EstadisticasActivity.iniciar(this, TipoJuego.CALCULAR);
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.calcular.MainActivity.class);
         startActivity(intent);
     }

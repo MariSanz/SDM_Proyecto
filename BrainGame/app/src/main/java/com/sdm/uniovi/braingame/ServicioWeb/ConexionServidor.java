@@ -62,7 +62,7 @@ public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
 
             String authorization = getAutorizacion();
             if (authorization != null) {
-                conexion.setRequestProperty("Authorization", authorization);
+                conexion.setRequestProperty("Authorization", "Basic " + authorization);
             }
 
             if (parametros != null) {

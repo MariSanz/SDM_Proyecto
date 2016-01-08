@@ -5,5 +5,7 @@
         android:title="@string/cerrar_sesion"/>
     <item android:id="@+id/menu_ayuda"
         android:title="@string/ayuda"/>
+    <item android:id="@+id/menu_estadisticas"
+        android:title="@string/estadisticas"/>
 
 </menu>

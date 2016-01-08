@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.sdm.uniovi.braingame.R;
 import com.sdm.uniovi.braingame.ServicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
@@ -133,6 +134,10 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                             }
                         });
                 alertDialog.show();
+                return true;
+            case R.id.menu_estadisticas:
+                EstadisticasActivity.iniciar(this, TipoJuego.CORRESPONDER);
+
                 return true;
 
         }

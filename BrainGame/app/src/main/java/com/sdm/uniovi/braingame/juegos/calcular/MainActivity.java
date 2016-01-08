@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
         }
 
-        resultadoPartida();
+       // resultadoPartida();
 
     }
 
@@ -231,6 +231,8 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
         helpBuilder.setTitle(titulo);
         helpBuilder.setMessage(msg);
+
+
 
         AlertDialog helpDialog = helpBuilder.create();
         helpDialog.show();

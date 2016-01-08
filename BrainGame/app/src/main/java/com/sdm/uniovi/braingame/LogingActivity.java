@@ -1,9 +1,12 @@
 package com.sdm.uniovi.braingame;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -61,9 +64,20 @@ public class LogingActivity  extends AppCompatActivity
     }
 
     public void hacerLogin(View v){
-        Usuario usuario = getUsuario();
-        new ComprobarLogin(usuario, this).execute();
 
+        ConnectivityManager cm =
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean conectado = activeNetwork.isConnectedOrConnecting();
+
+        if (conectado) {
+            Usuario usuario = getUsuario();
+            new ComprobarLogin(usuario, this).execute();
+        }
+        else {
+
+        }
 
     }
 
