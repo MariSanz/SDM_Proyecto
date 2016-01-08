@@ -1,8 +1,7 @@
-package com.sdm.uniovi.braingame.ServicioWeb;
+package com.sdm.uniovi.braingame.servicioWeb;
 
 
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
-import com.sdm.uniovi.braingame.juegos.calcular.MainActivity;
 import com.sdm.uniovi.braingame.usuarios.Usuario;
 
 import org.json.JSONException;

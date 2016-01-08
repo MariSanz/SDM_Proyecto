@@ -1,4 +1,4 @@
-package com.sdm.uniovi.braingame.ServicioWeb;
+package com.sdm.uniovi.braingame.servicioWeb;
 
 /**
  * Created by luism_000 on 02/12/2015.

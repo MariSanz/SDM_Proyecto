@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
-import com.sdm.uniovi.braingame.ServicioWeb.ObtenerTodasLasPuntuaciones;
-import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.servicioWeb.ObtenerTodasLasPuntuaciones;
+import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
@@ -53,7 +54,12 @@ public class EstadisticasActivity extends AppCompatActivity
     public void onResultado(Puntuaciones resultado) {
         //si problema en servicio resultado null
         if (resultado != null) {
-            mListViewPuntuaciones.setAdapter(new PuntuacionesAdapter(this, resultado.getPuntuaciones()));
+            if (resultado.getPuntuaciones().size() != 0) {
+                mListViewPuntuaciones.setAdapter(new PuntuacionesAdapter(this, resultado.getPuntuaciones()));
+            }
+            else {
+                Toast.makeText(this, "No hay puntuaciones", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

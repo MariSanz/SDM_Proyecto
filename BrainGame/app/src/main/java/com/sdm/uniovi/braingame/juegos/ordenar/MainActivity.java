@@ -19,8 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
-import com.sdm.uniovi.braingame.ServicioWeb.ActualizarPuntuaciones;
-import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
+import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.usuarios.Login;
 

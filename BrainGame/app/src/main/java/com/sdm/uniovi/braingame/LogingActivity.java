@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.sdm.uniovi.braingame.ServicioWeb.ComprobarLogin;
-import com.sdm.uniovi.braingame.ServicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.servicioWeb.ComprobarLogin;
+import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.usuarios.Login;
 import com.sdm.uniovi.braingame.usuarios.Usuario;
 

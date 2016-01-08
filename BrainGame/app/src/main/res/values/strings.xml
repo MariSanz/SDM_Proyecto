@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">Brain Game</string>
     <string name="usuario">Usuario</string>
+    <string name="patrones_inicio">Memorizar</string>
+    <string name="responder_inicio">Responder</string>
+    <string name="completar_inicio">Completar</string>
+    <string name="corresponder_inicio">Emparejar</string>
+    <string name="calcular_inicio">Calcular</string>
+    <string name="leer_inicio">Leer</string>
     <string name="clave">Clave</string>
-    <string name="registrar">Registrarme</string>
+    <string name="registrar">Crear usuario</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="nivel">Nivel</string>
     <string name="estadisticas">Estadisticas</string>
@@ -10,8 +16,9 @@
     <string name="evaluar">Evaluar</string>
     <string name="ayuda">Ayuda</string>
     <string name="registro">Registrar</string>
-    <string name="registrarse">Registrarse</string>
+    <string name="registrarse">Crear usuario</string>
     <string name="ordenar_ok_button">OK</string>
+    <string name="ordenar_inicio">Ordenar</string>
     <string name="ordenar_InfoText1">Recuerdate del orden de las imagenes arriba</string>
     <string name="ordenar_InfoText2">Elegir los imagenes correctos de abajo y confirma con el boton "OK"</string>
     <string name="ordenar_correctoTitulo">Correcto</string>

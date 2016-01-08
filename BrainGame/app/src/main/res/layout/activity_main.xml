@@ -6,32 +6,40 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:stretchColumns="*"
-    tools:context=".MainActivity">
+
+    tools:context=".MainActivity"
+    android:id="@+id/tlInicio"
+    android:background="@color/background_material_dark">
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/background_material_dark">
 
-        <ImageButton
-            android:layout_width="0dp"
+
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/inicio_patrones"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
+            android:textSize="25sp"
+            android:id="@+id/bInicioPatrones"
             android:onClick="irAPatrones"
-            android:id="@+id/imageButtonPatrones" />
+            android:text="@string/patrones_inicio"
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textColor="#FFFFFF"/>
 
-        <ImageButton
-            android:layout_width="0dp"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/inicio_ordenar"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
+            android:text="@string/ordenar_inicio"
+            android:id="@+id/bInicioOrdenar"
             android:onClick="irAOrdenar"
-            android:id="@+id/imageButtonOrdenar" />
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"/>
+
     </TableRow>
 
     <TableRow
@@ -39,62 +47,78 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <ImageButton
-            android:layout_width="0dp"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/inicio_leer"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:onClick="irALeer" />
+            android:text="@string/calcular_inicio"
+            android:id="@+id/bInicioCalcular"
+            android:onClick="irACalcular"
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"/>
 
-        <ImageButton
-            android:layout_width="0dp"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/inicio_calcular"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:id="@+id/imageButtonCalcular"
-            android:onClick="irACalcular" />
+            android:text="@string/leer_inicio"
+            android:id="@+id/bInicioLeer"
+            android:onClick="irALeer"
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"/>
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        >
 
-        <ImageButton
-            android:layout_width="0dp"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/inicio_responder"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            />
+            android:text="@string/responder_inicio"
+            android:id="@+id/bInicioResponder"
+            android:onClick="irAResponder"
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"/>
 
-        <ImageButton
-            android:layout_width="0dp"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/inicio_completar"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:onClick="irACompletar" />
+            android:text="@string/completar_inicio"
+            android:id="@+id/bInicioCompletar"
+            android:onClick="irACompletar"
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"/>
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="0dp"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButtonCorresponder"
+            android:text="@string/corresponder_inicio"
+            android:id="@+id/bInicioCorresponder"
             android:onClick="irACorresponder"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"
-            android:src="@drawable/inicio_corresponder" />
+            android:layout_gravity="center_vertical"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivInicioLogo"
+            android:src="@drawable/logo" />
     </TableRow>
 
 </TableLayout>

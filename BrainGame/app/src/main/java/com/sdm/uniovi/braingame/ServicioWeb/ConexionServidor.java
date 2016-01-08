@@ -1,11 +1,7 @@
-package com.sdm.uniovi.braingame.ServicioWeb;
+package com.sdm.uniovi.braingame.servicioWeb;
 
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-
-import com.sdm.uniovi.braingame.estadisticas.Puntuaciones;
 
 import org.json.JSONException;
 import org.json.JSONObject;

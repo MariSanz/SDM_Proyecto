@@ -53,7 +53,6 @@
         android:ems="10"
         android:id="@+id/etClave"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:password="true"
         android:textSize="25sp"
         android:layout_below="@+id/tvClaveRegistro"
@@ -64,13 +63,13 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/btLogin"
-        android:textSize="25sp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="hacerLogin" />
+        android:onClick="hacerLogin"
+        style="@style/AppCompat.Button.Flat.Common"
+        android:textSize="25sp"/>
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registrarse"
@@ -78,7 +77,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
-        android:onClick="hacerRegistro" />
+        android:onClick="hacerRegistro"
+        style="@style/AppCompat.Button.Flat.Common"
+        android:textSize="25sp"
+       />
 
 
 </RelativeLayout>

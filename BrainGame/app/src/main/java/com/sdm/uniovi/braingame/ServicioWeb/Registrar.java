@@ -1,4 +1,4 @@
-package com.sdm.uniovi.braingame.ServicioWeb;
+package com.sdm.uniovi.braingame.servicioWeb;
 
 import com.sdm.uniovi.braingame.usuarios.Usuario;
 

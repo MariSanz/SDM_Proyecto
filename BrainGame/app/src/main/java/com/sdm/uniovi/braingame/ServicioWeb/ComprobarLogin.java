@@ -1,15 +1,12 @@
-package com.sdm.uniovi.braingame.ServicioWeb;
+package com.sdm.uniovi.braingame.servicioWeb;
 
-import com.sdm.uniovi.braingame.estadisticas.Puntuaciones;
 import com.sdm.uniovi.braingame.usuarios.Usuario;
-import com.sdm.uniovi.braingame.usuarios.Usuarios;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.UUID;
 
 /**
  * Created by luism_000 on 27/11/2015.
