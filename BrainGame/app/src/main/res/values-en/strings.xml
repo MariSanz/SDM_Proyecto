@@ -14,7 +14,7 @@
     <string name="ordenar_InfoText1">Remember the order of the images above</string>
     <string name="ordenar_correctoMensaje">Your order was correct. Try again with less time!</string>
     <string name="ordenar_correctoTitulo">Correct</string>
-    <string name="ordenar_finGanadoMensaje">Correct again. You won the game!</string>
+    <string name="ordenar_finGanadoMensaje">Correct again. You won the game! Your highscore is:\u0020</string>
     <string name="ordenar_finTitulo">Game over</string>
     <string name="ordenar_incorrectoMensaje">Your order was not correct. Try again!</string>
     <string name="ordenar_incorrectoTitulo">Incorrect</string>
@@ -36,4 +36,17 @@
     <string name="ayuda_ordenar">The goal of the game is to remember the order of the colors in the time limit shown in the upper right corner. After the time has passed, you need to drag and drop the images from the bottom into the panels above in the order you remembered. Once all the images are put, press the OK button.
 If your order was correct, the time limit will decrease.</string>
     <string name="corresponder_actDif_Titulo">Match or not</string>
+    <string name="aceptar">Accept</string>
+    <string name="action_settings">Settings</string>
+    <string name="palabras_acertadas">Correct words</string>
+    <string name="puntos">Points</string>
+    <string name="resumen_completar">You need to fill the gaps in the words with some of the letters you have at choice</string>
+    <string name="title_activity_juego_completar">Completing game</string>
+    <string name="corresponder_descripcion">Decide if the two images are the same or not. Push the correct button every time.</string>
+    <string name="corresponder_si">Match</string>
+    <string name="corresponder_no">No Match</string>
+    <string name="corresponder_mensajeFin">The time ran out! Game over. Your highscore is:\u0020</string>
+    <string name="ayuda_corresponder">The goal of the game is to tell for as many pictures as possible if they match or not. You always have to compare the two pictures on the very left, that are a bit bigger than the rest.
+The other pictures serve as a queue to already know beforehand if the next comparisons match. To tell if the pictures match, you need to press the button "Match" if they match, and the button "No Match" if not.
+In the difficulty easy, you have more time to win points (40  seconds), but a match is worth less points (2 points). In the difficulties normal and expert you have less time (30 and 20 respectively), but win more points (4 and 6 respectively).</string>
 </resources>

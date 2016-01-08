@@ -19,7 +19,7 @@
     <string name="ordenar_incorrectoMensaje">Tu orden no está correcto. Intenta otra vez!</string>
     <string name="ordenar_finTitulo">Fin del Juego</string>
     <string name="descripcion_juego_leer">Este juego consiste en reconocer el color del que están pintadas las palabras que aparecen en pantalla. Una vez que aparezca una palabra dispondrás de un periodo de tiempo en el cual tendrás que decir el color que crees que es el correcto.</string>
-    <string name="ordenar_finGanadoMensaje">Otra vez correcto. Has ganado el juego!</string>
+    <string name="ordenar_finGanadoMensaje">Otra vez correcto. Has ganado el juego! Tu punctuación final es:\u0020</string>
     <string name="ordenar_finPerdidoMensaje">Te has equivocado demasiado! Has perdido el juego!</string>
     <string name="ordenar_Puntos">Puntos:\u0020</string>
     <string name="leer_seleccionar_dificultad">Selecciona el nivel de dificultad:</string>
@@ -33,24 +33,25 @@
     <string name="leer_atras">Atrás</string>
     <string name="title_activity_activity_dificultad" translatable="false">ActivityDificultad</string>
     <string name="ordenar_actDif_Titulo">Juego Ordenar</string>
-
     <string name="ayuda_ordenar">La meta del juego es recordar el orden de los colores en el tiempo mostrado a la derecha arriba. Después de que este limite se acaba, tienes que drag and drop las imágenes de abajo en los campos de arriba en el orden recordado. Cuando todas las imágenes son puesto, pulsa el botón OK.
     Si tu orden esta correcto, el límite de tiempo se reduce.</string>
-
     <string name="corresponder_actDif_Titulo">Juego Corresponder</string>
-
-    <string name="title_activity_main">MainActivity</string>
-
-
+    <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="resumen_completar">Deberás completar los huecos de las palabras con alguna de las letras que tienes como solución</string>
     <string name="aceptar">Aceptar</string>
     <string name="puntos">Puntos</string>
     <string name="palabras_acertadas">Palabras acertadas</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_juego_completar">JuegoCompletar</string>
     <string name="title_activity_prueba">prueba</string>
+    <string name="corresponder_descripcion">Decida si las dos imagenes a la izquierda son iguales o no. Pulsa el boton correcto cada vez.</string>
+    <string name="corresponder_si">Corresponden</string>
+    <string name="corresponder_no">No Corresponden</string>
+    <string name="corresponder_mensajeFin">Se acabó el tiempo! Fin del juego. Tu puntuación final es:\u0020</string>
+    <string name="ayuda_corresponder">La meta del juego es de decir por las más imágenes que posible si corresponden o no. Siempre tienes q comparar las dos imagenes a la izquierda, que son un poquito más grande que los demas.
+Las otras imágenes sirven como cola para ya saber si corresponden las próximas parejas. Para decir si corresponden las imágenes, tienes que pulsar el botón "Corresponden" si corresponden, y el botón "No Corresponden" si no.
+En la dificultad fácil, tienes más tiempo para ganar puntos (40 segundos), pero una correspondencia vale menos puntos (2 puntos). En las dificultades normal y difícil tienes menos tiempo (30 y 20 segundos respectivamente), pero ganas más puntos (4 y 6 respectivamente).</string>
 
 
 </resources>

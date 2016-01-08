@@ -94,7 +94,7 @@
             android:onClick="irACorresponder"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
-            android:src="@drawable/ordenar_blanco" />
+            android:src="@drawable/inicio_corresponder" />
     </TableRow>
 
 </TableLayout>

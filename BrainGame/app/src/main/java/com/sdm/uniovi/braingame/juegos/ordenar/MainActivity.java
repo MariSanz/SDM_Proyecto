@@ -3,7 +3,6 @@ package com.sdm.uniovi.braingame.juegos.ordenar;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
 import com.sdm.uniovi.braingame.ServicioWeb.ActualizarPuntuaciones;
@@ -120,14 +118,12 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
     }
 
 
-    //TO DO: Choose dificulty in preActivity and set integer as amount of images to play with. Implement in functions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
         dificultad = extras.getInt("EXTRA_DIFICULTAD",0);
-
 
         setContentView(R.layout.ordenar_imagenes_activity_main);
         //Connect views of colored images
@@ -189,7 +185,6 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                restartInterface(false);
                             }
                         });
                 alertDialog.show();
@@ -304,7 +299,7 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
                       new DialogInterface.OnClickListener() {
                           public void onClick(DialogInterface dialog, int which) {
                               dialog.dismiss();
-                              closeActivity();
+                              closeActivity(false);
                           }
                       });
               alertDialog.show();
@@ -314,12 +309,12 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
       else{
           AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
           alertDialog.setTitle(R.string.ordenar_finTitulo);
-          alertDialog.setMessage(this.getString(R.string.ordenar_finGanadoMensaje));
+          alertDialog.setMessage(this.getString(R.string.ordenar_finGanadoMensaje) + points.toString());
           alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, this.getString(R.string.ordenar_ok_button),
                   new DialogInterface.OnClickListener() {
                       public void onClick(DialogInterface dialog, int which) {
                           dialog.dismiss();
-                          closeActivity();
+                          closeActivity(true);
                       }
                   });
           alertDialog.show();
@@ -366,7 +361,6 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         imgNaranja.setOnTouchListener(null);
         imgMagenta.setOnTouchListener(null);
 
-
         if (won) {
             timerTime -= 2000;
             startTimer(timerTime);
@@ -377,16 +371,13 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
 
     }
 
-    private void actualizarPuntuacion() {
-        new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
-                , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
-    }
-
-    private void closeActivity(){
-        actualizarPuntuacion();
+    public void closeActivity(boolean won){
+        if (won) {
+            new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
+                    , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
+        }
         this.finish();
     }
-
 
 }
 

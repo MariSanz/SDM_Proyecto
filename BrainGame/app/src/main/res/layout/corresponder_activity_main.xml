@@ -10,10 +10,40 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Decida si las dos imagenes a la izquierda son iguales o no. Pulsa el boton correcto cada vez."
-        android:id="@+id/lblInformacion"
+        android:text="@string/corresponder_descripcion"
+        android:id="@+id/lblInformacionCOR"
         android:textSize="20dp"
-        android:layout_weight="0.2" />
+        android:layout_weight="0.2"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:id="@+id/LineaInformacion">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblPunctuacionCOR"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:layout_weight="0.05"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblTimerCOR"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:layout_weight="0.05"/>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -25,34 +55,29 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/iVComparar1"
-            android:src="@drawable/corresponder1" />
+            android:id="@+id/iVComparar1" />
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/iVComparar2"
-            android:src="@drawable/corresponder2" />
+            android:id="@+id/iVComparar2" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/iV3"
-            android:src="@drawable/corresponder3"
             android:layout_gravity="center" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/iV4"
-            android:src="@drawable/corresponder4"
             android:layout_gravity="center" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/iV5"
-            android:src="@drawable/corresponder5"
             android:layout_gravity="center" />
     </LinearLayout>
 
@@ -66,16 +91,22 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Corresponden"
-            android:id="@+id/btnNoCorres"
-            android:layout_gravity="center_vertical|left" />
+            android:text="@string/corresponder_no"
+            android:id="@+id/bnNoCorres"
+            android:layout_gravity="center_vertical|left"
+            android:layout_weight="0.05"
+            android:orientation="horizontal"
+            android:onClick="clickNoCorres"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Corresponden"
-            android:id="@+id/btnCorres"
+            android:text="@string/corresponder_si"
+            android:id="@+id/bnCorres"
             android:layout_gravity="center_vertical|right"
-            android:layout_weight="0.05" />
+            android:layout_weight="0.05"
+            android:orientation="horizontal"
+            android:onClick="clickCorres" />
     </LinearLayout>
+
 </LinearLayout>

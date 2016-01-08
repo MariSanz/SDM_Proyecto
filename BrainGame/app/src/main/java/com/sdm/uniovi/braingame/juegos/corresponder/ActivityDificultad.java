@@ -48,17 +48,18 @@ public class ActivityDificultad extends AppCompatActivity {
     public void irAlJuego(View v){
         int elegido = rGroup.getCheckedRadioButtonId();
         switch (elegido){
-            case R.id.radioButton_facil : dificultad = 3;
+            case R.id.radioButton_facil : dificultad = 1;
                 break;
-            case R.id.radioButton_normal : dificultad = 4;
+            case R.id.radioButton_normal : dificultad = 2;
                 break;
-            case R.id.radioButton_dificil : dificultad = 6;
+            case R.id.radioButton_dificil : dificultad = 3;
                 break;
         }
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("EXTRA_DIFICULTAD", dificultad);
         startActivity(intent);
+        this.finish();
 
     }
 
