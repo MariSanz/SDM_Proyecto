@@ -6,8 +6,24 @@
     <string name="registrar">Create my account</string>
     <string name="calcular_inicio">Operations solves</string>
     <string name="responder_inicio">Answer</string>
+    <string name="repetir_clave">Repeat the key</string>
+    <string name="fallo_clave">Passwords do not match</string>
+     <string name="ayuda_principal">BrainGame is an application that aims to test and train agility
+        User mentally 7 entertaining games that will turn out, useful and competitive. The first of
+        games is "Store" where the memory capacity for mobile release patterns for the user is challenged.
+    The second of the game is "Sort" where logical sequence order by the user shall remember and sort
+    images to be displayed. The third game is "Resolve" by difficulty level where you have to calculate
+    the mathematical operations that will arise. The fourth game is "Read" where it tests your mental agility to read
+    color that it is painted the color name. The fifth game is "Answer" with a wide nuemero of questions
+        general culture to which you must respond to beat the other competitors. The sixth game is "Complete"
+    where that classic game of 'Horcado' will have to complete the word that corresponds to information given. Finally
+        no less interesting is the game "Match" where you will have to answer for the pair logical image it shows you.
+    Test your mental agility with these 7 games and tell your friends how much better they are.</string>
     <string name="completar_inicio">Complete</string>
     <string name="corresponder_inicio">Match</string>
+    <string name="ayuda_login">If you already have a registered user logs in to our server with your
+        username and password. If you have not created a user press the button "Create User"</string>
+    <string name="fallo_conexion">There is a fault with the connection to our server. Check your internet connection</string>
     <string name="leer_inicio">Read</string>
     <string name="cerrado_sesion">You have succesfully signed out</string>
     <string name="registro">Create account</string>

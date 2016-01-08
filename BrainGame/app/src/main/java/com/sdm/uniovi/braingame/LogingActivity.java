@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.servicioWeb.ComprobarLogin;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
@@ -76,7 +77,7 @@ public class LogingActivity  extends AppCompatActivity
             new ComprobarLogin(usuario, this).execute();
         }
         else {
-
+            Toast.makeText(this, R.string.fallo_conexion, Toast.LENGTH_LONG).show();
         }
 
     }

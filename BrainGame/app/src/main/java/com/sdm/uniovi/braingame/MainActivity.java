@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.menu_ayuda:
+                    Intent intentAyuda = new Intent(this, AyudaPrincipalActivity.class);
+                    startActivity(intentAyuda);
 
                     return true;
 
