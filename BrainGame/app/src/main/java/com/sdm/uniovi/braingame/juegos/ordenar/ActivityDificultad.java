@@ -38,7 +38,9 @@ public class ActivityDificultad extends AppCompatActivity {
         tVTitulo = (TextView) findViewById(R.id.lbTitulo);
         tVSeleccion = (TextView) findViewById(R.id.lbSeleccion);
         btEmpezar = (Button) findViewById(R.id.btEmpezar);
+
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
+
         rFacil.setTypeface(estiloLetra);
         rNormal.setTypeface(estiloLetra);
         rDificil.setTypeface(estiloLetra);
