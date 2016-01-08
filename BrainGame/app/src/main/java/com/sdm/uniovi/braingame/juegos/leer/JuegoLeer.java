@@ -145,7 +145,7 @@ public class JuegoLeer extends AppCompatActivity {
                     puntos = 0;
                 }
             }
-            textViewPuntos.setText("  " + puntos.toString());
+            textViewPuntos.setText("" + puntos.toString());
 
         }else{
             Toast.makeText(getApplicationContext(), "Lo que ha dicho no es un color válido.",
@@ -157,15 +157,5 @@ public class JuegoLeer extends AppCompatActivity {
     public void irAtras(View view){
         this.finish();
     }
-
-
-
-
-
-
-
-
-
-
 
 }
