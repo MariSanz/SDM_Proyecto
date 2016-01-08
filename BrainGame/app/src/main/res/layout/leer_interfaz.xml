@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/background_material_dark">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reconocer el color"
-        android:id="@+id/textViewDescripcion"
+        android:id="@+id/tvDescripcionInt"
         android:textSize="30sp"
         android:textColor="#000000"
         android:paddingLeft="10dp"
@@ -24,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:id="@+id/textViewPuntuacion"
+            android:id="@+id/tvPuntuacionInt"
             android:layout_weight="0.06"
             android:text="@string/leer_puntos"
             android:textSize="20sp"
@@ -34,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:id="@+id/textViewPuntos"
+            android:id="@+id/tvPuntosInt"
             android:layout_weight="0.14"
             android:textSize="20sp"
             android:paddingLeft="10dp"
@@ -53,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="65dp"
             android:text="@string/leer_tiempo"
-            android:id="@+id/textViewTiempo"
+            android:id="@+id/tvTiempoInt"
             android:layout_weight="0.29"
             android:paddingLeft="10dp"
             android:textSize="20sp"
@@ -62,7 +63,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="68dp"
-            android:id="@+id/textViewTiempoRestante"
+            android:id="@+id/tvTiempoRestanteInt"
             android:layout_weight="0.68"
             android:textSize="20sp"
             android:textColor="#000000"/>
@@ -79,7 +80,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="99dp"
-            android:id="@+id/textViewPalabra"
+            android:id="@+id/tvPalabraInt"
             android:paddingLeft="150dp"
             android:paddingTop="30dp" />
     </TableRow>
@@ -88,7 +89,7 @@
         android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:text="@string/leer_atras"
-        android:id="@+id/btAtras"
+        android:id="@+id/btAtrasInt"
         android:layout_gravity="right"
         android:onClick="irAtras" />
 

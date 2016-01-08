@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/background_material_dark">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reconocer el color"
-        android:id="@+id/textViewDescripcion"
+        android:id="@+id/tvDescripcionDif"
         android:textSize="30sp"
         android:textColor="#000000"
         android:layout_weight="0.12"
@@ -19,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/leer_seleccionar_dificultad"
-        android:id="@+id/textViewDificultad"
+        android:id="@+id/tvDificultadDif"
         android:layout_weight="0.06"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -58,8 +59,9 @@
         android:layout_width="152dp"
         android:layout_height="wrap_content"
         android:text="@string/leer_empezar"
-        android:id="@+id/buttonEmpezar"
+        android:id="@+id/btEmpezarDif"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.07"
-        android:onClick="irAJuegoLeer" />
+        android:onClick="irAJuegoLeer"
+        android:background="@color/background_material_dark" />
 </LinearLayout>

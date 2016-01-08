@@ -2,11 +2,13 @@ package com.sdm.uniovi.braingame.juegos.leer;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +23,13 @@ import java.util.Random;
 public class JuegoLeer extends AppCompatActivity {
 
     private CountDownTimer crono;
-    private TextView textViewTiempo;
-    private TextView textViewPalabra;
-    private TextView textViewPuntos;
+    private TextView tvTiempoRestante;
+    private TextView tvPalabra;
+    private TextView tvPuntos;
+    private TextView tvDescripcion;
+    private TextView tvTiempoInicial;
+    private TextView tvPuntuacion;
+    private Button btAtras;
     private static final String[] COLORESVALIDOS = { "amarillo", "azul", "rojo", "blanco",
             "verde", "morado", "naranja", "rosa"};
 
@@ -35,6 +41,7 @@ public class JuegoLeer extends AppCompatActivity {
     private Integer puntos = 0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +51,23 @@ public class JuegoLeer extends AppCompatActivity {
 
         setContentView(R.layout.leer_interfaz);
 
-        textViewTiempo = (TextView)findViewById(R.id.textViewTiempoRestante);
-        textViewPalabra = (TextView)findViewById(R.id.textViewPalabra);
-        textViewPuntos = (TextView)findViewById(R.id.textViewPuntos);
+        tvDescripcion = (TextView)findViewById(R.id.tvDescripcionInt);
+        tvPuntuacion = (TextView)findViewById(R.id.tvPuntuacionInt);
+        tvTiempoInicial = (TextView)findViewById(R.id.tvTiempoInt);
+        tvTiempoRestante = (TextView)findViewById(R.id.tvTiempoRestanteInt);
+        tvPalabra = (TextView)findViewById(R.id.tvPalabraInt);
+        tvPuntos = (TextView)findViewById(R.id.tvPuntosInt);
+        btAtras = (Button) findViewById(R.id.btAtrasInt);
+
+        Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
+
+        tvDescripcion.setTypeface(estiloLetra);
+        tvPuntuacion.setTypeface(estiloLetra);
+        tvTiempoInicial.setTypeface(estiloLetra);
+        tvTiempoRestante.setTypeface(estiloLetra);
+        tvPalabra.setTypeface(estiloLetra);
+        tvPuntos.setTypeface(estiloLetra);
+        btAtras.setTypeface(estiloLetra);
 
         generarPalabra();
 
@@ -57,7 +78,7 @@ public class JuegoLeer extends AppCompatActivity {
         Random r = new Random();
         int index = r.nextInt(COLORESVALIDOS_LENGTH - 1);
         indexColor = r.nextInt(COLORESVALIDOS_LENGTH - 1);
-        textViewPalabra.setText(COLORESVALIDOS[index]);
+        tvPalabra.setText(COLORESVALIDOS[index]);
         int color = -1;
 
         switch (COLORESVALIDOS[indexColor]){
@@ -78,7 +99,7 @@ public class JuegoLeer extends AppCompatActivity {
             case "rosa": color = Color.rgb(255,192,203);
         }
 
-        textViewPalabra.setTextColor(color);
+        tvPalabra.setTextColor(color);
     }
 
 
@@ -97,12 +118,12 @@ public class JuegoLeer extends AppCompatActivity {
         crono = new CountDownTimer(tiempo, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                textViewTiempo.setText("  " + millisUntilFinished / 1000);
+                tvTiempoRestante.setText("  " + millisUntilFinished / 1000);
             }
 
             @Override
             public void onFinish() {
-                textViewTiempo.setText("  0");
+                tvTiempoRestante.setText("  0");
                 iniciarReconocimientoDeVoz();
             }
         };
@@ -145,7 +166,7 @@ public class JuegoLeer extends AppCompatActivity {
                     puntos = 0;
                 }
             }
-            textViewPuntos.setText("" + puntos.toString());
+            tvPuntos.setText("" + puntos.toString());
 
         }else{
             Toast.makeText(getApplicationContext(), "Lo que ha dicho no es un color válido.",
