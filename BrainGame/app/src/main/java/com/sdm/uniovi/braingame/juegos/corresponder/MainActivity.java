@@ -235,10 +235,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
     }
 
     public boolean isMatching() {
-        if ((((BitmapDrawable)img1Comparar.getDrawable()).getBitmap().equals(((BitmapDrawable)img2Comparar.getDrawable()).getBitmap()))){
-            return true;
-        }
-        else return false;
+        return (((BitmapDrawable) img1Comparar.getDrawable()).getBitmap().equals(((BitmapDrawable) img2Comparar.getDrawable()).getBitmap()));
     }
 
     public void addPoints (int dificultad){

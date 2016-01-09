@@ -11,9 +11,6 @@ import com.sdm.uniovi.braingame.R;
 
 import java.util.List;
 
-/**
- * Created by luism_000 on 16/12/2015.
- */
 public class PuntuacionesAdapter extends ArrayAdapter<Puntuacion> {
 
     private LayoutInflater mInflater;

@@ -5,23 +5,22 @@
     <string name="responder_inicio">Responder</string>
     <string name="ayuda_login">Si usted ya tiene un usuario registrado inicie sesion a nuestro
         servidor con su usuario y clave. Si aun no ha creado un usuario presione el boton "Crear usuario"</string>
-    <string name="ayuda_principal">BrainGame es una aplicación que busca probar y entrenar la agilidad
-        mental del usuario con 7 juegos que te resultaran entretenidos, utiles y competitivos. El primero de
-        los juegos es "Memorizar" donde se reta la capacidad de memoria para los patrones de desbloqueo movil que tiene el usuario.
-    El segundo de los juegos es "Ordenar" donde por orden logico de secuencia tendra el usuario se recordar y ordenar las
-    imagenes que se le muestran. El tercer juego es "Resolver" donde por nivel de dificultad tendras que calcular
-    las operaciones matematicas que se te presenten. El cuarto juego es "Leer" donde se pone a prueba tu agilidad mental para leer el
-    color con el que está pintada el nombre del color. El quinto juego es "Responder" con un amplio nuemero de preguntas de
-        cultura general a las que tendras que responder para ganar a los demás competidores. El sexto juego es "Completar"
-    donde cual juego clásico del 'Horcado' tendras que completar la palabra a la que corresponde a informacion dada. Por último
-        no menos interesante está el juego de "Emparejar" donde tendras que responder por logica la pareja de la imagen que se te muestra.
-    Pon a prueba tu agilidad mental con estos 7 juegos y diles a tus amigos cuan mejor eres que ellos.</string>
+    <string name="ayuda_principal"></string>
     <string name="fallo_conexion">Hay un fallo con la conexion a nuestro servidor. Compruebe su conexion a internet </string>
     <string name="completar_inicio">Completar</string>
     <string name="repetir_clave">Repita la clave</string>
     <string name="fallo_clave">Las claves no coinciden</string>
     <string name="corresponder_inicio">Emparejar</string>
     <string name="calcular_inicio">Calcular</string>
+    <string name="calcular_titulo">Calcula el resultado</string>
+    <string name="calcular_ganar_maximo">Has ganado el máximo nivel. Eres un gran matemático </string>
+    <string name="calcular_ganar">Enhorabuena, has ganado pasas al siguiente nivel</string>
+    <string name="acierto">Acierto</string>
+    <string name="fallo">Fallo</string>
+    <string name="falta_seleccion">Falta seleccionar una opcion</string>
+    <string name="descripcion_juego_calcular">Este juego consiste en seleccionar la opcion del calculo correcto, segun vayas acertando pasas de nivel y los cálculos se complican</string>
+    <string name="tiempo_fuera">Se ha agotado el tiempo</string>
+    <string name="tiempo">Tiempo</string>
     <string name="leer_inicio">Leer</string>
     <string name="clave">Clave</string>
     <string name="registrar">Crear usuario</string>

@@ -3,18 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
+    android:layout_margin="21dp"
     android:background="@color/background_material_dark">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reconocer el color"
-        android:id="@+id/tvDescripcionDif"
-        android:textSize="30sp"
-        android:textColor="#000000"
-        android:layout_weight="0.12"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,8 +12,8 @@
         android:text="@string/leer_seleccionar_dificultad"
         android:id="@+id/tvDificultadDif"
         android:layout_weight="0.06"
-        android:textColor="#000000"
-        android:textSize="20sp"
+        android:textColor="@color/text"
+        android:textSize="25sp"
         android:paddingStart="10dp" />
 
     <RadioGroup
@@ -38,21 +28,31 @@
             android:layout_height="wrap_content"
             android:text="@string/leer_facil"
             android:id="@+id/radioButtonFacil"
-            android:layout_weight="0.08" />
+            android:layout_weight="0.08"
+            android:textSize="25sp"
+            android:textColor="@color/text"
+            android:buttonTint="@color/text"
+            android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/leer_normal"
             android:id="@+id/radioButtonNormal"
-            android:layout_weight="0.08" />
+            android:layout_weight="0.08"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:buttonTint="@color/text"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/leer_dificil"
             android:id="@+id/radioButtonDificil"
-            android:layout_weight="0.08" />
+            android:layout_weight="0.08"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:buttonTint="@color/text"/>
     </RadioGroup>
 
     <Button
@@ -62,6 +62,8 @@
         android:id="@+id/btEmpezarDif"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.07"
-        android:onClick="irAJuegoLeer"
-        android:background="@color/background_material_dark" />
+        android:onClick="irAJuego"
+        style="@style/AppCompat.Button.Flat.Common"
+        android:textColor="@color/text"
+        android:textSize="25sp"/>
 </LinearLayout>

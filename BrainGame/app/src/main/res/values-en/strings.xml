@@ -4,21 +4,19 @@
     <string name="clave">Password</string>
     <string name="evaluar">Evaluate</string>
     <string name="registrar">Create my account</string>
+    <string name="calcular_titulo">Calculate the result</string>
     <string name="calcular_inicio">Operations solves</string>
+    <string name="calcular_ganar_maximo">You have earned the highest level. You are a great mathematician</string>
+    <string name="calcular_ganar">Congratulations, you have won pass to the next level</string>
+    <string name="acierto">Success</string>
+    <string name="fallo">Failure</string>
+    <string name="falta_seleccion">Lack select an option</string>
+    <string name="tiempo_fuera">It is out of time</string>
+    <string name="tiempo">Time</string>
     <string name="responder_inicio">Answer</string>
     <string name="repetir_clave">Repeat the key</string>
+    <string name="descripcion_juego_calcular">This game is to select the correct calculation, according go hitting pass the level and calculations are complicated.</string>
     <string name="fallo_clave">Passwords do not match</string>
-     <string name="ayuda_principal">BrainGame is an application that aims to test and train agility
-        User mentally 7 entertaining games that will turn out, useful and competitive. The first of
-        games is "Store" where the memory capacity for mobile release patterns for the user is challenged.
-    The second of the game is "Sort" where logical sequence order by the user shall remember and sort
-    images to be displayed. The third game is "Resolve" by difficulty level where you have to calculate
-    the mathematical operations that will arise. The fourth game is "Read" where it tests your mental agility to read
-    color that it is painted the color name. The fifth game is "Answer" with a wide nuemero of questions
-        general culture to which you must respond to beat the other competitors. The sixth game is "Complete"
-    where that classic game of 'Horcado' will have to complete the word that corresponds to information given. Finally
-        no less interesting is the game "Match" where you will have to answer for the pair logical image it shows you.
-    Test your mental agility with these 7 games and tell your friends how much better they are.</string>
     <string name="completar_inicio">Complete</string>
     <string name="corresponder_inicio">Match</string>
     <string name="ayuda_login">If you already have a registered user logs in to our server with your

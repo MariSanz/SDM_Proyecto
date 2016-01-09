@@ -10,25 +10,17 @@ import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
 
-
-/**
- * Created by luism_000 on 11/11/2015.
- */
 public class MainActivity extends AppCompatActivity {
 
-
-    private TextView tituloJuego;
-    private TextView descripcion;
-    private Button btSiguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leer_colores_activity_main);
 
-        tituloJuego = (TextView) findViewById(R.id.tvTituloJuegoIni);
-        descripcion = (TextView) findViewById(R.id.tvDescripcionIni);
-        btSiguiente = (Button) findViewById(R.id.btSiguienteIni);
+        TextView tituloJuego = (TextView) findViewById(R.id.tvTituloJuegoIni);
+        TextView descripcion = (TextView) findViewById(R.id.tvDescripcionIni);
+        Button btSiguiente = (Button) findViewById(R.id.btSiguienteIni);
 
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
 

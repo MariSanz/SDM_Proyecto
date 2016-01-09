@@ -30,8 +30,19 @@
             android:name=".juegos.recordar.MainActivity"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".AyudaPrincipalActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
             android:name=".juegos.calcular.MainActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".juegos.calcular.DificultadActivity"
+            android:parentActivityName=".juegos.calcular.MainActivity" />
+        <activity
+            android:name=".juegos.calcular.JuegoCalcular"
+            android:parentActivityName=".juegos.calcular.DificultadActivity" />
+
         <activity
             android:name=".juegos.leer.MainActivity"
             android:parentActivityName=".MainActivity" />

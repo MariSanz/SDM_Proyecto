@@ -1,4 +1,5 @@
-package com.sdm.uniovi.braingame.juegos.leer;
+package com.sdm.uniovi.braingame.juegos.calcular;
+
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,10 +10,12 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
 
-public class ActivityDificultad extends AppCompatActivity{
+public class DificultadActivity extends AppCompatActivity {
+
 
     private RadioGroup rGroup;
 
@@ -48,18 +51,21 @@ public class ActivityDificultad extends AppCompatActivity{
 
         int elegido = rGroup.getCheckedRadioButtonId();
         switch (elegido){
-            case R.id.radioButtonFacil : dificultad = 3;
+            case R.id.radioButtonFacil : dificultad = 1;
                 break;
-            case R.id.radioButtonNormal : dificultad = 4;
+            case R.id.radioButtonNormal : dificultad = 2;
                 break;
-            case R.id.radioButtonDificil : dificultad = 6;
+            case R.id.radioButtonDificil : dificultad = 3;
                 break;
         }
 
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.JuegoLeer.class);
-        intent.putExtra("EXTRA_DIFICULTAD", dificultad);
-        startActivity(intent);
+        if(elegido>0) {
+
+            Intent intent = new Intent(this, JuegoCalcular.class);
+            intent.putExtra("EXTRA_DIFICULTAD", dificultad);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, R.string.falta_seleccion, Toast.LENGTH_LONG).show();
+        }
     }
-
-
 }

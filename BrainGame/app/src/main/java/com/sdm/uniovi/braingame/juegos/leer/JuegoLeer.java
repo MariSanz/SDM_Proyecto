@@ -17,9 +17,6 @@ import com.sdm.uniovi.braingame.R;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by JohanArif on 30/12/2015.
- */
 public class JuegoLeer extends AppCompatActivity {
 
     private CountDownTimer crono;
