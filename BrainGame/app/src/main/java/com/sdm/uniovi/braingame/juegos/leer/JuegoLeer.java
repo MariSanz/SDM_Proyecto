@@ -103,11 +103,11 @@ public class JuegoLeer extends AppCompatActivity {
     public void iniciarTemporizador(){
 
         switch(dificultad){
-            case 3: tiempo = 6000;
+            case 1: tiempo = 3000;
                 break;
-            case 4: tiempo = 4000;
+            case 2: tiempo = 2000;
                 break;
-            case 6: tiempo = 3000;
+            case 3: tiempo = 1000;
                 break;
         }
 

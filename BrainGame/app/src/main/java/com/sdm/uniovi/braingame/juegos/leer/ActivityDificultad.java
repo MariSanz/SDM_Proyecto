@@ -48,11 +48,11 @@ public class ActivityDificultad extends AppCompatActivity{
 
         int elegido = rGroup.getCheckedRadioButtonId();
         switch (elegido){
-            case R.id.radioButtonFacil : dificultad = 3;
+            case R.id.radioButtonFacil : dificultad = 1;
                 break;
-            case R.id.radioButtonNormal : dificultad = 4;
+            case R.id.radioButtonNormal : dificultad = 2;
                 break;
-            case R.id.radioButtonDificil : dificultad = 6;
+            case R.id.radioButtonDificil : dificultad = 3;
                 break;
         }
 

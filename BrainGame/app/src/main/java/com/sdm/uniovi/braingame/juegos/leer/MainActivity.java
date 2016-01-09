@@ -21,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
         TextView tituloJuego = (TextView) findViewById(R.id.tvTituloJuegoIni);
         TextView descripcion = (TextView) findViewById(R.id.tvDescripcionIni);
         Button btSiguiente = (Button) findViewById(R.id.btSiguienteIni);
+        Button btAtras = (Button) findViewById(R.id.btAtrasIni);
 
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
 
         tituloJuego.setTypeface(estiloLetra);
         descripcion.setTypeface(estiloLetra);
         btSiguiente.setTypeface(estiloLetra);
-        
+        btAtras.setTypeface(estiloLetra);
 
     }
 
@@ -35,5 +36,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.ActivityDificultad.class);
 
         startActivity(intent);
+    }
+
+    public void irAtras(View view){
+        this.finish();
     }
 }

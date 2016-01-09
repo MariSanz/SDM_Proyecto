@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:layout_margin="21dp"
     android:background="@color/background_material_dark">
 
     <TextView
@@ -65,5 +64,7 @@
         android:onClick="irAJuego"
         style="@style/AppCompat.Button.Flat.Common"
         android:textColor="@color/text"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:background="@drawable/button_boarder"
+        android:textAllCaps="false"/>
 </LinearLayout>
