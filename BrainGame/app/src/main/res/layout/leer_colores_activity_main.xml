@@ -22,7 +22,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/descripcion_juego_leer"
         android:id="@+id/tvDescripcionIni"
-        android:layout_weight="0.43"
+        android:layout_weight="0.45"
         android:textSize="20sp"
         android:paddingLeft="10dp"
         android:layout_width = "wrap_content"

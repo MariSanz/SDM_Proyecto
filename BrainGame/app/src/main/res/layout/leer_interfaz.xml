@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.38"
+        android:layout_weight="0.27"
         android:id="@+id/tableRowPalabra"
         android:weightSum="1">
 
@@ -88,12 +88,14 @@
 
     <Button
         android:layout_width="204dp"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:text="@string/leer_atras"
         android:id="@+id/btAtrasInt"
         android:layout_gravity="right"
+        android:textSize="25sp"
+        android:textColor="@color/text"
         android:onClick="irAtras"
+        android:textAllCaps="false"
         android:background="@drawable/button_boarder"/>
-        <!--android:background="@color/background_material_dark" -->
 
 </LinearLayout>

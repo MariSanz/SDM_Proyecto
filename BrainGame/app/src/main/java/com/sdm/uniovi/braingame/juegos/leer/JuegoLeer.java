@@ -36,7 +36,7 @@ public class JuegoLeer extends AppCompatActivity {
     private int tiempo;
     private int indexColor;
     private Integer puntos = 0;
-
+    private int cont = 0;
 
 
     @Override
@@ -66,9 +66,7 @@ public class JuegoLeer extends AppCompatActivity {
         tvPuntos.setTypeface(estiloLetra);
         btAtras.setTypeface(estiloLetra);
 
-        generarPalabra();
-
-        iniciarTemporizador();
+        iniciarJuego();
     }
 
     private void generarPalabra(){
@@ -169,7 +167,15 @@ public class JuegoLeer extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Lo que ha dicho no es un color válido.",
                     Toast.LENGTH_SHORT).show();
         }
+        iniciarJuego();
+    }
 
+    public void iniciarJuego(){
+        cont++;
+        if(cont < 6) {
+            generarPalabra();
+            iniciarTemporizador();
+        }
     }
 
     public void irAtras(View view){

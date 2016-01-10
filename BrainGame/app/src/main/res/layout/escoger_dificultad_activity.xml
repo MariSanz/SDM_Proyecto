@@ -54,17 +54,43 @@
             android:buttonTint="@color/text"/>
     </RadioGroup>
 
-    <Button
-        android:layout_width="152dp"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/leer_empezar"
-        android:id="@+id/btEmpezarDif"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.07"
-        android:onClick="irAJuego"
-        style="@style/AppCompat.Button.Flat.Common"
-        android:textColor="@color/text"
-        android:textSize="25sp"
-        android:background="@drawable/button_boarder"
-        android:textAllCaps="false"/>
+        android:layout_weight="0.25"></TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:text="@string/leer_atras"
+            android:id="@+id/btAtrasDif"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:background="@drawable/button_boarder"
+            android:textAllCaps="false"
+            android:layout_weight="1.42"
+            android:onClick="irAtrasDif" />
+
+        <Button
+            style="@style/AppCompat.Button.Flat.Common"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:text="@string/leer_empezar"
+            android:id="@+id/btEmpezarDif"
+            android:onClick="irAJuego"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:background="@drawable/button_boarder"
+            android:textAllCaps="false"
+            android:layout_weight="1"/>
+    </TableRow>
+
 </LinearLayout>

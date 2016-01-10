@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
 
@@ -33,6 +34,7 @@ public class ActivityDificultad extends AppCompatActivity{
 
         TextView dificultadTV = (TextView)  findViewById(R.id.tvDificultadDif);
         Button btEmpezar = (Button) findViewById(R.id.btEmpezarDif);
+        Button btAtras = (Button) findViewById(R.id.btAtrasDif);
 
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
 
@@ -42,6 +44,7 @@ public class ActivityDificultad extends AppCompatActivity{
 
         dificultadTV.setTypeface(estiloLetra);
         btEmpezar.setTypeface(estiloLetra);
+        btAtras.setTypeface(estiloLetra);
     }
 
     public void irAJuego(View view){
@@ -56,9 +59,17 @@ public class ActivityDificultad extends AppCompatActivity{
                 break;
         }
 
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.JuegoLeer.class);
-        intent.putExtra("EXTRA_DIFICULTAD", dificultad);
-        startActivity(intent);
+        if(elegido>0) {
+            Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.leer.JuegoLeer.class);
+            intent.putExtra("EXTRA_DIFICULTAD", dificultad);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, R.string.falta_seleccion, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void irAtrasDif(View view){
+        this.finish();
     }
 
 
