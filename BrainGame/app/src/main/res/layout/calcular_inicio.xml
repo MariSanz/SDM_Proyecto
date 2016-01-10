@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:background="@color/background_material_dark">
 
 
@@ -41,12 +40,14 @@
             android:layout_width="177dp"
             android:layout_height="wrap_content"
             android:text="@string/leer_siguiente"
+            android:layout_marginTop="21dp"
             android:id="@+id/btSiguiente"
             android:layout_gravity="right"
             android:textColor="@color/text"
             android:layout_weight="0.03"
             android:onClick="irAEscogerDificultad"
-            style="@style/AppCompat.Button.Flat.Common"
+            android:background="@drawable/button_boarder"
+            android:textAllCaps="false"
             android:textSize="25sp" />
 
 

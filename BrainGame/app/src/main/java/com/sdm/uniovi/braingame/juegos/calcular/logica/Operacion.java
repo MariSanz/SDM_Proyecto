@@ -3,12 +3,15 @@ package com.sdm.uniovi.braingame.juegos.calcular.logica;
 
 public enum Operacion {
 
+
+
     SUMA("+"),
-    MULTIPLICACION("*"),
     RESTA("-"),
+    MULTIPLICACION("x"),
     DIVISION("/");
 
     private final String operacion;
+
 
     Operacion(String operacion) {
 

@@ -38,6 +38,7 @@ public class ExpresionBinaria implements Expresion {
 
     @Override
     public String mostrar() {
+        
         return op1.mostrar() + " " + operacion.toString() + " " + op2.mostrar() + " ";
     }
 

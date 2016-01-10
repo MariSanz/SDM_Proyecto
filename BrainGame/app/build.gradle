@@ -18,6 +18,8 @@ android {
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+
+    compileOptions.encoding = 'ISO-8859-1'
 }
 
 dependencies {

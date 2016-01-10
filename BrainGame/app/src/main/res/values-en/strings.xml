@@ -13,6 +13,8 @@
     <string name="falta_seleccion">Lack select an option</string>
     <string name="tiempo_fuera">It is out of time</string>
     <string name="tiempo">Time</string>
+    <string name="positivo">Yes</string>
+    <string name="negativo">No</string>
     <string name="responder_inicio">Answer</string>
     <string name="repetir_clave">Repeat the key</string>
     <string name="descripcion_juego_calcular">This game is to select the correct calculation, according go hitting pass the level and calculations are complicated.</string>
@@ -22,6 +24,7 @@
     <string name="ayuda_login">If you already have a registered user logs in to our server with your
         username and password. If you have not created a user press the button "Create User"</string>
     <string name="fallo_conexion">There is a fault with the connection to our server. Check your internet connection</string>
+    <string name="fallo_conexion_estadisticas">There is a fault with the connection to our server. Check your internet connection. Could not update online your punctuation</string>
     <string name="leer_inicio">Read</string>
     <string name="cerrado_sesion">You have succesfully signed out</string>
     <string name="registro">Create account</string>

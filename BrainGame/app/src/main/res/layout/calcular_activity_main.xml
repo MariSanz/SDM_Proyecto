@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="21dp"
     android:background="@color/background_material_dark">
 
 
@@ -25,7 +24,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Aqui va la formula"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="21dp"
             android:id="@+id/textViewFormula"
             android:textIsSelectable="false"
@@ -52,8 +51,8 @@
         android:orientation="horizontal"
         android:id="@+id/rgOpciones"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="21dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_marginTop="70dp"
+        android:layout_gravity="left">
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -63,6 +62,7 @@
         android:checked="false"
         android:layout_marginTop="3dp"
         android:onClick="evaluar"
+        android:layout_marginLeft="21dp"
         android:textSize="27sp"
         android:buttonTint="@color/text"
         android:textColor="@color/text" />
@@ -74,6 +74,7 @@
         android:text="opcion2"
         android:textColor="@color/text"
         android:id="@+id/rBCalcularOp2"
+        android:layout_marginLeft="21dp"
         android:onClick="evaluar"
         android:buttonTint="@color/text"
         android:textSize="27sp" />
@@ -86,7 +87,7 @@
         android:layout_marginLeft="21dp"
         android:layout_marginTop="21dp"
         android:buttonTint="@color/text"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="right">
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -94,6 +95,7 @@
         android:text="opcion3"
         android:textColor="@color/text"
         android:id="@+id/rBCalcularOp3"
+        android:layout_marginLeft="21dp"
         android:onClick="evaluar"
         android:buttonTint="@color/text"
         android:textSize="27sp" />
@@ -104,6 +106,7 @@
         android:text="opcion3"
         android:id="@+id/rBCalcularOp4"
         android:onClick="evaluar"
+        android:layout_marginLeft="21dp"
         android:buttonTint="@color/text"
         android:textColor="@color/text"
         android:textSize="27sp" />

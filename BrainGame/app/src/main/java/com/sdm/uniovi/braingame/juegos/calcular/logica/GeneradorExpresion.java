@@ -46,10 +46,9 @@ public class GeneradorExpresion {
     }
 
     public Expresion getIncorreta(int i){
-        if(i<=numOpciones) {
+
             return incorrectas[i];
-        }
-        return incorrectas[0];
+
     }
 
     private  Expresion operando(int maximo) {
@@ -59,7 +58,7 @@ public class GeneradorExpresion {
     }
 
     private  Operacion operacion(int hasta){
-        return Operacion.values()[hasta];
+        return Operacion.values()[random.nextInt(hasta)];
     }
 
     private void generarNivel1() {
@@ -87,11 +86,14 @@ public class GeneradorExpresion {
     }
 
     private void generarIncorrectas(int max, int hasta ) {
-        incorrectas[1] = new ExpresionBinaria(principal, new Constante(-1), Operacion.MULTIPLICACION);
+        incorrectas[1] = new ExpresionBinaria(operando(max), operando(max), operacion(hasta));
         incorrectas[2] = new ExpresionBinaria(operando(max), constante, operacion(hasta));
         incorrectas[3] = new ExpresionBinaria(operando(max), operando(max), operacion(hasta));
         for (int i=1; i<incorrectas.length; i++){
             if(incorrectas[i].valor()==0.0){
+                incorrectas[i] = new ExpresionBinaria(operando(max), operando(max), operacion(hasta));
+            }
+            while(incorrectas[i].valor()==getPrincipal().valor()){
                 incorrectas[i] = new ExpresionBinaria(operando(max), operando(max), operacion(hasta));
             }
         }
@@ -103,21 +105,21 @@ public class GeneradorExpresion {
 
         Expresion raiz;
 
-        Expresion hijoIzq = new ExpresionBinaria(operando(100), operando(100), operacion(3));
-        Expresion hijoDer = new ExpresionBinaria(operando(100), operando(100), operacion(3));
+        Expresion hijoIzq = new ExpresionBinaria(operando(10), operando(10), operacion(3));
+        Expresion hijoDer = new ExpresionBinaria(operando(10), operando(10), operacion(3));
 
         if (random.nextBoolean()) {
-            raiz = new ExpresionBinaria(hijoIzq, operando(100), operacion(3));
+            raiz = new ExpresionBinaria(hijoIzq, operando(10), operacion(3));
         }
         else {
-            raiz = new ExpresionBinaria(operando(100), hijoDer, operacion(3));
+            raiz = new ExpresionBinaria(operando(10), hijoDer, operacion(3));
         }
 
 
 
 
         principal = raiz;
-        generarIncorrectas(100, 3);
+        generarIncorrectas(10, 3);
     }
 
     private void generarNivel3() {

@@ -2,14 +2,20 @@ package com.sdm.uniovi.braingame.juegos.calcular;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.sdm.uniovi.braingame.R;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
@@ -32,15 +38,14 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     private TextView textViewFormula = null;
     private TextView textViewTimer = null;
-    private TextView textViewNivel = null;
-
 
     private RadioButton[] opciones = new RadioButton[4];
     private CountDownTimer countdown;
 
-     private int jugadas;
+    private int jugadas;
     private int fallos;
     private int aciertos;
+    private int tiempo;
 
     private int jugadasMaximasNivel;
     private int aciertosMaximosNivel;
@@ -63,11 +68,6 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
         textViewTimer = (TextView) findViewById(R.id.tvTimer);
         textViewTimer.setTypeface(estiloLetra);
-
-        textViewNivel = (TextView) findViewById(R.id.tvNivel);
-        textViewNivel.setTypeface(estiloLetra);
-
-
 
         RadioButton opcion1 = (RadioButton) findViewById(R.id.rBCalcularOp1);
         opcion1.setTypeface(estiloLetra);
@@ -100,11 +100,9 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
         };
 
-        generadorExpresion= new GeneradorExpresion(NIVEL_MINIMO, opciones.length);
+        generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
 
-        jugadasMaximasNivel = 10;
-        jugadas=0;
-        jugarNivel();
+        jugar();
 
 
     }
@@ -117,9 +115,6 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         countdown.start();
         if(jugadas<jugadasMaximasNivel) {
 
-
-            String msgInicial = "Resuelve";
-            textViewNivel.setText(msgInicial);
 
             //genero la expresion
             generadorExpresion.generarExpresiones();
@@ -134,18 +129,21 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         RadioButton seleccion = (RadioButton) view;
         seleccion.setChecked(false);
         jugadas++;
-        if(seleccion.getText().equals(String.valueOf(generadorExpresion.getPrincipal().valor()))){
+        onPause();
+        if(seleccion.getText().equals(String.format("%.2f", generadorExpresion.getPrincipal().valor()))){
+
 
             aciertos++;
             puntos+=100;
-            onPause();
+
             showPopUp("Acierto", "Respuesta correcta");
 
 
         }else{
             fallos++;
-            onPause();
-            showPopUp("Fallo", "Ups respuesta incorrecta");
+
+            showPopUp("Fallo", "Ups respuesta incorrecta \n la respuesta correcta era "
+                    + String.format("%.2f", generadorExpresion.getPrincipal().valor()));
 
         }
 
@@ -155,10 +153,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     private void resultadoPartida() {
 
-        if (fallos>=4){
-            onPause();
-            showPopUpFin("Perdido", "Vuelve a intentarlo, has perdido la partida", false);
-        }
+
         if(jugadas==jugadasMaximasNivel){
             jugadas=0;
             if(aciertos>=aciertosMaximosNivel){
@@ -166,25 +161,72 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                 if(nivelActual==NIVEL_MAXIMO){
 
                     onPause();
-                    showPopUpFin("Enhorabuena", "Has ganado el máximo nivel \n Eres un gran matematico ", true);
+                    showPopUpFin("Enhorabuena", "Has ganado el máximo nivel \n Eres un gran matematico \n\n ¿Quieres volver a jugar este nivel?", true);
 
                 }else {
                     nivelActual++;
 
                     onPause();
-                   showPopUpFin("Ganado", "Enhorabuena, has ganado pasas al siguiente nivel", true);
+                   showPopUpFin("Ganado", "Enhorabuena, has ganado. \n\n ¿Quieres jugar el siguiente nivel?", true);
                 }
             }else{
                 onPause();
-                showPopUpFin("Ups", "Vuelve a intentar el nivel", false);
+                showPopUpFin("Ups", "Has perdido este nivel. \n \n ¿Quieres volver a jugarlo?", false);
             }
+        }
+
+        if (fallos>=4){
+            onPause();
+            showPopUpFin("Perdido", "Vuelve a intentarlo, has perdido la partida", false);
         }else{
             jugar();
         }
 
     }
 
-    private void showPopUpFin(String titulo, String msg, final boolean fin) {
+    public void showPopUpFin(String titulo, String msg, final boolean fin) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        AlertDialog.Builder builder1 = builder.setTitle(titulo)
+                .setMessage(msg)
+                .setPositiveButton(R.string.positivo,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onRestart();
+                                if (fin) {
+                                    actualizarPuntuacion();
+                                    reiniciarActivity();
+                                }
+                                //reinicio las expresiones
+                                generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
+                                jugar();
+                            }
+                        })
+                .setNegativeButton(R.string.negativo,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                volverAjugar();
+                            }
+                        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void reiniciarActivity() {
+        aciertos=0;
+        fallos=0;
+        jugadas=0;
+    }
+
+    private void volverAjugar(){
+        Intent intent = new Intent(this, DificultadActivity.class);
+        startActivity(intent);
+    }
+
+   /* private void showPopUpFin(String titulo, String msg, final boolean fin) {
 
         final AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
         helpBuilder.setTitle(titulo);
@@ -204,7 +246,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
         AlertDialog helpDialog = helpBuilder.create();
         helpDialog.show();
-    }
+    }*/
 
     private void showPopUp(String titulo, String msg) {
 
@@ -215,9 +257,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
-                        onRestart();
-
-                        jugar();
+                        onResume();
                     }
                 });
 
@@ -227,8 +267,21 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
     }
 
     private void actualizarPuntuacion() {
-        new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
-                , Login.getInstancia(this.getApplicationContext()).getUsuario(), puntos, TipoJuego.CALCULAR.getIdServicio()).execute();
+        ConnectivityManager cm =
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean conectado = activeNetwork.isConnectedOrConnecting();
+        if(conectado) {
+            new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
+                    , Login.getInstancia(this.getApplicationContext()).getUsuario(), puntos, TipoJuego.CALCULAR.getIdServicio()).execute();
+        }else{
+
+           onPause();
+            showPopUp("Fallo","Hay un fallo con la conexion a nuestro servidor. Compruebe su " +
+                    "conexion a internet. No se ha podido actualizar su puntuacion online");
+
+        }
     }
 
 
@@ -238,16 +291,19 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
             case GeneradorExpresion.NIVEL_FACIL:
                 jugadasMaximasNivel=10;
                 aciertosMaximosNivel =7;
+                tiempo=20000;
                 jugarNivel();
                 break;
             case GeneradorExpresion.NIVEL_BASICO:
                 jugadasMaximasNivel=15;
                 aciertosMaximosNivel =12;
+                tiempo=30000;
                 jugarNivel();
                 break;
             case GeneradorExpresion.NIVEL_AVANZADO:
                 jugadasMaximasNivel=20;
                 aciertosMaximosNivel = 18;
+                tiempo=50000;
                 jugarNivel();
                 break;
         }
@@ -257,11 +313,16 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
 
     private void rellenarRadioButton() {
-
+        int posCorrecta= random.nextInt(opciones.length);
+        opciones[posCorrecta].setText(String.format("%.2f", generadorExpresion.getPrincipal().valor()));
+        int j=3;
         for (int i=0; i<opciones.length; i++){
-            opciones[i].setText(String.valueOf(generadorExpresion.getIncorreta(i).valor()));
+            if(i!=posCorrecta) {
+                opciones[i].setText(String.format("%.2f", generadorExpresion.getIncorreta(j).valor()));
+                j--;
+            }
         }
-        opciones[random.nextInt(opciones.length)].setText(String.valueOf(generadorExpresion.getPrincipal().valor()));
+
 
     }
 
@@ -274,7 +335,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
-                        onRestart();
+                        onResume();
                         resultadoPartida();
                     }
                 });
