@@ -4,6 +4,6 @@ public interface Expresion {
 
 
 
-     double valor();
+     int valor();
     String mostrar();
 }

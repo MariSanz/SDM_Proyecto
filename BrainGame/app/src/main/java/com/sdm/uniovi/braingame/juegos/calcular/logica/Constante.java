@@ -9,7 +9,7 @@ public class Constante implements Expresion {
     }
 
     @Override
-    public double valor() {
+    public int valor() {
         return valor;
     }
 

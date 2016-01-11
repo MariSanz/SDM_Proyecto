@@ -112,8 +112,70 @@
         android:textSize="27sp" />
     </RadioGroup>
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_weight="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/acierto"
+        android:id="@+id/tvAciertos"
+        android:textColor="@color/text"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/acierto"
+        android:id="@+id/tvNumAciertos"
+        android:textColor="#21ff22"
+        android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/puntos"
+                android:id="@+id/tvPuntos"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/acierto"
+                android:id="@+id/tvNumPuntos"
+                android:textColor="#21ff22"
+                android:textSize="25sp" />
 
 
+            </TableRow>
+
+    </TableLayout>
 
 
 </LinearLayout>

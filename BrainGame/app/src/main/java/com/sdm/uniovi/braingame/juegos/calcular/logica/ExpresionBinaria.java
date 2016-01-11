@@ -18,18 +18,31 @@ public class ExpresionBinaria implements Expresion {
 
     }
 
+    public Operacion getOperacion() {
+        return operacion;
+    }
+
+    public Expresion getOp1() {
+        return op1;
+    }
+
+    public Expresion getOp2() {
+        return op2;
+    }
+
     @Override
-    public double valor() {
+    public int valor() {
 
             switch (operacion) {
-                case SUMA:
-                   return op1.valor() + op2.valor();
-                case RESTA:
-                    return op1.valor() - op2.valor();
                 case MULTIPLICACION:
                     return op1.valor() * op2.valor();
                 case DIVISION:
                     return op1.valor() / op2.valor();
+                case SUMA:
+                   return op1.valor() + op2.valor();
+                case RESTA:
+                    return op1.valor() - op2.valor();
+
 
             }
 
@@ -38,7 +51,7 @@ public class ExpresionBinaria implements Expresion {
 
     @Override
     public String mostrar() {
-        
+
         return op1.mostrar() + " " + operacion.toString() + " " + op2.mostrar() + " ";
     }
 

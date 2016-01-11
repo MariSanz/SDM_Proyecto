@@ -38,6 +38,8 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     private TextView textViewFormula = null;
     private TextView textViewTimer = null;
+    private TextView textViewNumAciertos = null;
+    private TextView textViewNumPuntos;
 
     private RadioButton[] opciones = new RadioButton[4];
     private CountDownTimer countdown;
@@ -45,11 +47,11 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
     private int jugadas;
     private int fallos;
     private int aciertos;
-    private int tiempo;
 
     private int jugadasMaximasNivel;
     private int aciertosMaximosNivel;
     private int puntos;
+
 
 
     @Override
@@ -69,6 +71,21 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         textViewTimer = (TextView) findViewById(R.id.tvTimer);
         textViewTimer.setTypeface(estiloLetra);
 
+        textViewNumAciertos = (TextView) findViewById(R.id.tvNumAciertos);
+        textViewNumAciertos.setTypeface(estiloLetra);
+        textViewNumAciertos.setText(String.valueOf(0));
+
+        textViewNumPuntos =(TextView) findViewById(R.id.tvNumPuntos);
+        textViewNumPuntos.setTypeface(estiloLetra);
+        textViewNumPuntos.setText(String.valueOf(0));
+
+        TextView textViewPuntos = (TextView) findViewById(R.id.tvPuntos);
+        textViewPuntos.setTypeface(estiloLetra);
+       
+
+        TextView acierto =(TextView) findViewById(R.id.tvAciertos);
+        acierto.setTypeface(estiloLetra);
+
         RadioButton opcion1 = (RadioButton) findViewById(R.id.rBCalcularOp1);
         opcion1.setTypeface(estiloLetra);
         opciones[0] = opcion1;
@@ -82,7 +99,22 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         opcion4.setTypeface(estiloLetra);
         opciones[3] = opcion4;
 
-        countdown = new CountDownTimer(20000, 1000){
+
+
+        generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
+
+        jugar();
+
+
+    }
+
+    private void iniarTemporizador(int tiempo) {
+        if(countdown!=null){
+
+            countdown=null;
+        }
+
+        countdown = new CountDownTimer(tiempo, 1000){
 
             public void onTick(long millisUntilFinished) {
                 textViewTimer.setText(String.valueOf(millisUntilFinished / 1000));
@@ -99,14 +131,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
 
         };
-
-        generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
-
-        jugar();
-
-
     }
-
 
 
     private void jugarNivel() {
@@ -130,20 +155,22 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         seleccion.setChecked(false);
         jugadas++;
         onPause();
-        if(seleccion.getText().equals(String.format("%.2f", generadorExpresion.getPrincipal().valor()))){
+        if(seleccion.getText().equals(String.valueOf(generadorExpresion.getPrincipal().valor()))){
 
 
             aciertos++;
+            textViewNumAciertos.setText(String.valueOf(aciertos));
             puntos+=100;
+            textViewNumPuntos.setText(String.valueOf(puntos));
+            Toast.makeText(this, R.string.acierto, Toast.LENGTH_LONG).show();
 
-            showPopUp("Acierto", "Respuesta correcta");
 
 
         }else{
             fallos++;
 
-            showPopUp("Fallo", "Ups respuesta incorrecta \n la respuesta correcta era "
-                    + String.format("%.2f", generadorExpresion.getPrincipal().valor()));
+            Toast.makeText(this, R.string.fallo,Toast.LENGTH_LONG).show();
+
 
         }
 
@@ -160,7 +187,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
                 if(nivelActual==NIVEL_MAXIMO){
 
-                    onPause();
+                    this.onPause();
                     showPopUpFin("Enhorabuena", "Has ganado el máximo nivel \n Eres un gran matematico \n\n ¿Quieres volver a jugar este nivel?", true);
 
                 }else {
@@ -193,7 +220,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                onRestart();
+                                onResume();
                                 if (fin) {
                                     actualizarPuntuacion();
                                     reiniciarActivity();
@@ -211,7 +238,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                             }
                         });
 
-        AlertDialog dialog = builder.create();
+        AlertDialog dialog = builder1.create();
         dialog.show();
     }
 
@@ -226,45 +253,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         startActivity(intent);
     }
 
-   /* private void showPopUpFin(String titulo, String msg, final boolean fin) {
 
-        final AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle(titulo);
-        helpBuilder.setMessage(msg);
-        helpBuilder.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        onRestart();
-                        if(fin) {
-                            actualizarPuntuacion();
-                        }
-                        jugar();
-                    }
-                });
-
-
-        AlertDialog helpDialog = helpBuilder.create();
-        helpDialog.show();
-    }*/
-
-    private void showPopUp(String titulo, String msg) {
-
-        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle(titulo);
-        helpBuilder.setMessage(msg);
-        helpBuilder.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        onResume();
-                    }
-                });
-
-
-        AlertDialog helpDialog = helpBuilder.create();
-        helpDialog.show();
-    }
 
     private void actualizarPuntuacion() {
         ConnectivityManager cm =
@@ -278,8 +267,8 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         }else{
 
            onPause();
-            showPopUp("Fallo","Hay un fallo con la conexion a nuestro servidor. Compruebe su " +
-                    "conexion a internet. No se ha podido actualizar su puntuacion online");
+            Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
+
 
         }
     }
@@ -291,19 +280,22 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
             case GeneradorExpresion.NIVEL_FACIL:
                 jugadasMaximasNivel=10;
                 aciertosMaximosNivel =7;
-                tiempo=20000;
+
+                iniarTemporizador(20000);
                 jugarNivel();
                 break;
             case GeneradorExpresion.NIVEL_BASICO:
                 jugadasMaximasNivel=15;
                 aciertosMaximosNivel =12;
-                tiempo=30000;
+
+                iniarTemporizador(30000);
                 jugarNivel();
                 break;
             case GeneradorExpresion.NIVEL_AVANZADO:
                 jugadasMaximasNivel=20;
                 aciertosMaximosNivel = 18;
-                tiempo=50000;
+
+                iniarTemporizador(50000);
                 jugarNivel();
                 break;
         }
@@ -314,11 +306,11 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     private void rellenarRadioButton() {
         int posCorrecta= random.nextInt(opciones.length);
-        opciones[posCorrecta].setText(String.format("%.2f", generadorExpresion.getPrincipal().valor()));
+        opciones[posCorrecta].setText(String.valueOf(generadorExpresion.getPrincipal().valor()));
         int j=3;
         for (int i=0; i<opciones.length; i++){
             if(i!=posCorrecta) {
-                opciones[i].setText(String.format("%.2f", generadorExpresion.getIncorreta(j).valor()));
+                opciones[i].setText(String.valueOf(generadorExpresion.getIncorreta(j).valor()));
                 j--;
             }
         }

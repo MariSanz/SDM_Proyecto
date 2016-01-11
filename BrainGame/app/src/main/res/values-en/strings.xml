@@ -40,6 +40,7 @@
     <string name="ordenar_correctoTitulo">Correct</string>
     <string name="ordenar_finGanadoMensaje">Correct again. You won the game! Your highscore is:\u0020</string>
     <string name="ordenar_finTitulo">Game over</string>
+    <string name="correcta">The correct answer was: </string>
     <string name="ordenar_incorrectoMensaje">Your order was not correct. Try again!</string>
     <string name="ordenar_incorrectoTitulo">Incorrect</string>
     <string name="ordenar_finPerdidoMensaje">You made too many mistakes! You lost the game!</string>

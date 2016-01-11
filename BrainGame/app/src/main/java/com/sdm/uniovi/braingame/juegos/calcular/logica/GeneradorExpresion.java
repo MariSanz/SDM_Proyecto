@@ -1,5 +1,7 @@
 package com.sdm.uniovi.braingame.juegos.calcular.logica;
 
+import android.gesture.GestureOverlayView;
+
 import java.util.Random;
 
 public class GeneradorExpresion {
@@ -19,11 +21,11 @@ public class GeneradorExpresion {
 
 
     private int nivel;
-    private int numOpciones;
+
 
     public GeneradorExpresion(int nivel, int numOpciones) {
         this.nivel=nivel;
-        this.numOpciones=numOpciones;
+
         incorrectas= new Expresion[numOpciones];
     }
 
@@ -104,46 +106,61 @@ public class GeneradorExpresion {
     private void generarNivel2() {
 
         Expresion raiz;
+        Expresion hijo;
+        Operacion operacion = operacion(3);
 
-        Expresion hijoIzq = new ExpresionBinaria(operando(10), operando(10), operacion(3));
-        Expresion hijoDer = new ExpresionBinaria(operando(10), operando(10), operacion(3));
+        ExpresionBinaria op1 = new ExpresionBinaria(operando(10), operando(10), operacion(3));
 
-        if (random.nextBoolean()) {
-            raiz = new ExpresionBinaria(hijoIzq, operando(10), operacion(3));
+        if(operacion.equals(Operacion.DIVISION) || operacion.equals(Operacion.MULTIPLICACION)){
+            hijo = new ExpresionBinaria(op1.getOp2(), operando(10), operacion);
+            raiz = new ExpresionBinaria(op1.getOp1(), hijo, op1.getOperacion());
+
+            incorrectas[0] = new ExpresionBinaria(op1.getOp1(), hijo, operacion(2));
+        }else{
+            raiz = new ExpresionBinaria(op1, operando(10),operacion);
+            incorrectas[0] = new ExpresionBinaria(operando(10), op1, operacion(2));
         }
-        else {
-            raiz = new ExpresionBinaria(operando(10), hijoDer, operacion(3));
-        }
-
-
 
 
         principal = raiz;
-        generarIncorrectas(10, 3);
+        generarIncorrectas(10,2);
     }
 
     private void generarNivel3() {
 
         Expresion raiz;
 
-        Expresion hijoIzq = new ExpresionBinaria(operando(100), operando(100), operacion(3));
-        Expresion hijoCentro = new ExpresionBinaria(operando(100), operando(100), operacion(3));
-        Expresion hijoDer = new ExpresionBinaria(operando(100), operando(100), operacion(3));
+        Operacion operacion1 = operacion(3);
+        Operacion operacion2 = operacion(3);
 
-        if (random.nextBoolean()) {
-            raiz = new ExpresionBinaria(hijoIzq, hijoCentro, operacion(3));
+
+        Expresion hijo1;
+        Expresion hijo2;
+
+        ExpresionBinaria op1 = new ExpresionBinaria(operando(10), operando(10), operacion(3));
+
+        if(operacion1.equals(Operacion.DIVISION) || operacion1.equals(Operacion.MULTIPLICACION)){
+            hijo1 = new ExpresionBinaria(op1.getOp2(), operando(10), operacion1);
+            hijo2 = new ExpresionBinaria(op1.getOp1(), hijo1, op1.getOperacion());
+            raiz = new ExpresionBinaria(operando(10), hijo2, operacion2);
+            incorrectas[0] = new ExpresionBinaria(hijo1, operando(10), operacion1);
+        }else if(operacion2.equals(Operacion.DIVISION) || operacion2.equals(Operacion.MULTIPLICACION)){
+            hijo1 = new ExpresionBinaria(op1.getOp2(), operando(10), operacion2);
+            hijo2 = new ExpresionBinaria(op1.getOp1(), hijo1, op1.getOperacion());
+            raiz = new ExpresionBinaria(operando(10), hijo2, operacion1);
+            incorrectas[0] = new ExpresionBinaria(hijo1, operando(10), operacion2);
         }
         else {
-            raiz = new ExpresionBinaria(hijoCentro, hijoDer, operacion(3));
+
+            hijo1 = new ExpresionBinaria(operando(10), operando(10),operacion1);
+            hijo2 = new ExpresionBinaria(operando(10), operando(10),operacion2);
+            raiz = new ExpresionBinaria(hijo1, hijo2, operacion(2));
+            incorrectas[0] = new ExpresionBinaria(hijo1, operando(10), operacion1);
         }
-
-
-
-
 
 
         principal = raiz;
-        generarIncorrectas(100, 3);
+        generarIncorrectas(10, 3);
     }
 
 

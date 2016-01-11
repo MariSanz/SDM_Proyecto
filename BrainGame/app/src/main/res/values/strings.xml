@@ -16,6 +16,7 @@
     <string name="calcular_titulo">Calcula el resultado</string>
     <string name="calcular_ganar_maximo">Has ganado el máximo nivel. Eres un gran matemático </string>
     <string name="calcular_ganar">Enhorabuena, has ganado pasas al siguiente nivel</string>
+    <string name="correcta">La respuesta correcta era: </string>
     <string name="acierto">Acierto</string>
     <string name="fallo">Fallo</string>
     <string name="falta_seleccion">Falta seleccionar una opcion</string>
@@ -49,6 +50,7 @@
     <string name="ordenar_finPerdidoMensaje">Te has equivocado demasiado! Has perdido el juego!</string>
     <string name="ordenar_Puntos">Puntos:\u0020</string>
     <string name="leer_seleccionar_dificultad">Selecciona el nivel de dificultad:</string>
+    <string name="puntos">Puntos</string>
     <string name="leer_facil">Fácil</string>
     <string name="leer_normal">Normal</string>
     <string name="leer_dificil">Difícil</string>
@@ -65,7 +67,6 @@
     <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="resumen_completar">Deberás completar los huecos de las palabras con alguna de las letras que tienes como solución</string>
     <string name="aceptar">Aceptar</string>
-    <string name="puntos">Puntos</string>
     <string name="palabras_acertadas">Palabras acertadas</string>
     <string name="hello_world" translatable="false">Hello world!</string>
     <string name="action_settings">Settings</string>
