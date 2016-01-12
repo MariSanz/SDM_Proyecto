@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,12 +89,13 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         listaTodasImagenes = new ArrayList();
         listaImageViews = new ArrayList();
 
-        listaTodasImagenes.add(getResources().getDrawable(R.drawable.corresponder1));
-        listaTodasImagenes.add(getResources().getDrawable(R.drawable.corresponder2));
-        listaTodasImagenes.add(getResources().getDrawable(R.drawable.corresponder3));
-        listaTodasImagenes.add(getResources().getDrawable(R.drawable.corresponder4));
-        listaTodasImagenes.add(getResources().getDrawable(R.drawable.corresponder5));
-        listaTodasImagenes.add(getResources().getDrawable(R.drawable.corresponder6));
+
+        listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder1));
+        listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder2));
+        listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder3));
+        listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder4));
+        listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder5));
+        listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder6));
 
         listaImageViews.add(img1Comparar);
         listaImageViews.add(img2Comparar);
