@@ -63,7 +63,7 @@
     <string name="ordenar_actDif_Titulo">Juego Ordenar</string>
     <string name="ayuda_ordenar">La meta del juego es recordar el orden de los colores en el tiempo mostrado a la derecha arriba. Después de que este limite se acaba, tienes que drag and drop las imágenes de abajo en los campos de arriba en el orden recordado. Cuando todas las imágenes son puesto, pulsa el botón OK.
     Si tu orden esta correcto, el límite de tiempo se reduce.</string>
-    <string name="corresponder_actDif_Titulo">Juego Corresponder</string>
+    <string name="corresponder_actDif_Titulo">Juego Emparejar</string>
     <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="resumen_completar">Deberás completar los huecos de las palabras con alguna de las letras que tienes como solución</string>
     <string name="aceptar">Aceptar</string>
@@ -73,8 +73,8 @@
     <string name="title_activity_juego_completar">JuegoCompletar</string>
     <string name="title_activity_prueba">prueba</string>
     <string name="corresponder_descripcion">Decida si las dos imagenes a la izquierda son iguales o no. Pulsa el boton correcto cada vez.</string>
-    <string name="corresponder_si">Corresponden</string>
-    <string name="corresponder_no">No Corresponden</string>
+    <string name="corresponder_si">Emparejan</string>
+    <string name="corresponder_no">No Emparejan</string>
     <string name="corresponder_mensajeFin">Se acabó el tiempo! Fin del juego. Tu puntuación final es:\u0020</string>
     <string name="ayuda_corresponder">La meta del juego es de decir por las más imágenes que posible si corresponden o no. Siempre tienes q comparar las dos imagenes a la izquierda, que son un poquito más grande que los demas.
 Las otras imágenes sirven como cola para ya saber si corresponden las próximas parejas. Para decir si corresponden las imágenes, tienes que pulsar el botón "Corresponden" si corresponden, y el botón "No Corresponden" si no.

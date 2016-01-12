@@ -3,12 +3,15 @@ package com.sdm.uniovi.braingame.juegos.ordenar;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.CornerPathEffect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,14 +20,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sdm.uniovi.braingame.LogingActivity;
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by luism_000 on 11/11/2015.
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
                 case DragEvent.ACTION_DROP:
                     ImageView dropTarget = (ImageView) v;
                     dropTarget.setImageDrawable(draggedView.getDrawable());
-                    dropTarget.setTag(draggedView.getDrawable());
+                    dropTarget.setTag(draggedView.getTag());
                     draggedView.setVisibility(View.VISIBLE);
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
@@ -128,11 +135,17 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         setContentView(R.layout.ordenar_imagenes_activity_main);
         //Connect views of colored images
         imgAzul =(ImageView)findViewById(R.id.imgAzul);
+        imgAzul.setTag(OrdenarColor.AZUL);
         imgAmarillo =(ImageView)findViewById(R.id.imgAmarillo);
+        imgAmarillo.setTag(OrdenarColor.AMARILLO);
         imgRojo =(ImageView)findViewById(R.id.imgRojo);
+        imgRojo.setTag(OrdenarColor.ROJO);
         imgVerde =(ImageView)findViewById(R.id.imgVerde);
+        imgVerde.setTag(OrdenarColor.VERDE);
         imgNaranja =(ImageView)findViewById(R.id.imgNaranja);
+        imgNaranja.setTag(OrdenarColor.NARANJA);
         imgMagenta =(ImageView)findViewById(R.id.imgMagenta);
+        imgMagenta.setTag(OrdenarColor.MAGENTA);
 
         imagesList = new ArrayList<>();
 
@@ -169,7 +182,7 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_juegos, menu);
         return true;
 
     }
@@ -188,6 +201,18 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
                             }
                         });
                 alertDialog.show();
+                return true;
+            case R.id.menu_estadisticas:
+                EstadisticasActivity.iniciar(this, TipoJuego.ORDENAR);
+                return true;
+            case R.id.menu_cerrar_sesion:
+                Login.getInstancia(getApplicationContext()).desloguear();
+                Intent intent = new Intent(this, LogingActivity.class);
+                Toast.makeText(this, R.string.cerrado_sesion, Toast.LENGTH_LONG).show();
+                this.finish();
+
+                startActivity(intent);
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -326,13 +351,13 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
     public boolean isOrderCorrect(){
         boolean correct = true;
 
-        ImageView arrayImage = new ImageView(this);
+        for (int i = 0; i < colors.length; i++){
+                OrdenarColor c1 = colors[i];
+                OrdenarColor c2 = (OrdenarColor) imagesList.get(i).getTag();
+                if (!(c1 == c2)){
+                    return false;
+                }
 
-        for (int i = 0; i< colors.length; i++){
-            arrayImage.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
-            if (!(((BitmapDrawable)arrayImage.getDrawable()).getBitmap().equals(((BitmapDrawable)imagesList.get(i).getDrawable()).getBitmap()))){
-                correct = false;
-            }
         }
         return correct;
     }

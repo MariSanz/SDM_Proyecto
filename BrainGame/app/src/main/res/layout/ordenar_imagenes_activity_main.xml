@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,7 +13,8 @@
         android:paddingLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_weight="0.05"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="#ff000000" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -30,7 +32,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:gravity="left"
             android:layout_marginLeft="20dp"
-            android:layout_weight="0.05" />
+            android:layout_weight="0.05"
+            android:textColor="#ff000000" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +46,8 @@
             android:layout_gravity="right"
             android:gravity="right"
             android:layout_marginRight="20dp"
-            android:layout_weight="0.05" />
+            android:layout_weight="0.05"
+            android:textColor="#ff000000" />
 
     </LinearLayout>
 
@@ -162,6 +166,9 @@
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:textSize="18dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#ff000000"
+        android:background="@drawable/button_boarder"
+        style="@style/AppCompat.Button.Flat.Common" />
 
 </LinearLayout>

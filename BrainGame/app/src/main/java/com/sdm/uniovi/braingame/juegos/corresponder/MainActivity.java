@@ -2,6 +2,7 @@ package com.sdm.uniovi.braingame.juegos.corresponder;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,7 +16,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sdm.uniovi.braingame.LogingActivity;
 import com.sdm.uniovi.braingame.R;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
     private int timertime;
     private ArrayList<Drawable> listaTodasImagenes;
     private ArrayList<ImageView> listaImageViews;
+    private CountDownTimer countdown;
 
 
     @Override
@@ -86,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         img4 = (ImageView) findViewById(R.id.iV4);
         img5 = (ImageView) findViewById(R.id.iV5);
 
-        listaTodasImagenes = new ArrayList();
-        listaImageViews = new ArrayList();
+        listaTodasImagenes = new ArrayList<>();
+        listaImageViews = new ArrayList<>();
 
 
         listaTodasImagenes.add(ContextCompat.getDrawable(getApplicationContext(), R.drawable.corresponder1));
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_juegos, menu);
         return true;
     }
 
@@ -132,12 +136,22 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                startTimer(timertime + 1000);
                             }
                         });
                 alertDialog.show();
+                countdown.cancel();
                 return true;
             case R.id.menu_estadisticas:
                 EstadisticasActivity.iniciar(this, TipoJuego.CORRESPONDER);
+                return true;
+            case R.id.menu_cerrar_sesion:
+                Login.getInstancia(getApplicationContext()).desloguear();
+                Intent intent = new Intent(this, LogingActivity.class);
+                Toast.makeText(this, R.string.cerrado_sesion, Toast.LENGTH_LONG).show();
+                this.finish();
+
+                startActivity(intent);
 
                 return true;
 
@@ -147,10 +161,11 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
     }
 
     private void startTimer(int millis){
-        CountDownTimer countdown = new CountDownTimer(millis, 1000) {
+            countdown = new CountDownTimer(millis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 tVTimer.setText("  " + millisUntilFinished / 1000);
+                timertime -= 1000;
             }
 
             @Override
@@ -172,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
         countdown.start();
     }
+
 
 
     private void closeActivity(){
