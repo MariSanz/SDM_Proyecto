@@ -80,9 +80,6 @@ public class GeneradorExpresion {
         }
 
 
-
-
-
         principal = raiz;
         generarIncorrectas(10,2);
     }
@@ -115,52 +112,26 @@ public class GeneradorExpresion {
             hijo = new ExpresionBinaria(op1.getOp2(), operando(10), operacion);
             raiz = new ExpresionBinaria(op1.getOp1(), hijo, op1.getOperacion());
 
-            incorrectas[0] = new ExpresionBinaria(op1.getOp1(), hijo, operacion(2));
+            incorrectas[0] = new ExpresionBinaria(op1.getOp1(), hijo, operacion(3));
         }else{
             raiz = new ExpresionBinaria(op1, operando(10),operacion);
-            incorrectas[0] = new ExpresionBinaria(operando(10), op1, operacion(2));
+            incorrectas[0] = new ExpresionBinaria(operando(10), op1, operacion(3));
         }
 
 
         principal = raiz;
-        generarIncorrectas(10,2);
+        generarIncorrectas(10,3);
     }
 
     private void generarNivel3() {
-
         Expresion raiz;
+        generarNivel2();
+        Expresion op1 = principal;
 
-        Operacion operacion1 = operacion(3);
-        Operacion operacion2 = operacion(3);
+        raiz = new ExpresionBinaria(operando(10),op1, operacion(3));
 
-
-        Expresion hijo1;
-        Expresion hijo2;
-
-        ExpresionBinaria op1 = new ExpresionBinaria(operando(10), operando(10), operacion(3));
-
-        if(operacion1.equals(Operacion.DIVISION) || operacion1.equals(Operacion.MULTIPLICACION)){
-            hijo1 = new ExpresionBinaria(op1.getOp2(), operando(10), operacion1);
-            hijo2 = new ExpresionBinaria(op1.getOp1(), hijo1, op1.getOperacion());
-            raiz = new ExpresionBinaria(operando(10), hijo2, operacion2);
-            incorrectas[0] = new ExpresionBinaria(hijo1, operando(10), operacion1);
-        }else if(operacion2.equals(Operacion.DIVISION) || operacion2.equals(Operacion.MULTIPLICACION)){
-            hijo1 = new ExpresionBinaria(op1.getOp2(), operando(10), operacion2);
-            hijo2 = new ExpresionBinaria(op1.getOp1(), hijo1, op1.getOperacion());
-            raiz = new ExpresionBinaria(operando(10), hijo2, operacion1);
-            incorrectas[0] = new ExpresionBinaria(hijo1, operando(10), operacion2);
-        }
-        else {
-
-            hijo1 = new ExpresionBinaria(operando(10), operando(10),operacion1);
-            hijo2 = new ExpresionBinaria(operando(10), operando(10),operacion2);
-            raiz = new ExpresionBinaria(hijo1, hijo2, operacion(2));
-            incorrectas[0] = new ExpresionBinaria(hijo1, operando(10), operacion1);
-        }
-
-
-        principal = raiz;
-        generarIncorrectas(10, 3);
+         principal = raiz;
+        generarIncorrectas(10,3);
     }
 
 

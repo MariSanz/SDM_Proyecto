@@ -122,9 +122,9 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
             }
 
             public void onFinish() {
-
-                onPause();
-                showPopUpTiempo();
+                Toast.makeText(getApplicationContext(), R.string.tiempo_fuera, Toast.LENGTH_LONG).show();
+               /* onPause();
+                showPopUpTiempo();*/
 
 
             }
@@ -136,7 +136,6 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     private void jugarNivel() {
 
-        countdown.cancel();
         countdown.start();
         if(jugadas<jugadasMaximasNivel) {
 

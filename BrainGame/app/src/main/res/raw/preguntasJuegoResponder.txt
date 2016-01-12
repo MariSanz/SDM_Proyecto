@@ -1,0 +1,60 @@
+{'category':'Deportes','title': 'ACB','text': 'Apodos Andrés Montes: Apodo de Alberto Herreros','answersFalse': ['Alberto yoska Herreros','Alberto Hache Herreros','Alberto Magic Herreros'],'answersTrue': ['Alberto Caviar Herreros']}
+{'category':'Geografía','title': 'Geografía','text': '¿A cuántos kilómetros de Madrid se encuentra la ciudad de Móstoles?','answersFalse': ['22','35','130'],'answersTrue': ['18']}
+{'category':'Arte y Literatura','title': 'El Señor de los Anillos','text': '¿Cuál fue el último cumpleaños que celebró Bilbo Bolsón en Bolsón Cerrado?','answersTrue': ['centesimodecimoprimero'],'answersFalse': ['centesimo','vigesimosegundo','centesimodecimotercero']}
+{'category':'Espectaculos','title': 'Anuncios','text': '¿Qué papel "es mucho papel"?','answersFalse': ['din A4','Foxy','ocb'],'answersTrue': ['Scottex']}
+{'category':'Ciencia','title': 'Electrónica','text': 'Un circuito boost es un...','answersFalse': ['circuito en paralelo','receptor','anillo generador'],'answersTrue': ['elevador']}
+{'category':'Historia','title': 'II Guerra Mundial','text': 'Potencias del Eje: Alemania, Italia y','answersFalse': ['Francia','España','Rusia'],'answersTrue': ['Japón']}
+{'category':'Deportes','title': 'Fútbol','text': '1986/87: Quién ganó el trofeo Zamora','answersFalse': ['Casillas','Arconada','Buyo'],'answersTrue': ['Zubizarreta']}
+{'category':'Geografía','title': 'Geografía','text': '¿A cuántos países pertenece la selva del Amazonas?','answersFalse': ['3','2','6'],'answersTrue': ['8']}
+{'category':'Arte y Literatura','title': 'Siglo XIII','text': 'Autor: "Crónica general" (Sobre el pasado del hombre)','answersFalse': ['Alfonso XII','Felipe II de Francia','Anonimo'],'answersTrue': ['Alfonso X el sabio']}
+{'category':'Espectaculos','title': 'Anuncios','text': '¿Te gusta conducir?','answersFalse': ['Mercedes','Opel','Renault'],'answersTrue': ['BMW']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A cuántos km/h corresponde 1 nudo?','answersTrue': ['1.852'],'answersFalse': ['1.772','1.982','2.001']}
+{'category':'Historia','title': 'Historia','text': '¿A dónde se traslada la Casa de Contratación en 1717 desde Sevilla?','answersTrue': ['Cadiz'],'answersFalse': ['Barcelona','Madrid','Zaragoza']}
+{'category':'Deportes','title': 'Futbol','text': '¿A qué ciudad se marchó Ronaldo tras dejar el Barcelona?','answersFalse': ['Madrid','Vigo','Londres'],'answersTrue': ['Milan']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué comunidad pertenece Benavente?','answersTrue': ['Castilla y Leon'],'answersFalse': ['Galicia','Madrid','Asturias']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué ciudad se refería Emilia Pardo Bazán con el nombre de "Marineda"? ','answersTrue': ['La coruña'],'answersFalse': ['Vigo','Barcelona','Madrid']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿A qué lugar va el padre de Bart Simpson a beber cerveza?','answersFalse': ['Bar de Joe','Central Nuclear','Bar Reynolds'],'answersTrue': ['Bar de Moe']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué constelación pertenece Albireo (en latín)?','answersTrue': ['Cygnus'],'answersFalse': ['Canis Maior','Gemini','Hydra']}
+{'category':'Historia','title': 'Historia','text': '¿A qué edad aproximada murió Tutankamón?','answersFalse': ['101','40','102'],'answersTrue': ['19']}
+{'category':'Deportes','title': 'Futbol','text': '¿A qué equipo del fútbol argentino lo llaman "la Academia"?','answersTrue': ['Racing de Avellaneda'],'answersFalse': ['Boca Juniors','River Plate','San Lorenzo de Almagro']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué continente arribó por primera vez en 1831 el inglés John Biscoe?','answersTrue': ['Antartida'],'answersFalse': ['America','Oceania','Africa']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué dos autores relacionarías con "metamorfosis"? ','answersTrue': ['Ovidio y Kafka'],'answersFalse': ['Marx y Lenin','Socrates y Descartes','Nietzsche y Kant']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿A qué mítica serie pertenecen el Alambique Veloz, la Antigualla Blindada, el Superferrari...?','answersTrue': ['Los autos locos'],'answersFalse': ['Futurama','Padre de Familia','La que se avecina']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué constelación pertenece la estrella Castor?','answersFalse': ['Cygnus','Hydra','Canis Maior'],'answersTrue': ['Gemini']}
+{'category':'Historia','title': 'Historia','text': '¿A qué familiar puso Napoleón como rey de España en 1808?','answersTrue': ['Su hermano'],'answersFalse': ['Su hijo','Su cuñado','Su primo']}
+{'category':'Deportes','title': 'Futbol','text': '¿A qué equipo marchó Paulo Futre después del Atlético de Madrid?','answersFalse': ['Real Madrid','Milan','Barcelona'],'answersTrue': ['Benfica']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué dos países pertenece la isla Grande de Tierra del Fuego?','answersTrue': ['Argentina y Chile'],'answersFalse': ['Marruecos y Egipto','EEUU y Mexico','España y Portugal']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué escritor del Siglo de Oro estuvo enfrentado Luis de Góngora? ','answersTrue': ['Francisco de Quevedo'],'answersFalse': ['Lope de Vega','Luis Zapata','Baltasar Gracián']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿A qué serie pertenece Piccolo?','answersTrue': ['Dragon Ball Z'],'answersFalse': ['Padre de Familia','Los Simpson','Oliver y Benji']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué era geológica pertenece el Jurásico?','answersTrue': ['Mesozoica'],'answersFalse': ['Cerozoica','Proterozoica','Paleozoica']}
+{'category':'Historia','title': 'Historia','text': '¿A qué hijo suyo ejecutó Leovigildo?','answersTrue': ['Hermenegildo'],'answersFalse': ['Jose','Sebastian','Lucero']}
+{'category':'Deportes','title': 'Futbol','text': '¿A qué jugador del Madrid partió por la mitad el genio Romario con su regate de cola de vaca?','answersFalse': ['Fernando Hierro','Manolo Sanchís','Antonio Camacho'],'answersTrue': ['Rafael Alkorta']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué estado norteamericano pertenece la ciudad de Amarillo?','answersFalse': ['California','Arizona','Florida'],'answersTrue': ['Texas']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué generación literaria perteneció Valle-Inclán? ','answersFalse': ['Generacion del 27','Generacion del 38','Generacion del 50'],'answersTrue': ['Generacion del 98']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿A quién acompañaba El Reverendo en sus actuaciones musicales?','answersFalse': ['Rafael','Julio Iglesias','Carmen Alcayde'],'answersTrue': ['El gran Wyoming']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué número equivale MIL escrito en números romanos?','answersFalse': ['1099','999','1000'],'answersTrue': ['1049']}
+{'category':'Historia','title': 'Historia','text': '¿A qué imperio puso fin en 1453 la caída de Constantinopla en manos del imperio turco otomano?','answersFalse': ['Persa','Asirio','Romano'],'answersTrue': ['Bizantino']}
+{'category':'Deportes','title': 'Futbol','text': '¿A qué llamaban gambeteo los futbolistas argentinos?','answersFalse': ['Saque de Esquina','Falta','Gol'],'answersTrue': ['Regate']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué país americano pertenece la isla de Sevilla?','answersFalse': ['Ecuador','Colombia','Argentina'],'answersTrue': ['Panama']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué género pertenece el libro "Minority report"?','answersFalse': ['Drama','Comedia','Romantico'],'answersTrue': ['Ciencia Ficcion']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿A quién defiende Coto Matamoros a capa y espada?','answersFalse': ['Belen Esteban','Kiko Matamoros','Kiko Hernandez'],'answersTrue': ['Carmina Ordoñez']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué país debemos el invento de la máquina de coser?','answersFalse': ['España','China','Bulgaria'],'answersTrue': ['Reino Unido']}
+{'category':'Historia','title': 'Historia','text': '¿A qué país apoyaron Hungría, Rumanía y Bulgaria durante la II Guerra Mundial?','answersFalse': ['Rusia','EEUU','Italia'],'answersTrue': ['Alemania']}
+{'category':'Deportes','title': 'JJOO','text': '¿A qué país representaba Nadia Comaneci cuando fue elegida reina de los Juegos de Montreal 1976?','answersTrue': ['Rumania'],'answersFalse': ['Rusia','Italia','Polonia']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué país debo viajar para conocer la ciudad más austral del planeta?','answersTrue': ['Argentina'],'answersFalse': ['Chile','Rusia','Islandia']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué gran periodo artístico pertenece Garcilaso de la Vega?','answersTrue': ['Renacimiento'],'answersFalse': ['Barroco','Modernismo','Neoclasicismo']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿Cómo llamaban al profesor de filosofía los alumnos del Azcona?','answersTrue': ['Bacterio'],'answersFalse': ['Hormiga Atomica','Gominolo','Piolin']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué planeta se le descubrieron 8 anillos negros?','answersTrue': ['Neptuno'],'answersFalse': ['Jupiter','Marte','Saturno']}
+{'category':'Historia','title': 'Historia','text': '¿A quién dijeron: "Sabes vencer pero no sabes aprovechar las victorias..."?','answersTrue': ['Anibal'],'answersFalse': ['Julio Cesar','Jerjes I','Alejandro Magno']}
+{'category':'Deportes','title': 'Rugby','text': '¿A qué selección de rugby se les llama Springboks?','answersTrue': ['Sudafrica'],'answersFalse': ['Italia','Nueva Zelanda','Australia']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué país está asociada la isla de Curazao?','answersFalse': ['Brazil','Portugal','Indonesia'],'answersTrue': ['Holanda']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué poeta disparó Verlaine en Bruselas?','answersFalse': ['Pablo Neruda','Lope de Vega','Luis de Gongora'],'answersTrue': ['Arthur Rimbaud']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿Cómo se apellidan los dos agentes del FBI en Expediente X?','answersFalse': ['Thelma y Louis','Kate y Richard','Mortadelo y Filemón'],'answersTrue': ['Mulder y Scully']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A qué planeta tenemos que ir para visitar la luna Miranda?','answersFalse': ['Neptuno','Venus','Mercurio'],'answersTrue': ['Urano']}
+{'category':'Historia','title': 'Historia','text': '¿A quién se conoció como "el Canciller de Hierro"?','answersFalse': ['Guillermo I de Alemania','Robert von Puttkamer','Paul von Lettow-Vorbeck'],'answersTrue': ['Otto von Bismarck']}
+{'category':'Deportes','title': 'Tenis','text': '¿A qué tenista derrotó Albert Costa en la final de Roland Garros 2002?','answersFalse': ['Tommy Robledo','Roger Federer','Rafel Nadal'],'answersTrue': ['Juan Carlos Ferrero']}
+{'category':'Geografía','title': 'Geografía','text': '¿A qué país pertenece Cayo Hueso?','answersFalse': ['Brazil','Japon','India'],'answersTrue': ['EEUU']}
+{'category':'Arte y Literatura','title': 'Arte y Literatura','text': '¿A qué se refieren en la novela El amante de Lady Chatterley cuando hablan de la Perra-diosa?','answersFalse': ['Amor','Fama','Suerte'],'answersTrue': ['Exito']}
+{'category':'Espectaculos','title': 'Televisión','text': '¿Cómo se conoce en español a Tweety?','answersFalse': ['Silvestre','Bart Simpson','Correcaminos'],'answersTrue': ['Piolin']}
+{'category':'Ciencia','title': 'Ciencia','text': '¿A quién debemos el invento de la holografía?','answersFalse': ['Eliodoro Cronwell','Edison','Albert Einstein'],'answersTrue': ['Dennis Gabor']}
+{'category':'Historia','title': 'Historia','text': '¿A quién sucedió Tiberio?','answersFalse': ['Caligula','Cesar Augusto','Neron'],'answersTrue': ['Octavio Augusto']}
