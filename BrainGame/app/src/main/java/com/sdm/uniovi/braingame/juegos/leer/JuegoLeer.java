@@ -37,6 +37,7 @@ public class JuegoLeer extends AppCompatActivity {
     private int indexColor;
     private Integer puntos = 0;
     private int cont = 0;
+    private int max_veces = 0;
 
 
     @Override
@@ -66,6 +67,7 @@ public class JuegoLeer extends AppCompatActivity {
         tvPuntos.setTypeface(estiloLetra);
         btAtras.setTypeface(estiloLetra);
 
+        calcularNumeroPalabras();
         iniciarJuego();
     }
 
@@ -97,15 +99,32 @@ public class JuegoLeer extends AppCompatActivity {
         tvPalabra.setTextColor(color);
     }
 
+    public void calcularNumeroPalabras(){
+        switch(dificultad){
+            case 1:
+                max_veces = 7;
+                break;
+            case 2:
+                max_veces = 9;
+                break;
+            case 3:
+                max_veces = 11;
+                break;
+        }
+    }
+
 
     public void iniciarTemporizador(){
 
         switch(dificultad){
-            case 1: tiempo = 3000;
+            case 1:
+                tiempo = 3000;
                 break;
-            case 2: tiempo = 2000;
+            case 2:
+                tiempo = 2000;
                 break;
-            case 3: tiempo = 1000;
+            case 3:
+                tiempo = 1000;
                 break;
         }
 
@@ -155,8 +174,8 @@ public class JuegoLeer extends AppCompatActivity {
                 puntos += dificultad*10;
 
             }else{
-                if(puntos > 10){
-                    puntos -= 10;
+                if(puntos >= (10*dificultad) / 2){
+                    puntos -= (10*dificultad) / 2 ;
                 }else{
                     puntos = 0;
                 }
@@ -172,7 +191,7 @@ public class JuegoLeer extends AppCompatActivity {
 
     public void iniciarJuego(){
         cont++;
-        if(cont < 6) {
+        if(cont < max_veces) {
             generarPalabra();
             iniciarTemporizador();
         }
