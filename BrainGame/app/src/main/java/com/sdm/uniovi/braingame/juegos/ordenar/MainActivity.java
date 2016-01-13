@@ -363,7 +363,7 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
     }
 
     public void placeColors(int dificultad){
-        colors = OrdenarLogica.generizeColors(dificultad);
+        colors = generizeColors(dificultad);
 
         for (int i = 0; i< dificultad; i++){
             imagesList.get(i).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
@@ -402,6 +402,14 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
                     , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
         }
         this.finish();
+    }
+
+    public OrdenarColor[] generizeColors(int number){
+        OrdenarColor[] colors = new OrdenarColor[number];
+        for (int i = 0; i < number; i++){
+            colors[i] = OrdenarColor.getRandom();
+        }
+        return colors;
     }
 
 }

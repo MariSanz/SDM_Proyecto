@@ -79,6 +79,9 @@
     <string name="ayuda_corresponder">La meta del juego es de decir por las más imágenes que posible si corresponden o no. Siempre tienes q comparar las dos imagenes a la izquierda, que son un poquito más grande que los demas.
 Las otras imágenes sirven como cola para ya saber si corresponden las próximas parejas. Para decir si corresponden las imágenes, tienes que pulsar el botón "Corresponden" si corresponden, y el botón "No Corresponden" si no.
 En la dificultad fácil, tienes más tiempo para ganar puntos (40 segundos), pero una correspondencia vale menos puntos (2 puntos). En las dificultades normal y difícil tienes menos tiempo (30 y 20 segundos respectivamente), pero ganas más puntos (4 y 6 respectivamente).</string>
+    <string name="recordar_actDif_Titulo">Juego Memorizar</string>
+    <string name="recordar_descripcion">Tienes que hacer cosas...</string>
+    <string name="ayuda_recordar">Ayuda STUB</string>
 
 
 </resources>

@@ -32,7 +32,6 @@
         <activity
             android:name=".AyudaPrincipalActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".juegos.calcular.MainActivity"
             android:parentActivityName=".MainActivity" />
@@ -42,7 +41,6 @@
         <activity
             android:name=".juegos.calcular.JuegoCalcular"
             android:parentActivityName=".juegos.calcular.DificultadActivity" />
-
         <activity
             android:name=".juegos.leer.MainActivity"
             android:parentActivityName=".MainActivity" />
@@ -73,7 +71,10 @@
         <activity
             android:name=".juegos.completar.JuegoCompletar"
             android:label="@string/title_activity_juego_completar" >
-
+        </activity>
+        <activity
+            android:name=".juegos.recordar.ActivityDificultad"
+            android:label="@string/title_activity_activity_dificultad" >
         </activity>
     </application>
 

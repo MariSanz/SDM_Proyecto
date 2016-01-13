@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void irAPatrones(View view) {
 
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.MainActivity.class);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.ActivityDificultad.class);
         startActivity(intent);
     }
 

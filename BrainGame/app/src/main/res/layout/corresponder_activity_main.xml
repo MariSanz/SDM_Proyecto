@@ -66,20 +66,20 @@
             android:id="@+id/iVComparar2" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:id="@+id/iV3"
             android:layout_gravity="center" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:id="@+id/iV4"
             android:layout_gravity="center" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:id="@+id/iV5"
             android:layout_gravity="center" />
     </LinearLayout>
@@ -93,7 +93,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:text="@string/corresponder_no"
             android:id="@+id/bnNoCorres"
             android:layout_gravity="center_vertical|left"
@@ -106,7 +106,7 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:text="@string/corresponder_si"
             android:id="@+id/bnCorres"
             android:layout_gravity="center_vertical|right"

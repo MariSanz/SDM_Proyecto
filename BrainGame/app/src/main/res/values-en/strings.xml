@@ -75,4 +75,5 @@ If your order was correct, the time limit will decrease.</string>
 The other pictures serve as a queue to already know beforehand if the next comparisons match. To tell if the pictures match, you need to press the button "Match" if they match, and the button "No Match" if not.
 In the difficulty easy, you have more time to win points (40  seconds), but a match is worth less points (2 points). In the difficulties normal and expert you have less time (30 and 20 respectively), but win more points (4 and 6 respectively).</string>
     <string name="estadisticas">Statistics</string>
+    <string name="recordar_actDif_Titulo">Memorize game</string>
 </resources>

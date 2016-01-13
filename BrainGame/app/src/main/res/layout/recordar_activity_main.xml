@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recordar_descripcion"
+        android:id="@+id/lblInformacionREC"
+        android:textSize="20dp"
+        android:layout_weight="0.1"
+        android:textAlignment="center"
+        android:textColor="@color/text" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:id="@+id/LineaInformacion">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblPunctuacionREC"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:textColor="@color/text"
+            android:gravity="right" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="1"
+            android:id="@+id/button1"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="2"
+            android:id="@+id/button2"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="3"
+            android:id="@+id/button3"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="4"
+            android:id="@+id/button4"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="5"
+            android:id="@+id/button5"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="6"
+            android:id="@+id/button6"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="7"
+            android:id="@+id/button7"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="8"
+            android:id="@+id/button8"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="9"
+            android:id="@+id/button9"
+            android:textColor="@color/text"
+            android:layout_weight="0.33"
+            android:background="@drawable/recordar_btn_normal"
+            android:layout_margin="3dp" />
+    </LinearLayout>
+
+
+</LinearLayout>
