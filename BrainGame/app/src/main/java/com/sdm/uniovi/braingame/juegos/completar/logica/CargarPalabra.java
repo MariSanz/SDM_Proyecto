@@ -1,6 +1,8 @@
 package com.sdm.uniovi.braingame.juegos.completar.logica;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
 
 import com.sdm.uniovi.braingame.R;
 
@@ -11,6 +13,7 @@ import org.w3c.dom.NodeList;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class CargarPalabra {
 
@@ -27,18 +30,17 @@ public class CargarPalabra {
         return instancia;
     }
 
-    public String[] cargarPalabras(Context context) {
+    public ArrayList<String> cargarPalabras(Context context) {
         String archivoPalabras = leerXML(context, R.raw.palabras);
-        String [] palabras = cargarPalabrasXML(context, archivoPalabras);
+        ArrayList<String> palabras = cargarPalabrasXML(archivoPalabras);
 
         return palabras;
     }
 
-    private String leerXML(Context context, int recursoNivel) {
+    private String leerXML(Context context, int archivoPalabras) {
         String textoFicheroNivel = "";
         try {
-            InputStream inputStream = context.getResources().openRawResource(
-                    recursoNivel);
+            InputStream inputStream = context.getResources().openRawResource(archivoPalabras);
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(inputStream));
             String linea = bufferedReader.readLine();
@@ -52,19 +54,19 @@ public class CargarPalabra {
         return textoFicheroNivel;
     }
 
-    public String[] cargarPalabrasXML(Context context, String archivoPalabras) {
+    public ArrayList<String> cargarPalabrasXML(String archivoPalabras) {
         ParseXML parser = new ParseXML();
 
         Document doc = parser.getDom(archivoPalabras);
 
-        String [] palabras = {};
+        ArrayList<String> palabras = new ArrayList<String>();
 
-        NodeList nodos = doc.getElementsByTagName("palabras");
+        NodeList nodos = doc.getElementsByTagName("palabra");
         for (int i = 0; i < nodos.getLength(); i++) {
             Element elementoActual = (Element) nodos.item(i);
-            String palabra = parser.getValor(elementoActual, "palabra");
+            String palabra = parser.getValor(elementoActual);
 
-            palabras[i] = palabra;
+            palabras.add(palabra);
         }
 
         return palabras;

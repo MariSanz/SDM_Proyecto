@@ -19,7 +19,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:id="@+id/textViewPalabrasAcertadas"
                 android:textSize="20sp"
@@ -29,7 +29,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:id="@+id/textViewPuntosCompletar"
                 android:text="@string/puntos"
@@ -45,7 +45,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:id="@+id/textViewPalabrasNumero"
                 android:textSize="20sp"
@@ -54,13 +54,47 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:id="@+id/textViewPuntosNumero"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:textColor="@android:color/primary_text_dark_nodisable" />
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="161dp"
+            android:id="@+id/layoutPalabra">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewPalabra" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="154dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonGenerar"
+                android:text="@string/generar"
+                android:onClick="generar" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonComprobar"
+                android:text="@string/comprobar" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <TextView

@@ -84,4 +84,7 @@ En la dificultad fácil, tienes más tiempo para ganar puntos (40 segundos), per
     <string name="ayuda_recordar">Ayuda STUB</string>
 
 
+    <string name="generar">Generar palabra</string>
+    <string name="comprobar">Comprobar palabra</string>
+
 </resources>

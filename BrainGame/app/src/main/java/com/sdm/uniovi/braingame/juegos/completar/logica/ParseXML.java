@@ -21,7 +21,6 @@ public class ParseXML {
         Document doc = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
-
             DocumentBuilder db = dbf.newDocumentBuilder();
             InputSource is = new InputSource();
             is.setCharacterStream(new StringReader(xml));
@@ -41,16 +40,12 @@ public class ParseXML {
         return doc;
     }
 
-    public String getValor(Element item, String str) {
-        NodeList n = item.getElementsByTagName(str);
-        return this.getValorDelElemento(n.item(0));
-    }
-
-    public final String getValorDelElemento(Node elem) {
-        if (elem != null) {
-            if (elem.hasChildNodes()) {
-                return elem.getNodeValue();
-            }
+    public String getValor(Element item) {
+        Node child;
+        if(item != null) {
+            child = item.getFirstChild();
+            if(child.getNodeType() == Node.TEXT_NODE)
+                return child.getNodeValue();
         }
         return "";
     }
