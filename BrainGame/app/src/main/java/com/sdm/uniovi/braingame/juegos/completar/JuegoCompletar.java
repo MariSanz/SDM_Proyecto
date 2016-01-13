@@ -37,7 +37,7 @@ public class JuegoCompletar extends AppCompatActivity {
     private ArrayList<String> palabrasUsadas = new ArrayList<String>();
     private int puntos = 0;
 
-    private  Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
+    private  Typeface estiloLetra;
 
 
     @Override
@@ -50,12 +50,12 @@ public class JuegoCompletar extends AppCompatActivity {
         textViewTiempo = (TextView) findViewById(R.id.textViewTiempoCompletar);
         textViewPuntosObtenidos = (TextView) findViewById(R.id.textViewPuntosNumero);
         textViewPalabrasNumero = (TextView) findViewById(R.id.textViewPalabrasNumero);
-        textViewPalabra = (TextView) findViewById(R.id.textViewPalabra);
 
         linearLayoutPalabra = (LinearLayout) findViewById(R.id.layoutPalabra);
 
         botonGenerar = (Button) findViewById(R.id.buttonGenerar);
 
+        estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
 
         textViewPuntos.setTypeface(estiloLetra);
         textViewPalabras.setTypeface(estiloLetra);
@@ -80,31 +80,30 @@ public class JuegoCompletar extends AppCompatActivity {
             }
         }.start();
 
+        String palabra = generar();
+
+        char[] caracteres = palabra.toCharArray();
+
+        for(int i=1; i<=2; i++) {
+            TextView tV = (TextView) findViewById(R.id.textView+i);
+            linearLayoutPalabra.addView(tV);
+
+        }
+
+
     }
 
-    public void generar(View view) {
+    public String generar() {
         String palabra = GeneradorPalabras.generarPalabra(palabras, palabrasUsadas);
 
         if(!palabra.equals("")) {
-
-            int longitud = palabra.length();
-
-            for(int i=0; i<longitud; i++) {
-                TextView tV = new TextView(this);
-                tV.setText(palabra.charAt(i));
-                tV.setTypeface(estiloLetra);
-                linearLayoutPalabra.addView(tV);
-
-            }
-
             textViewPalabra.setText(palabra);
         }
         else
             botonGenerar.setEnabled(false);
 
+
+        return palabra;
     }
-
-
-
 
 }
