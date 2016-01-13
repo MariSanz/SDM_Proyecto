@@ -37,7 +37,7 @@ public class ParserJsonObject extends AppCompatActivity {
 
 
             InputStream fraw =
-                    getResources().openRawResource(R.raw.preguntasJuegoResponder);
+                    getResources().openRawResource(R.raw.preguntas_juego_responder);
 
             BufferedReader brin =
                     new BufferedReader(new InputStreamReader(fraw));
