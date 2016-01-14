@@ -1,5 +1,7 @@
 package com.sdm.uniovi.braingame.juegos.calcular.logica;
 
+import java.util.Random;
+
 public class Constante implements Expresion {
 
     private int valor;
@@ -9,7 +11,7 @@ public class Constante implements Expresion {
     }
 
     @Override
-    public int valor() {
+    public double valor() {
         return valor;
     }
 
@@ -17,5 +19,15 @@ public class Constante implements Expresion {
     public String mostrar() {
 
         return String.valueOf(valor);
+    }
+
+    @Override
+    public Expresion getIncorrecta(Random r) {
+        if (r.nextBoolean()) {
+            return new Constante(valor + 1);
+        }
+        else {
+            return new Constante(valor - 1);
+        }
     }
 }

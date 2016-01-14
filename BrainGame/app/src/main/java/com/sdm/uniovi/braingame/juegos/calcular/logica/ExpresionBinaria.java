@@ -1,6 +1,8 @@
 package com.sdm.uniovi.braingame.juegos.calcular.logica;
 
 
+import java.util.Random;
+
 public class ExpresionBinaria implements Expresion {
 
 
@@ -31,7 +33,7 @@ public class ExpresionBinaria implements Expresion {
     }
 
     @Override
-    public int valor() {
+    public double valor() {
 
             switch (operacion) {
                 case MULTIPLICACION:
@@ -53,6 +55,20 @@ public class ExpresionBinaria implements Expresion {
     public String mostrar() {
 
         return op1.mostrar() + " " + operacion.toString() + " " + op2.mostrar() + " ";
+    }
+
+    public Expresion getIncorrecta(Random r) {
+        if (r.nextBoolean()) {
+            return new ExpresionBinaria(op1, op2, Operacion.values()[r.nextInt(4)]);
+        }
+        else {
+            if (r.nextBoolean()) {
+                return new ExpresionBinaria(op1.getIncorrecta(r), op2, operacion);
+            }
+            else {
+                return new ExpresionBinaria(op1, op2.getIncorrecta(r), operacion);
+            }
+        }
     }
 
 }

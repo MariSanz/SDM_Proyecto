@@ -17,12 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.juegos.calcular.logica.Expresion;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.juegos.calcular.logica.GeneradorExpresion;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -101,7 +104,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
 
 
-        generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
+        generadorExpresion= new GeneradorExpresion(nivelActual);
 
         jugar();
 
@@ -123,8 +126,8 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
             public void onFinish() {
                 Toast.makeText(getApplicationContext(), R.string.tiempo_fuera, Toast.LENGTH_LONG).show();
-               /* onPause();
-                showPopUpTiempo();*/
+                resultadoPartida();
+
 
 
             }
@@ -153,21 +156,25 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         RadioButton seleccion = (RadioButton) view;
         seleccion.setChecked(false);
         jugadas++;
-        onPause();
-        if(seleccion.getText().equals(String.valueOf(generadorExpresion.getPrincipal().valor()))){
+        DecimalFormat formateador = new DecimalFormat("#.##");
+
+        if(seleccion.getText().equals(String.valueOf(formateador.format(generadorExpresion.getPrincipal().valor())))){
 
 
             aciertos++;
             textViewNumAciertos.setText(String.valueOf(aciertos));
             puntos+=100;
             textViewNumPuntos.setText(String.valueOf(puntos));
+            countdown.cancel();
             Toast.makeText(this, R.string.acierto, Toast.LENGTH_LONG).show();
 
 
 
         }else{
             fallos++;
-
+            puntos-=30;
+            textViewNumPuntos.setText(String.valueOf(puntos));
+            countdown.cancel();
             Toast.makeText(this, R.string.fallo,Toast.LENGTH_LONG).show();
 
 
@@ -186,7 +193,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
                 if(nivelActual==NIVEL_MAXIMO){
 
-                    this.onPause();
+                    onPause();
                     showPopUpFin("Enhorabuena", "Has ganado el máximo nivel \n Eres un gran matematico \n\n ¿Quieres volver a jugar este nivel?", true);
 
                 }else {
@@ -196,13 +203,13 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                    showPopUpFin("Ganado", "Enhorabuena, has ganado. \n\n ¿Quieres jugar el siguiente nivel?", true);
                 }
             }else{
-                onPause();
+
                 showPopUpFin("Ups", "Has perdido este nivel. \n \n ¿Quieres volver a jugarlo?", false);
             }
         }
 
         if (fallos>=4){
-            onPause();
+
             showPopUpFin("Perdido", "Vuelve a intentarlo, has perdido la partida", false);
         }else{
             jugar();
@@ -219,13 +226,15 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                onResume();
+
                                 if (fin) {
                                     actualizarPuntuacion();
-                                    reiniciarActivity();
+
                                 }
+                                onResume();
+                                reiniciarActivity();
                                 //reinicio las expresiones
-                                generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
+                                generadorExpresion= new GeneradorExpresion(nivelActual);
                                 jugar();
                             }
                         })
@@ -233,6 +242,9 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                if(fin){
+                                    actualizarPuntuacion();
+                                }
                                 volverAjugar();
                             }
                         });
@@ -242,6 +254,8 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
     }
 
     private void reiniciarActivity() {
+        textViewNumPuntos.setText("0");
+        textViewNumAciertos.setText("0");
         aciertos=0;
         fallos=0;
         jugadas=0;
@@ -265,7 +279,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                     , Login.getInstancia(this.getApplicationContext()).getUsuario(), puntos, TipoJuego.CALCULAR.getIdServicio()).execute();
         }else{
 
-           onPause();
+
             Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
 
 
@@ -300,42 +314,31 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         }
     }
 
-
-
-
     private void rellenarRadioButton() {
         int posCorrecta= random.nextInt(opciones.length);
-        opciones[posCorrecta].setText(String.valueOf(generadorExpresion.getPrincipal().valor()));
-        int j=3;
-        for (int i=0; i<opciones.length; i++){
-            if(i!=posCorrecta) {
-                opciones[i].setText(String.valueOf(generadorExpresion.getIncorreta(j).valor()));
-                j--;
+
+        Expresion correcta = generadorExpresion.getPrincipal();
+        Expresion incorrecta;
+        ArrayList<Double> opIncorrectas = new ArrayList<>();
+
+        DecimalFormat formateador = new DecimalFormat("#.##");
+
+        for (RadioButton opcione : opciones) {
+            incorrecta = correcta.getIncorrecta(random);
+            while (correcta.valor() == incorrecta.valor() && opIncorrectas.contains(incorrecta.valor())) {
+                incorrecta = correcta.getIncorrecta(random);
+
             }
+            opIncorrectas.add(incorrecta.valor());
+
+            opcione.setText(String.valueOf(formateador.format(incorrecta.valor())));
+
         }
 
+        opciones[posCorrecta].setText(String.valueOf(formateador.format(correcta.valor())));
+
 
     }
-
-    private void showPopUpTiempo() {
-
-        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle(R.string.tiempo);
-        helpBuilder.setMessage(R.string.tiempo_fuera);
-        helpBuilder.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        onResume();
-                        resultadoPartida();
-                    }
-                });
-
-
-        AlertDialog helpDialog = helpBuilder.create();
-        helpDialog.show();
-    }
-
 
     @Override
     public void onResultado(Boolean resultado) {

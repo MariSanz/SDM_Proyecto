@@ -1,9 +1,12 @@
 package com.sdm.uniovi.braingame.juegos.calcular.logica;
 
+import java.util.Random;
+
 public interface Expresion {
 
 
 
-     int valor();
+     double valor();
     String mostrar();
+    Expresion getIncorrecta(Random r);
 }
