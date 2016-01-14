@@ -14,14 +14,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-/**
- * Created by luism_000 on 26/11/2015.
- */
 public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
     private static final String TAG = ConexionServidor.class.getName();
 
     private static final String URL_SW_DESARROLLO = "http://10.0.2.2/SDM_PHP/index.php";
-    private static final String URL_SW_PRODUCCION = "http://braingame.esy.es/index.php";
+    private static final String URL_SW_PRODUCCION = "http:/braingame.eshost.com.ar/index.php";
 
     protected static final String URL_EN_USO = URL_SW_PRODUCCION;
 

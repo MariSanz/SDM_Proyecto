@@ -1,5 +1,9 @@
 package com.sdm.uniovi.braingame.juegos.conocer;
 
 
-public class MainActivity {
+import android.support.v7.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+
 }

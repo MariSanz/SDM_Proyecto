@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.juegos.calcular.logica.Expresion;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
@@ -101,7 +102,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
 
 
-        generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
+        generadorExpresion= new GeneradorExpresion(nivelActual);
 
         jugar();
 
@@ -225,7 +226,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                                     reiniciarActivity();
                                 }
                                 //reinicio las expresiones
-                                generadorExpresion= new GeneradorExpresion(nivelActual, opciones.length);
+                                generadorExpresion= new GeneradorExpresion(nivelActual);
                                 jugar();
                             }
                         })
@@ -305,13 +306,15 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     private void rellenarRadioButton() {
         int posCorrecta= random.nextInt(opciones.length);
-        opciones[posCorrecta].setText(String.valueOf(generadorExpresion.getPrincipal().valor()));
-        int j=3;
+       // opciones[posCorrecta].setText(String.valueOf(generadorExpresion.getPrincipal().valor()));
+        Expresion incorrecta ;
+        Expresion correcta = generadorExpresion.getPrincipal();
+
         for (int i=0; i<opciones.length; i++){
-            if(i!=posCorrecta) {
-                opciones[i].setText(String.valueOf(generadorExpresion.getIncorreta(j).valor()));
-                j--;
-            }
+            incorrecta= correcta.getIncorrecta(random);
+
+            opciones[i].setText(String.valueOf(incorrecta));
+
         }
 
 
