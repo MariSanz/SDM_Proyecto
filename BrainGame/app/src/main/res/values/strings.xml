@@ -90,5 +90,7 @@ En modo fácil, tienes 150 puntos al principio y 2 intentos. En modo normal, tie
 
     <string name="generar">Generar palabra</string>
     <string name="comprobar">Comprobar palabra</string>
+    <string name="titulo_responder">Responder a las preguntas</string>
+    <string name="responder_parar">Parar</string>
 
 </resources>

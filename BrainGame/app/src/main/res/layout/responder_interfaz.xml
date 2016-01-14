@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:text="@string/titulo_responder"
+        android:id="@+id/tvTituloResInter"
+        android:textSize="30sp"
+        android:textColor="@color/text"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.30" />
+
+    <TextView
+        android:layout_width="332dp"
+        android:layout_height="161dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Hola, esto es un ejemplo de o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es un ejemplo de o es un ejemplo de  o es un ejemplo de   o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es  "
+        android:id="@+id/tvPregunta"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.30"
+        android:paddingStart="30dp"
+        android:id="@+id/radioGroup"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBOpcion1"
+            android:layout_weight="0.08"
+            android:textSize="20sp"
+            android:textColor="@color/text"
+            android:buttonTint="@color/text"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBOpcion2"
+            android:layout_weight="0.08"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            android:buttonTint="@color/text" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBOpcion3"
+            android:layout_weight="0.08"
+            android:textColor="@color/text"
+            android:textSize="20sp"
+            android:buttonTint="@color/text" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBOpcion4"
+            android:layout_weight="0.08"
+            android:textSize="20sp"
+            android:buttonTint="@color/text"
+            android:textColor="@color/text"/>
+    </RadioGroup>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17"
+        android:weightSum="1"
+        android:measureWithLargestChild="false"
+        android:paddingStart="30dp"
+        android:paddingEnd="0dp"
+        android:layout_gravity="center_horizontal" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:text="@string/leer_atras"
+            android:id="@+id/btAtrasResInter"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:background="@drawable/button_boarder"
+            android:layout_weight="0.69"
+            android:textAllCaps="false"
+            android:onClick="irAtrasResInter"
+            android:paddingStart="0dp" />
+
+        <Button
+            style="@style/AppCompat.Button.Flat.Common"
+            android:layout_width="157dp"
+            android:layout_height="37dp"
+            android:text="@string/responder_parar"
+            android:id="@+id/btPararResInt"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:background="@drawable/button_boarder"
+            android:textAllCaps="false"
+            android:onClick="irAEscogerDificultadRes"
+            android:layout_weight="0.07" />
+    </TableRow>
+
+</LinearLayout>
