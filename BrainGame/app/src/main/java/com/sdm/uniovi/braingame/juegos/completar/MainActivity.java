@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, JuegoCompletar.class);
 //        startActivity(intent);
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        alertDialog.setTitle("Under construciotn");
+        alertDialog.setTitle("Under construction");
         alertDialog.setMessage("Este juego todavía no está implementado.");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
                 new DialogInterface.OnClickListener() {
