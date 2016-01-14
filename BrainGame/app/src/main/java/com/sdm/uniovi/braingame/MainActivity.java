@@ -88,5 +88,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void irAConocer(View view) {
+
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.conocer.MainActivity.class);
+        startActivity(intent);
+    }
+
+
+
 
 }

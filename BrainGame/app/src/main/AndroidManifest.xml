@@ -42,6 +42,15 @@
             android:name=".juegos.calcular.JuegoCalcular"
             android:parentActivityName=".juegos.calcular.DificultadActivity" />
         <activity
+            android:name=".juegos.conocer.MainActivity"
+            android:parentActivityName=".juegos.conocer.MainActivity" />
+        <activity
+            android:name=".juegos.conocer.ActivityDificultad"
+            android:parentActivityName=".juegos.conocer.ActivityDificultad" />
+        <activity
+            android:name=".juegos.conocer.JuegoResponder"
+            android:parentActivityName=".juegos.conocer.JuegoResponder" />
+        <activity
             android:name=".juegos.leer.MainActivity"
             android:parentActivityName=".MainActivity" />
         <activity

@@ -48,7 +48,7 @@ public class JuegoResponder extends AppCompatActivity {
         btParar.setTypeface(estiloLetra);
 //
         obtenerPreguntas();
-//        pregunta.setText(preguntas.get(0).getNombre());
+        pregunta.setText(preguntas.get(0).getNombre());
 
     }
 

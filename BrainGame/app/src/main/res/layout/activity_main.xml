@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:text="@string/responder_inicio"
             android:id="@+id/bInicioResponder"
-            android:onClick="irAResponder"
+            android:onClick="irAConocer"
             android:layout_gravity="center_vertical"
             style="@style/AppCompat.Button.Flat.Common"
             android:textSize="25sp"
