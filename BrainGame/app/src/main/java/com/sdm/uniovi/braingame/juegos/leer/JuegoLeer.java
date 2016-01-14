@@ -238,7 +238,7 @@ public class JuegoLeer extends AppCompatActivity implements OnResultadoListener<
                         , login.getAutenticacion()
                         , login.getUsuario()
                         , puntos
-                        , TipoJuego.LEER.getIdServicio())
+                        , TipoJuego.LEER)
                         .execute();
             } else {
 

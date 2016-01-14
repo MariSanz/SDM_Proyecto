@@ -3,8 +3,6 @@ package com.sdm.uniovi.braingame.juegos.calcular.logica;
 
 public enum Operacion {
 
-
-
     SUMA("+"),
     RESTA("-"),
     MULTIPLICACION("x"),
@@ -18,9 +16,6 @@ public enum Operacion {
         this.operacion = operacion;
     }
 
-    public boolean equalsName(String otherName) {
-        return (otherName == null) ? false : operacion.equals(otherName);
-    }
     @Override
     public String toString() {
 

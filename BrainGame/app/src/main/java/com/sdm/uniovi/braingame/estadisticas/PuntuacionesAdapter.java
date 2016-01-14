@@ -8,12 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
-import com.sdm.uniovi.braingame.servicioWeb.ObtenerUsuario;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 
 import java.util.List;
 
-public class PuntuacionesAdapter extends ArrayAdapter<Puntuacion> implements OnResultadoListener<String> {
+public class PuntuacionesAdapter extends ArrayAdapter<Puntuacion>  {
 
     private LayoutInflater mInflater;
     private View vista;
@@ -37,9 +36,6 @@ public class PuntuacionesAdapter extends ArrayAdapter<Puntuacion> implements OnR
 
         Puntuacion puntuacion = getItem(position);
 
-        new ObtenerUsuario(puntuacion.getUsuario(), this).execute();
-
-
         TextView textViewUsuario = (TextView)vista.findViewById(R.id.TextViewUsuario);
         TextView textViewPuntuacion = (TextView)vista.findViewById(R.id.TextViewPuntuacion);
 
@@ -49,16 +45,5 @@ public class PuntuacionesAdapter extends ArrayAdapter<Puntuacion> implements OnR
         return vista;
     }
 
-    @Override
-    public void onResultado(String resultado) {
-        if(vista == null) {
-            vista = mInflater.inflate(R.layout.estadisticas_item, parent, false);
-        }
 
-        TextView textViewUsuario = (TextView)vista.findViewById(R.id.TextViewUsuario);
-        TextView textViewPuntuacion = (TextView)vista.findViewById(R.id.TextViewPuntuacion);
-
-        textViewUsuario.setText(resultado);
-
-    }
 }

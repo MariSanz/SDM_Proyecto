@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
+import com.sdm.uniovi.braingame.juegos.TipoJuego;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +31,24 @@ public class MainActivity extends AppCompatActivity {
         descripcion.setTypeface(estiloLetra);
         btSiguiente.setTypeface(estiloLetra);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_juegos, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+            case R.id.menu_estadisticas:
+                EstadisticasActivity.iniciar(this, TipoJuego.LEER);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void irAEscogerDificultad(View view){

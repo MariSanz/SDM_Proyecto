@@ -15,7 +15,7 @@ import java.util.List;
 public class ActualizarPuntuaciones extends ConexionServidor<Boolean> {
 
     private String autorizacion;
-    private String nameJuego;
+    private TipoJuego nameJuego;
 
 
     private List<TipoJuego> tipos;
@@ -23,7 +23,7 @@ public class ActualizarPuntuaciones extends ConexionServidor<Boolean> {
     private String usuario;
     private int puntos;
 
-    public ActualizarPuntuaciones(OnResultadoListener<Boolean> onResultadoListener, String autorizacion, String usuario, int puntos, String nameJuego) {
+    public ActualizarPuntuaciones(OnResultadoListener<Boolean> onResultadoListener, String autorizacion, String usuario, int puntos, TipoJuego nameJuego) {
         super(onResultadoListener);
         this.autorizacion = autorizacion;
         this.usuario = usuario;
@@ -40,8 +40,8 @@ public class ActualizarPuntuaciones extends ConexionServidor<Boolean> {
 
     @Override
     protected Boolean procesarRetorno(String respuesta) throws JSONException {
-        JSONObject jsonObject = new JSONObject(respuesta);
-        return jsonObject.getBoolean("valido");
+
+        return true;
     }
 
     @Override
@@ -55,9 +55,10 @@ public class ActualizarPuntuaciones extends ConexionServidor<Boolean> {
         parametros.put(Usuario.CAMPO_NOMBRE, usuario);
         parametros.put("puntuacion", puntos);
 
-        int numero = TipoJuego.valueOf(nameJuego).ordinal();
+        int numero = nameJuego.ordinal();
         parametros.put("nameJuego", numero);
 
         return parametros;
     }
+
 }

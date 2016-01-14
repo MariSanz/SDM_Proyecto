@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                         , login.getAutenticacion()
                         , login.getUsuario()
                         , points
-                        , TipoJuego.RECORDAR.getIdServicio())
+                        , TipoJuego.RECORDAR)
                         .execute();
             } else {
                 onPause();

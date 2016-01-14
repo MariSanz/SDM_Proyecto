@@ -425,7 +425,7 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
                         , login.getAutenticacion()
                         , login.getUsuario()
                         , points
-                        , TipoJuego.ORDENAR.getIdServicio())
+                        , TipoJuego.ORDENAR)
                         .execute();
             } else {
 

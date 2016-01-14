@@ -1,8 +1,5 @@
 package com.sdm.uniovi.braingame.estadisticas;
 
-import com.sdm.uniovi.braingame.servicioWeb.ObtenerUsuario;
-import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
