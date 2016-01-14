@@ -14,9 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-/**
- * Created by luism_000 on 26/11/2015.
- */
+
 public abstract class ConexionServidor<T> extends AsyncTask<Void, Void, T> {
     private static final String TAG = ConexionServidor.class.getName();
 

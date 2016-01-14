@@ -11,12 +11,15 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
 import com.sdm.uniovi.braingame.juegos.calcular.logica.Expresion;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
@@ -59,6 +62,8 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
@@ -111,6 +116,12 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_juegos, menu);
+        return true;
+    }
+
     private void iniarTemporizador(int tiempo) {
         if(countdown!=null){
 
@@ -130,10 +141,7 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
                 textViewNumPuntos.setText(String.valueOf(puntos));
                 resultadoPartida();
 
-
-
             }
-
 
         };
     }
@@ -153,6 +161,19 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
         }
 
         }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+            case R.id.menu_estadisticas:
+                EstadisticasActivity.iniciar(this, TipoJuego.LEER);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     public void evaluar(View view){
         RadioButton seleccion = (RadioButton) view;
@@ -264,9 +285,12 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
     }
 
     private void volverAjugar(){
+        finish();
         Intent intent = new Intent(this, DificultadActivity.class);
         startActivity(intent);
     }
+
+
 
 
 

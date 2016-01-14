@@ -5,12 +5,12 @@ package com.sdm.uniovi.braingame.juegos;
  */
 public enum TipoJuego {
 
-    LEER,
+    RECORDAR,
     ORDENAR,
+    LEER,
     CALCULAR,
     COMPLETAR,
     CONOCER,
-    RECORDAR,
     CORRESPONDER;
 
     public String getIdServicio() {

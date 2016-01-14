@@ -9,22 +9,32 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActualizarPuntuaciones extends ConexionServidor<Boolean> {
 
     private String autorizacion;
-    private String idJuego;
+    private String nameJuego;
+
+
+    private List<TipoJuego> tipos;
 
     private String usuario;
     private int puntos;
 
-    public ActualizarPuntuaciones(OnResultadoListener<Boolean> onResultadoListener, String autorizacion, String usuario, int puntos, String idJuego) {
+    public ActualizarPuntuaciones(OnResultadoListener<Boolean> onResultadoListener, String autorizacion, String usuario, int puntos, String nameJuego) {
         super(onResultadoListener);
         this.autorizacion = autorizacion;
         this.usuario = usuario;
         this.puntos=puntos;
-        this.idJuego = idJuego;
+        this.nameJuego = nameJuego;
+
+
+
+
     }
+
 
 
 
@@ -44,7 +54,9 @@ public class ActualizarPuntuaciones extends ConexionServidor<Boolean> {
         JSONObject parametros = new JSONObject();
         parametros.put(Usuario.CAMPO_NOMBRE, usuario);
         parametros.put("puntuacion", puntos);
-        parametros.put("nameJuego", TipoJuego.CALCULAR.getIdServicio());
+
+        int numero = TipoJuego.valueOf(nameJuego).ordinal();
+        parametros.put("nameJuego", numero);
 
         return parametros;
     }

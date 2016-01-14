@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*">
+        <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/background_material_dark">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="id"
+                android:id="@+id/tvId"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
+                android:textColor="@color/text"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/puntos"
+                android:id="@+id/tvPuntos"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
+                android:textColor="@color/text"
+                android:layout_gravity="center_horizontal"/>
+                    </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+
+
+
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/lista_estadisticas"
-    >
+    android:id="@+id/lista_estadisticas">
 
 
 
 </ListView>
+
+</LinearLayout>

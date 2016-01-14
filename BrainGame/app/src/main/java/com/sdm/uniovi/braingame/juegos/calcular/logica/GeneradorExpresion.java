@@ -57,11 +57,11 @@ public class GeneradorExpresion {
 
         Expresion raiz;
 
-        Expresion hijo = new ExpresionBinaria(operando(10), operando(10), operacion(0, 1));
+        Expresion hijo = new ExpresionBinaria(operando(10), operando(10), operacion(0, 2));
 
 
         if (random.nextBoolean()) {
-            raiz = new ExpresionBinaria(hijo, operando(10), operacion(0, 1));
+            raiz = new ExpresionBinaria(hijo, operando(10), operacion(0, 2));
 
         }
         else {
