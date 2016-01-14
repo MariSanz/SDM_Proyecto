@@ -182,7 +182,10 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                 case MotionEvent.ACTION_UP:
                     pushedButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recordar_btn_normal));
 
-                        if (pushedButton.getTag() == order[counterOrder]) {
+                        int comp1 = (int)pushedButton.getTag();
+                        int comp2 = order[counterOrder];
+
+                        if (comp1 == comp2) {
                             if (counterOrder < dificultad-1) {
                                 counterOrder++;
                             }
