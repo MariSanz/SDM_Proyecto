@@ -2,9 +2,6 @@ package com.sdm.uniovi.braingame.estadisticas;
 
 import java.util.Date;
 
-/**
- * Created by luism_000 on 25/11/2015.
- */
 public class Puntuacion {
 
     private String mUsuario;

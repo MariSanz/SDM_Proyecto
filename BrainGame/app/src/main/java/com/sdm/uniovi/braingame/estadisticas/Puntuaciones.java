@@ -1,5 +1,8 @@
 package com.sdm.uniovi.braingame.estadisticas;
 
+import com.sdm.uniovi.braingame.servicioWeb.ObtenerUsuario;
+import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,14 +14,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by luism_000 on 25/11/2015.
- */
 public class Puntuaciones {
 
     private static final DateFormat DF_JSON = new SimpleDateFormat("yyyy-MM-dd");
 
     private List<Puntuacion> puntuaciones;
+    private List<String> usuarios;
 
     public Puntuaciones(String json) throws JSONException {
 
@@ -29,6 +30,7 @@ public class Puntuaciones {
             try {
                 JSONObject jsonObjectEstadistica = jsonArrayEstadisticas.getJSONObject(i);
                 String usuario = jsonObjectEstadistica.getString("id_usuario");
+
                 Date fecha = DF_JSON.parse(jsonObjectEstadistica.getString("fecha"));
                 int puntos = jsonObjectEstadistica.getInt("valor");
 
@@ -43,4 +45,9 @@ public class Puntuaciones {
     public List<Puntuacion> getPuntuaciones() {
         return puntuaciones;
     }
+
+    public List<String> getUsuarios() {
+        return usuarios;
+    }
+
 }
