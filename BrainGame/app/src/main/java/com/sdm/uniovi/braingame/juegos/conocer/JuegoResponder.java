@@ -46,14 +46,14 @@ public class JuegoResponder extends AppCompatActivity {
         rb4.setTypeface(estiloLetra);
         btAtras.setTypeface(estiloLetra);
         btParar.setTypeface(estiloLetra);
-//
+
         obtenerPreguntas();
         pregunta.setText(preguntas.get(0).getNombre());
 
     }
 
     public void obtenerPreguntas(){
-        ParserJsonObject parser = new ParserJsonObject();
+        ParserJsonObject parser = new ParserJsonObject(this);
         preguntas = parser.getPreguntas();
     }
 

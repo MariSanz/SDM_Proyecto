@@ -257,4 +257,9 @@ public class JuegoLeer extends AppCompatActivity implements OnResultadoListener<
     public void onResultado(Boolean resultado) {
 
     }
+
+    @Override
+    public void onBackPressed(){
+        this.finish();
+    }
 }
