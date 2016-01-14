@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void irAPatrones(View view) {
 
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.ActivityDificultad.class);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.recordar.ActivityInicio.class);
         startActivity(intent);
     }
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void irAOrdenar(View view) {
 
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.ordenar.ActivityDificultad.class);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.ordenar.ActivityInicio.class);
         startActivity(intent);
     }
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void irACorresponder(View view){
 
-        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.corresponder.ActivityDificultad.class);
+        Intent intent = new Intent(this, com.sdm.uniovi.braingame.juegos.corresponder.ActivityInicio.class);
         startActivity(intent);
     }
 

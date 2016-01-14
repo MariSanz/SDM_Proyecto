@@ -10,12 +10,17 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sdm.uniovi.braingame.AyudaPrincipalActivity;
+import com.sdm.uniovi.braingame.LogingActivity;
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
 import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
@@ -45,6 +50,25 @@ public class JuegoLeer extends AppCompatActivity implements OnResultadoListener<
     private Integer puntos = 0;
     private int cont = 0;
     private int max_veces = 0;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_juegos, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+            case R.id.menu_estadisticas:
+                EstadisticasActivity.iniciar(this, TipoJuego.LEER);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
     @Override
@@ -202,26 +226,26 @@ public class JuegoLeer extends AppCompatActivity implements OnResultadoListener<
             generarPalabra();
             iniciarTemporizador();
         }else { //Se terminó el juego
-//            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//
-//            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-//            boolean conectado = activeNetwork != null && activeNetwork.isConnected();
-//
-//            if (conectado) {
-//
-//                Login login = Login.getInstancia(this.getApplicationContext());
-//                new ActualizarPuntuaciones(this
-//                        , login.getAutenticacion()
-//                        , login.getUsuario()
-//                        , puntos
-//                        , TipoJuego.LEER.getIdServicio())
-//                        .execute();
-//            } else {
-//
-//                onPause();
-//                Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
-//
-//            }
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            boolean conectado = activeNetwork != null && activeNetwork.isConnected();
+
+            if (conectado) {
+
+                Login login = Login.getInstancia(this.getApplicationContext());
+                new ActualizarPuntuaciones(this
+                        , login.getAutenticacion()
+                        , login.getUsuario()
+                        , puntos
+                        , TipoJuego.LEER.getIdServicio())
+                        .execute();
+            } else {
+
+                onPause();
+                Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
+
+            }
         }
     }
 

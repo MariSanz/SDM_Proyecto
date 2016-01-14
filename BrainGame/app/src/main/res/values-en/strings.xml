@@ -83,4 +83,7 @@ In the difficulty easy, you have 150 points in the beginning and 2 tries. In the
     <string name="recordar_mensajeFin">You won! Game over. Your highscore is:\u0020</string>
     <string name="recordar_reiniciar">The order was not correct. The correct order is shown again. Try again!</string>
     <string name="recordar_reiniciar_titulo">Try again!</string>
+    <string name="comprobar">Try word</string>
+    <string name="generar">Make word</string>
+    <string name="titulo_responder">Answer the questions</string>
 </resources>

@@ -31,7 +31,8 @@
             android:textStyle="bold"
             android:layout_gravity="right"
             android:textColor="@color/text"
-            android:gravity="right" />
+            android:gravity="right"
+            android:layout_marginLeft="20dp" />
 
     </LinearLayout>
 

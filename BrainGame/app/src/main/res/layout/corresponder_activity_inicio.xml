@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@color/background_material_dark">
+
+    <TextView
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:text="@string/corresponder_actDif_Titulo"
+        android:id="@+id/tvTituloJuegoIni"
+        android:textSize="30sp"
+        android:textColor="@color/text"
+        android:layout_weight="0.14"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp" />
+
+    <TextView
+
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/corresponder_descripcion"
+        android:id="@+id/tvDescripcionIni"
+        android:layout_weight="0.45"
+        android:textSize="20sp"
+        android:paddingLeft="10dp"
+        android:layout_width = "wrap_content"
+        android:textColor="@color/text" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:weightSum="1"
+        android:measureWithLargestChild="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:text="@string/leer_atras"
+            android:id="@+id/btAtrasIni"
+            android:textColor="@color/text"
+            android:textSize="25sp"
+            android:background="@drawable/button_boarder"
+            android:layout_weight="0.69"
+            android:textAllCaps="false"
+            android:onClick="irAtras" />
+
+        <Button
+            style="@style/AppCompat.Button.Flat.Common"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leer_siguiente"
+            android:id="@+id/btSiguienteIni"
+            android:textColor="@color/text"
+            android:onClick="irAEscogerDificultad"
+            android:textSize="25sp"
+            android:background="@drawable/button_boarder"
+            android:layout_weight="0.34"
+            android:textAllCaps="false"/>
+    </TableRow>
+
+
+</LinearLayout>
