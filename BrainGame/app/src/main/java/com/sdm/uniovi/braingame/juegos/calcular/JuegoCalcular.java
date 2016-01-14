@@ -126,6 +126,8 @@ public class JuegoCalcular extends AppCompatActivity implements OnResultadoListe
 
             public void onFinish() {
                 Toast.makeText(getApplicationContext(), R.string.tiempo_fuera, Toast.LENGTH_LONG).show();
+                puntos-=10;
+                textViewNumPuntos.setText(String.valueOf(puntos));
                 resultadoPartida();
 
 
