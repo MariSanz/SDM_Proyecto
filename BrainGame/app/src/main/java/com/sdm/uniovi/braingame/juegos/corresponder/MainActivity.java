@@ -1,15 +1,19 @@
 package com.sdm.uniovi.braingame.juegos.corresponder;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,19 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         listaImageViews.add(img5);
 
         makeInitOrder();
-
-        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        alertDialog.setTitle(R.string.corresponder_actDif_Titulo);
-        alertDialog.setMessage(getString(R.string.corresponder_descripcion));
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        startTimer(timertime);
-                    }
-                });
-        alertDialog.show();
-
+        startTimer(timertime);
     }
 
     @Override
@@ -201,8 +193,25 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
 
     private void closeActivity(){
-        new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
-                , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean conectado = activeNetwork != null && activeNetwork.isConnected();
+        if (conectado) {
+
+            Login login = Login.getInstancia(this.getApplicationContext());
+            new ActualizarPuntuaciones(this
+                    , login.getAutenticacion()
+                    , login.getUsuario()
+                    , points
+                    , TipoJuego.CORRESPONDER.getIdServicio())
+                    .execute();
+        } else {
+            onPause();
+            Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
+        }
+
+//        new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
+//                , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
         this.finish();
     }
 

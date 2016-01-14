@@ -85,6 +85,18 @@
             android:name=".juegos.recordar.ActivityDificultad"
             android:label="@string/title_activity_activity_dificultad" >
         </activity>
+        <activity
+            android:name=".juegos.ordenar.ActivityInicio"
+            android:label="@string/title_activity_activity_inicio" >
+        </activity>
+        <activity
+            android:name=".juegos.corresponder.ActivityInicio"
+            android:label="@string/title_activity_activity_inicio" >
+        </activity>
+        <activity
+            android:name=".juegos.recordar.ActivityInicio"
+            android:label="@string/title_activity_activity_inicio" >
+        </activity>
     </application>
 
 </manifest>
