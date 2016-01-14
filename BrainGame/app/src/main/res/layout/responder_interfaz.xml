@@ -24,7 +24,8 @@
         android:text="Hola, esto es un ejemplo de o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es un ejemplo de o es un ejemplo de  o es un ejemplo de   o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es un ejemplo de  o es  "
         android:id="@+id/tvPregunta"
         android:layout_gravity="center_horizontal"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/text"/>
 
     <RadioGroup
         android:layout_width="336dp"

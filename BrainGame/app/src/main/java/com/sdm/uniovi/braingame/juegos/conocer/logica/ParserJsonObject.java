@@ -24,7 +24,7 @@ public class ParserJsonObject {
 
     private final Context contexto;
     private ArrayList<String> stringJson;
-    private ArrayList<Pregunta> preguntas;
+    private ArrayList<Pregunta> preguntas = new ArrayList<>();
 
 
 
@@ -54,22 +54,6 @@ public class ParserJsonObject {
 
             fraw.close();
 
-//            InputStream inputStream = contexto.openFileInput("preguntas_juego_responder.txt");
-//
-//            if ( inputStream != null ) {
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//                String receiveString = "";
-//                StringBuilder stringBuilder = new StringBuilder();
-//
-//                while ((receiveString = bufferedReader.readLine()) != null) {
-//                    //stringBuilder.append(receiveString);
-//                    stringJson.add(receiveString);
-//                }
-//                inputStream.close();
-//
-//            }
-
         }
         catch (Exception ex)
         {
@@ -94,7 +78,8 @@ public class ParserJsonObject {
 
             for(int i=0; i<stringJson.size(); i++) {
                 obj = new JSONObject(stringJson.get(i));
-
+                respuestasFalsas.clear();
+                respuestasCorrectas.clear();
 
 
                // JSONArray array = obj.getJSONArray("category");
@@ -102,12 +87,12 @@ public class ParserJsonObject {
                 nombre = obj.getString("text");
                 JSONArray falsas = obj.getJSONArray("answersFalse");
                 JSONArray correctas = obj.getJSONArray("answersTrue");
-                for (int j = 0; i < falsas.length(); i++) {
+                for (int j = 0; j < falsas.length(); j++) {
                     //respuestasFalsas.add(falsas.getJSONObject(i).toString());
-                    respuestasFalsas.add(falsas.get(i).toString());
+                    respuestasFalsas.add(falsas.get(j).toString());
                 }
-                for (int j = 0; i < correctas.length(); i++) {
-                    respuestasCorrectas.add(correctas.get(i).toString());
+                for (int k = 0; k < correctas.length(); k++) {
+                    respuestasCorrectas.add(correctas.get(k).toString());
                 }
 
                 pregunta = new Pregunta(categoria,nombre, respuestasFalsas, respuestasCorrectas);
