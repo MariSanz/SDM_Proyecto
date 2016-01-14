@@ -1,8 +1,11 @@
 package com.sdm.uniovi.braingame.juegos.leer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.RecognizerIntent;
@@ -13,11 +16,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdm.uniovi.braingame.R;
+import com.sdm.uniovi.braingame.juegos.TipoJuego;
+import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
+import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
+import com.sdm.uniovi.braingame.usuarios.Login;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class JuegoLeer extends AppCompatActivity {
+public class JuegoLeer extends AppCompatActivity implements OnResultadoListener<Boolean> {
 
     private CountDownTimer crono;
     private TextView tvTiempoRestante;
@@ -194,6 +201,27 @@ public class JuegoLeer extends AppCompatActivity {
         if(cont < max_veces) {
             generarPalabra();
             iniciarTemporizador();
+        }else { //Se terminó el juego
+//            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+//            boolean conectado = activeNetwork != null && activeNetwork.isConnected();
+//
+//            if (conectado) {
+//
+//                Login login = Login.getInstancia(this.getApplicationContext());
+//                new ActualizarPuntuaciones(this
+//                        , login.getAutenticacion()
+//                        , login.getUsuario()
+//                        , puntos
+//                        , TipoJuego.LEER.getIdServicio())
+//                        .execute();
+//            } else {
+//
+//                onPause();
+//                Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
+//
+//            }
         }
     }
 
@@ -201,4 +229,8 @@ public class JuegoLeer extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    public void onResultado(Boolean resultado) {
+
+    }
 }

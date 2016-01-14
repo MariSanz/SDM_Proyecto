@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.sdm.uniovi.braingame.LogingActivity;
 import com.sdm.uniovi.braingame.R;
 import com.sdm.uniovi.braingame.estadisticas.EstadisticasActivity;
 import com.sdm.uniovi.braingame.juegos.TipoJuego;
+import com.sdm.uniovi.braingame.servicioWeb.ActualizarPuntuaciones;
+import com.sdm.uniovi.braingame.servicioWeb.OnResultadoListener;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
 import java.util.ArrayList;
@@ -26,7 +30,7 @@ import java.util.ArrayList;
 /**
  * Created by luism_000 on 11/11/2015.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnResultadoListener<Boolean> {
 
     private TextView tVInformacion;
     private TextView tVPunctuacion;
@@ -43,12 +47,15 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Button> buttonList;
 
     private int dificultad;
-    boolean even = true;
-    int counter;
+    boolean even;
+    int counterTimer;
+    int counterOrder;
 
-    private Integer points = 300;
+    private Integer points;
     private CountDownTimer countdown;
     private int[] order;
+
+    private CorrectTouchListener cTL;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,10 +65,20 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         dificultad = extras.getInt("EXTRA_DIFICULTAD",6);
+        switch (dificultad){
+            case 6 : points = 150;
+                break;
+            case 8 : points = 250;
+                break;
+            case 10 : points = 350;
+        }
+
+        cTL = new CorrectTouchListener();
 
         tVInformacion = (TextView) findViewById(R.id.lblInformacionREC);
         tVPunctuacion = (TextView) findViewById(R.id.lblPunctuacionREC);
         tVPunctuacion.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
+        counterOrder = 0;
 
         btn1 = (Button) findViewById(R.id.button1);
         btn2 = (Button) findViewById(R.id.button2);
@@ -84,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
         buttonList.add(btn8);
         buttonList.add(btn9);
 
+        for (int i = 0; i < buttonList.size();i++){
+            buttonList.get(i).setTag(i);
+        }
+
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
         tVInformacion.setTypeface(estiloLetra);
         tVPunctuacion.setTypeface(estiloLetra);
@@ -92,7 +113,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         order = makeRandomOrder(dificultad);
-        startTimer();
+
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle(R.string.recordar_actDif_Titulo);
+        alertDialog.setMessage(getString(R.string.recordar_descripcion));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        startTimer();
+                    }
+                });
+        alertDialog.show();
 
     }
     @Override
@@ -134,6 +166,84 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onResultado(Boolean resultado) {
+
+    }
+
+    private final class CorrectTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            Button pushedButton = (Button) v;
+            switch(event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    pushedButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recordar_btn_highlighted));
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    pushedButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recordar_btn_normal));
+
+                        if (pushedButton.getTag() == order[counterOrder]) {
+                            if (counterOrder < dificultad-1) {
+                                counterOrder++;
+                            }
+                            else{
+                                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                                alertDialog.setTitle(R.string.ordenar_finTitulo);
+                                alertDialog.setMessage(getString(R.string.recordar_mensajeFin) + points.toString());
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                                closeActivity(true);
+                                            }
+                                        });
+                                alertDialog.show();
+                            }
+
+                        }
+                        else {
+                            if (points > 75) {
+                                points -= 75;
+                                tVPunctuacion.setText(getApplicationContext().getString(R.string.ordenar_Puntos) + points.toString());
+                                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                                alertDialog.setTitle(R.string.recordar_reiniciar_titulo);
+                                alertDialog.setMessage(getString(R.string.recordar_reiniciar));
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                                restartRepetition();
+                                            }
+                                        });
+                                alertDialog.show();
+                            }
+                            else{
+                                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                                alertDialog.setTitle(R.string.ordenar_finTitulo);
+                                alertDialog.setMessage(getString(R.string.ordenar_finPerdidoMensaje));
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                                closeActivity(false);
+                                            }
+                                        });
+                                alertDialog.show();
+                            }
+                        }
+                    return true;
+            }
+            return false;
+        }
+    }
+
+
+    private void restartRepetition() {
+        toggleButtonListener(false);
+        counterOrder = 0;
+        startTimer();
+    }
+
 
     public int[] makeRandomOrder(int amount){
         int[] numbers = new int[amount];
@@ -150,26 +260,51 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             buttonList.get(index).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recordar_btn_normal));
-            counter++;
+            counterTimer++;
         }
 
     }
 
     private void startTimer(){
-        counter = 0;
+        counterTimer = 0;
+        even = true;
         countdown = new CountDownTimer(dificultad*1000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
-                makeMove(order[counter],even);
+                makeMove(order[counterTimer],even);
                 even = !even;
             }
 
             @Override
             public void onFinish() {
                 buttonList.get(order[dificultad-1]).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recordar_btn_normal));
+                toggleButtonListener(true);
             }
         };
 
         countdown.start();
     }
+
+    public void toggleButtonListener(boolean active){
+        if(active){
+            for(Button b : buttonList){
+                b.setOnTouchListener(cTL);
+            }
+        }
+        else{
+            for(Button b : buttonList){
+                b.setOnTouchListener(null);
+            }
+        }
+    }
+
+    private void closeActivity(boolean won) {
+        if (won) {
+            new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
+                    , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.RECORDAR.getIdServicio()).execute();
+        }
+        this.finish();
+    }
+
+
 }
