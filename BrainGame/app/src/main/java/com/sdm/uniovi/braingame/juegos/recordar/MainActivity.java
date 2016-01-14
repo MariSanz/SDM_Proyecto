@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -31,31 +30,27 @@ import com.sdm.uniovi.braingame.usuarios.Login;
 import java.util.ArrayList;
 
 /**
- * Created by luism_000 on 11/11/2015.
+ * This class implements the game Memorizar (Internally Recordar). All the game logic is contained inside the class.
  */
 public class MainActivity extends AppCompatActivity implements OnResultadoListener<Boolean> {
 
     private TextView tVInformacion;
     private TextView tVPunctuacion;
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
-    private Button btn6;
-    private Button btn7;
-    private Button btn8;
-    private Button btn9;
 
     private ArrayList<Button> buttonList;
 
     private int dificultad;
     boolean even;
+    //used to measure the ticks of the timer
     int counterTimer;
+    //used to remember at which point of the sequence the user is in his repetition
     int counterOrder;
 
     private Integer points;
     private CountDownTimer countdown;
+
+    //the array contains the order that is to be remembered by the player. As the buttons
+    //are referenced by their number 1-9, an int array is sufficient
     private int[] order;
 
     private CorrectTouchListener cTL;
@@ -68,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
         Bundle extras = getIntent().getExtras();
         dificultad = extras.getInt("EXTRA_DIFICULTAD",6);
+        //The difficulty determines the length of the sequence to remember. A higher
+        //difficuly means more points in the highscore. Points will be subtracted and not added.
         switch (dificultad){
             case 6 : points = 150;
                 break;
@@ -83,16 +80,17 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         tVPunctuacion.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
         counterOrder = 0;
 
-        btn1 = (Button) findViewById(R.id.button1);
-        btn2 = (Button) findViewById(R.id.button2);
-        btn3 = (Button) findViewById(R.id.button3);
-        btn4 = (Button) findViewById(R.id.button4);
-        btn5 = (Button) findViewById(R.id.button5);
-        btn6 = (Button) findViewById(R.id.button6);
-        btn7 = (Button) findViewById(R.id.button7);
-        btn8 = (Button) findViewById(R.id.button8);
-        btn9 = (Button) findViewById(R.id.button9);
+        Button btn1 = (Button) findViewById(R.id.button1);
+        Button btn2 = (Button) findViewById(R.id.button2);
+        Button btn3 = (Button) findViewById(R.id.button3);
+        Button btn4 = (Button) findViewById(R.id.button4);
+        Button btn5 = (Button) findViewById(R.id.button5);
+        Button btn6 = (Button) findViewById(R.id.button6);
+        Button btn7 = (Button) findViewById(R.id.button7);
+        Button btn8 = (Button) findViewById(R.id.button8);
+        Button btn9 = (Button) findViewById(R.id.button9);
 
+        //To handle buttons through an index
         buttonList = new ArrayList<>();
         buttonList.add(btn1);
         buttonList.add(btn2);
@@ -104,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         buttonList.add(btn8);
         buttonList.add(btn9);
 
+        //To address buttons more easily and compare them to the sequence in the order array
         for (int i = 0; i < buttonList.size();i++){
             buttonList.get(i).setTag(i);
         }
@@ -162,6 +161,11 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
     public void onResultado(Boolean resultado) {
 
     }
+
+    //This Listener is set to the Buttons to check if they are pushed in the right order. Also the push is shown graphically
+    //Through a change in color. If the right Button is pushed the counterOrder is incremented and the Listener waits for the next
+    //Button pushed. If the wrong Button is pushed, point are subtracted. If the points fall under 0, the game is over.
+    //If not, the right order is shown again.
 
     private final class CorrectTouchListener implements View.OnTouchListener {
         @Override
@@ -232,23 +236,23 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         }
     }
 
-
+    //Shows the right order to the player again and resets all components necessary
     private void restartRepetition() {
         toggleButtonListener(false);
         counterOrder = 0;
         startTimer();
     }
 
-
+    //returns an int array with random numbers from 0-8
     public int[] makeRandomOrder(int amount){
         int[] numbers = new int[amount];
         for (int i = 0; i< amount;i++){
             numbers[i] = (int)(Math.random() * 9);
-            Log.i("Banane"+i, String.valueOf(numbers[i]));
         }
         return numbers;
     }
 
+    //Makes a move (highlights Button) for the button with the transmitted index
     public void makeMove(int index, boolean even){
         if (even){
             buttonList.get(index).setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.recordar_btn_highlighted));
@@ -280,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         countdown.start();
     }
 
+    //Method to (de)activate the Listener for all Buttons
     public void toggleButtonListener(boolean active){
         if(active){
             for(Button b : buttonList){
@@ -293,6 +298,8 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         }
     }
 
+    //The Server is called to submit the highscore in case the game was won. Then the
+    //Activity is finished.
     private void closeActivity(boolean won) {
         if (won) {
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -315,5 +322,16 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         this.finish();
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        countdown.cancel();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        countdown.cancel();
+    }
 
 }

@@ -5,7 +5,6 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.CornerPathEffect;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -13,7 +12,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,10 +31,10 @@ import com.sdm.uniovi.braingame.juegos.TipoJuego;
 import com.sdm.uniovi.braingame.usuarios.Login;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
- * Created by luism_000 on 11/11/2015.
+ * This class implements the game Ordenar. All the game logic is contained inside the class.
+ * The class uses the enumeration OrdenarColor that contains the different colors important fot the game
  */
 public class MainActivity extends AppCompatActivity  implements OnResultadoListener<Boolean> {
 
@@ -46,13 +44,6 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
     private ImageView imgVerde;
     private ImageView imgNaranja;
     private ImageView imgMagenta;
-
-    private ImageView img1;
-    private ImageView img2;
-    private ImageView img3;
-    private ImageView img4;
-    private ImageView img5;
-    private ImageView img6;
 
     private ArrayList<ImageView> imagesList;
 
@@ -94,8 +85,6 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
     }
 
     //Listener for the to this point empty images on top
-    //to set image to specific drawable:
-    //      dropTarget.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.inicio_calcular));
     private class dropListener implements View.OnDragListener {
         ImageView draggedView;
 
@@ -131,6 +120,7 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //dificultad= 3,4,6; correponding to the number of pictures to remember
         Bundle extras = getIntent().getExtras();
         dificultad = extras.getInt("EXTRA_DIFICULTAD",0);
 
@@ -149,14 +139,15 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         imgMagenta =(ImageView)findViewById(R.id.imgMagenta);
         imgMagenta.setTag(OrdenarColor.MAGENTA);
 
+        //to acces the ImageViews through their index
         imagesList = new ArrayList<>();
 
-        img1 =(ImageView)findViewById(R.id.img1);
-        img2 =(ImageView)findViewById(R.id.img2);
-        img3 =(ImageView)findViewById(R.id.img3);
-        img4 =(ImageView)findViewById(R.id.img4);
-        img5 =(ImageView)findViewById(R.id.img5);
-        img6 =(ImageView)findViewById(R.id.img6);
+        ImageView img1 =(ImageView)findViewById(R.id.img1);
+        ImageView img2 =(ImageView)findViewById(R.id.img2);
+        ImageView img3 =(ImageView)findViewById(R.id.img3);
+        ImageView img4 =(ImageView)findViewById(R.id.img4);
+        ImageView img5 =(ImageView)findViewById(R.id.img5);
+        ImageView img6 =(ImageView)findViewById(R.id.img6);
 
         imagesList.add(img1);
         imagesList.add(img2);
@@ -259,6 +250,8 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
 
     }
 
+    //Necessary to Translate the OrdenarColors from the generated array into
+    //Drawables to insert into the ImageViews
     public int translateColorToImage(OrdenarColor color){
 
             switch(color) {
@@ -279,6 +272,10 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         }
     }
 
+    //If the timer is under 4 seconds, the game is over (4 rounds). The points added to the highscore
+    //are given according to the difficulty. If the game is not over yet, it is checked if the order is correct
+    //If it is, the game is restarted with less time. If no, it is checked if the player has given the wrong order
+    //enough times to loose (3 times). If not, the game is restarted with the same amount of time as before
     public void confirmOrder (View v){
 
         btOkay.setEnabled(false);
@@ -351,6 +348,9 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
 
     }
 
+    //Through the Tags the colore ImgeViews have and the tagging into the dropped ImageView, the
+    //color in the top array is determined. If this color is equal to the corresponding in the
+    //order array, the match is correct. If all matches are correct, true is returned, else false.
     public boolean isOrderCorrect(){
         boolean correct = true;
 
@@ -365,15 +365,18 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         return correct;
     }
 
+    //generizeColors returns a random OrdenarColor array of the size of the difficulty.
+    //Here the colores are set into the ImageViews to show to the player
     public void placeColors(int dificultad){
         colors = generizeColors(dificultad);
-
         for (int i = 0; i< dificultad; i++){
             imagesList.get(i).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), translateColorToImage(colors[i])));
         }
 
     }
 
+    //Sets the interface to the beginning. The Listeners are unset to deny the dragging of images during the
+    //remembering process. Then the timer is started again, with a tim depending on the correctness of the last round
     public void restartInterface(boolean won){
         placeColors(dificultad);
         tVInfo.setText(R.string.ordenar_InfoText1);
@@ -399,6 +402,17 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
 
     }
 
+    //generizes a random array of OrdenarColors using the random function of the enum
+    public OrdenarColor[] generizeColors(int number){
+        OrdenarColor[] colors = new OrdenarColor[number];
+        for (int i = 0; i < number; i++){
+            colors[i] = OrdenarColor.getRandom();
+        }
+        return colors;
+    }
+
+    //The Server is called to submit the highscore in case the game was won. Then the
+    //Activity is finished.
     public void closeActivity(boolean won){
         if (won) {
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -422,12 +436,17 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         this.finish();
     }
 
-    public OrdenarColor[] generizeColors(int number){
-        OrdenarColor[] colors = new OrdenarColor[number];
-        for (int i = 0; i < number; i++){
-            colors[i] = OrdenarColor.getRandom();
-        }
-        return colors;
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        countdown.cancel();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        countdown.cancel();
     }
 
 }

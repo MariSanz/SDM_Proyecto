@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +32,10 @@ import com.sdm.uniovi.braingame.usuarios.Login;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+/**
+ * This class implements the game Emparejar (Internally Corresponder). All the game logic is contained inside the class.
+ */
 public class MainActivity extends AppCompatActivity implements OnResultadoListener<Boolean> {
 
     private TextView tVInformacion;
@@ -48,9 +51,12 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
     private Integer points = 0;
     private int dificultad;
+    //Auxiliary variable that needs to be saved outside the method getRandomDrawable()
     private int lastInt = 0;
     private int timertime;
+    //Contains the six Drawables of the game
     private ArrayList<Drawable> listaTodasImagenes;
+    //Contains the 5 ImageViews of the queue
     private ArrayList<ImageView> listaImageViews;
     private CountDownTimer countdown;
 
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         Bundle extras = getIntent().getExtras();
         dificultad = extras.getInt("EXTRA_DIFICULTAD",0);
 
+        //The difficulty is simply encoded as 1,2,3. It determines if the countdown is set to 40,30 or 20 seconds
         switch(dificultad){
             case 1 : timertime = 40000;
                 break;
@@ -88,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         bnCorres.setTypeface(estiloLetra);
         bnNoCorres.setTypeface(estiloLetra);
 
+        //images 1 and 2 are a bit bigger and are the ones compared in each step
         img1Comparar = (ImageView) findViewById(R.id.iVComparar1);
         img2Comparar = (ImageView) findViewById(R.id.iVComparar2);
         img3 = (ImageView) findViewById(R.id.iV3);
@@ -138,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                //The time of the countdown is stopped during the display of the help
                                 startTimer(timertime + 1000);
                             }
                         });
@@ -162,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         return super.onOptionsItemSelected(item);
     }
 
+    //Timer is set according to difficulty. onFinish() the game is over
     private void startTimer(int millis){
             countdown = new CountDownTimer(millis, 1000) {
             @Override
@@ -190,36 +200,12 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         countdown.start();
     }
 
-
-
-    private void closeActivity(){
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean conectado = activeNetwork != null && activeNetwork.isConnected();
-        if (conectado) {
-
-            Login login = Login.getInstancia(this.getApplicationContext());
-            new ActualizarPuntuaciones(this
-                    , login.getAutenticacion()
-                    , login.getUsuario()
-                    , points
-                    , TipoJuego.CORRESPONDER.getIdServicio())
-                    .execute();
-        } else {
-            onPause();
-            Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
-        }
-
-//        new ActualizarPuntuaciones(this, Login.getInstancia(this.getApplicationContext()).getAutenticacion()
-//                , Login.getInstancia(this.getApplicationContext()).getUsuario(), points, TipoJuego.ORDENAR.getIdServicio()).execute();
-        this.finish();
-    }
-
     @Override
     public void onResultado(Boolean resultado) {
 
     }
 
+    //Five random Drawables are chosen and set as the Drawables of the 5 ImageViews
     public void makeInitOrder(){
         for (int i = 0; i < 5; i++) {
             Drawable randomDraw = getRandomDrawable();
@@ -227,6 +213,10 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         }
     }
 
+    //A random Drawable is selected from the 6 available in this game. They are accessed through
+    //the ArrayList listaTodasImagenes. The index of the currently chosen Drawable is saved in the auxiliary variable
+    //currInt. It is retrieved in the next call and with a probability of 30% returned again.
+    //This serves to make the amount of times to push each of the 2 Buttons in the game more equal.
     public Drawable getRandomDrawable(){
         Random random = new Random();
         int currInt = random.nextInt(listaTodasImagenes.size());
@@ -243,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
     }
 
+    //Simulates behavoir of queue. Each ImageView gets the Drawable of its successor, the last ImageView a new random Drawable
     public void popImagenes(){
             img1Comparar.setImageDrawable(img2Comparar.getDrawable());
             img2Comparar.setImageDrawable(img3.getDrawable());
@@ -251,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
             img5.setImageDrawable(getRandomDrawable());
     }
 
+    //Give points if the images match, takes points if not
     public void clickCorres (View v){
         if (isMatching()){
             addPoints(dificultad);
@@ -261,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         popImagenes();
     }
 
+    //Give points if the images don't match, takes points if they do
     public void clickNoCorres (View v){
         if (!isMatching()){
             addPoints(dificultad);
@@ -271,10 +264,12 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         popImagenes();
     }
 
+    //Returns true if Drawables for ImageView 1 and 2 match, false if not
     public boolean isMatching() {
         return (((BitmapDrawable) img1Comparar.getDrawable()).getBitmap().equals(((BitmapDrawable) img2Comparar.getDrawable()).getBitmap()));
     }
 
+    //Adds points to the highscore depending on the set difficulty
     public void addPoints (int dificultad){
         switch(dificultad){
             case 1 : points += 2;
@@ -288,6 +283,7 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
         tVPunctuacion.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
     }
 
+    //Deletes points from the highscore depending on the set difficulty. Points cannot fall under zero
     public void deletePoints (int dificultad){
         switch(dificultad){
             case 1 : if (points - 2 >= 0){
@@ -303,5 +299,42 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                 points -= 2;}
         }
         tVPunctuacion.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
+    }
+
+    //The Server is called to submit the highscore. Then the Activity is finished.
+    private void closeActivity(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean conectado = activeNetwork != null && activeNetwork.isConnected();
+
+        if (conectado) {
+            Login login = Login.getInstancia(this.getApplicationContext());
+            new ActualizarPuntuaciones(this
+                    , login.getAutenticacion()
+                    , login.getUsuario()
+                    , points
+                    , TipoJuego.CORRESPONDER.getIdServicio())
+                    .execute();
+            Toast.makeText(this,"uploaded content", Toast.LENGTH_LONG).show();
+        } else {
+
+            onPause();
+            Toast.makeText(this, R.string.fallo_conexion_estadisticas, Toast.LENGTH_LONG).show();
+
+        }
+        this.finish();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        countdown.cancel();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        countdown.cancel();
     }
 }
