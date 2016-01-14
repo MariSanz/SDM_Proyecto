@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.sdm.uniovi.braingame.R;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +32,17 @@ public class MainActivity extends AppCompatActivity{
         btAtras.setTypeface(estiloLetra);
     }
 
-    public void irAEscogerDificultadRes(View view){
+    public void irAEscogerDificultadRes(View view) {
         Intent intent = new Intent(this,
                 com.sdm.uniovi.braingame.juegos.conocer.ActivityDificultad.class);
 
         startActivity(intent);
     }
 
-    public void irAtrasResIni(View view){
+    public void irAtrasResIni(View view) {
         this.finish();
     }
 
-
-
 }
+
+
