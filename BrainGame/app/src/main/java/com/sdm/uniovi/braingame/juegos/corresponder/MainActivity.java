@@ -109,8 +109,18 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
 
         makeInitOrder();
 
-        startTimer(timertime);
-        makeInitOrder();
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle(R.string.corresponder_actDif_Titulo);
+        alertDialog.setMessage(getString(R.string.corresponder_descripcion));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        startTimer(timertime);
+                    }
+                });
+        alertDialog.show();
+
     }
 
     @Override

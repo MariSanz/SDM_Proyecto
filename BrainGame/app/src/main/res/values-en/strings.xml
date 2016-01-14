@@ -5,31 +5,31 @@
     <string name="evaluar">Evaluate</string>
     <string name="registrar">Create my account</string>
     <string name="calcular_titulo">Calculate the result</string>
-    <string name="calcular_inicio">Operations solves</string>
-    <string name="calcular_ganar_maximo">You have earned the highest level. You are a great mathematician</string>
-    <string name="calcular_ganar">Congratulations, you have won pass to the next level</string>
+    <string name="calcular_inicio">Calculate</string>
+    <string name="calcular_ganar_maximo">You have reached the highest level. You are a great mathematician</string>
+    <string name="calcular_ganar">Congratulations, you advance to the next level</string>
     <string name="acierto">Success</string>
     <string name="fallo">Failure</string>
-    <string name="falta_seleccion">Lack select an option</string>
-    <string name="tiempo_fuera">It is out of time</string>
+    <string name="falta_seleccion">You need to choose an option</string>
+    <string name="tiempo_fuera">Time has run out</string>
     <string name="tiempo">Time</string>
     <string name="positivo">Yes</string>
     <string name="negativo">No</string>
-    <string name="responder_inicio">Answer</string>
-    <string name="repetir_clave">Repeat the key</string>
-    <string name="descripcion_juego_calcular">This game is to select the correct calculation, according go hitting pass the level and calculations are complicated.</string>
+    <string name="responder_inicio">Reply</string>
+    <string name="repetir_clave">Repeat the password</string>
+    <string name="descripcion_juego_calcular">In this game you need to select the correct calculation. While playing you rank up in level and the calculations are getting more complicated</string>
     <string name="fallo_clave">Passwords do not match</string>
     <string name="completar_inicio">Complete</string>
     <string name="corresponder_inicio">Match</string>
-    <string name="ayuda_login">If you already have a registered user logs in to our server with your
-        username and password. If you have not created a user press the button "Create User"</string>
+    <string name="ayuda_login">If you are already a registered user, log in to your account with your
+        username and password. If you haven\u0027t yet created an account, press the button "Create account"</string>
     <string name="fallo_conexion">There is a fault with the connection to our server. Check your internet connection</string>
     <string name="fallo_conexion_estadisticas">There is a fault with the connection to our server. Check your internet connection. Could not update online your punctuation</string>
     <string name="leer_inicio">Read</string>
     <string name="cerrado_sesion">You have succesfully signed out</string>
     <string name="registro">Create account</string>
     <string name="ayuda">Help</string>
-    <string name="patrones_inicio">Memorize \n patterns</string>
+    <string name="patrones_inicio">Memorize</string>
     <string name="registrarse">Create account</string>
     <string name="usuario">Username</string>
     <string name="ordenar_inicio">Sort</string>
@@ -66,7 +66,7 @@ If your order was correct, the time limit will decrease.</string>
     <string name="palabras_acertadas">Correct words</string>
     <string name="puntos">Points</string>
     <string name="resumen_completar">You need to fill the gaps in the words with some of the letters you have at choice</string>
-    <string name="title_activity_juego_completar">Completing game</string>
+    <string name="title_activity_juego_completar">Completion Game</string>
     <string name="corresponder_descripcion">Decide if the two images are the same or not. Push the correct button every time.</string>
     <string name="corresponder_si">Match</string>
     <string name="corresponder_no">No Match</string>
@@ -76,4 +76,11 @@ The other pictures serve as a queue to already know beforehand if the next compa
 In the difficulty easy, you have more time to win points (40  seconds), but a match is worth less points (2 points). In the difficulties normal and expert you have less time (30 and 20 respectively), but win more points (4 and 6 respectively).</string>
     <string name="estadisticas">Statistics</string>
     <string name="recordar_actDif_Titulo">Memorize game</string>
+    <string name="ayuda_recordar">The goal of the game is to memorize the order in which the buttons flash in red. You need to remember the whole order. You have multiple tries to do so. But each time you make an error, you loose 75 points.
+In the difficulty easy, you have 150 points in the beginning and 2 tries. In the normal difficulty, you have 250 points and 3 tries. In the expert mode, you have 350 points and 5 tries. In the 3 difficulty levels you need to memorize a sequence of 6, 8 and 10, respectivly.</string>
+    <string name="title_activity_prueba">Test</string>
+    <string name="recordar_descripcion">Remember the order in which the pictures light up. The less tries you need, the higher your highscore will be</string>
+    <string name="recordar_mensajeFin">You won! Game over. Your highscore is:\u0020</string>
+    <string name="recordar_reiniciar">The order was not correct. The correct order is shown again. Try again!</string>
+    <string name="recordar_reiniciar_titulo">Try again!</string>
 </resources>

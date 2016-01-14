@@ -6,12 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.CornerPathEffect;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -171,13 +169,23 @@ public class MainActivity extends AppCompatActivity  implements OnResultadoListe
         btOkay = (Button) findViewById(R.id.btnAceptar);
         tVPoints.setText(this.getString(R.string.ordenar_Puntos) + points.toString());
 
-        startTimer(timerTime);
-
         Typeface estiloLetra = Typeface.createFromAsset(getAssets(), "fonts/daville.ttf");
         tVTimer.setTypeface(estiloLetra);
         tVInfo.setTypeface(estiloLetra);
         tVPoints.setTypeface(estiloLetra);
         btOkay.setTypeface(estiloLetra);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle(R.string.ordenar_actDif_Titulo);
+        alertDialog.setMessage(getString(R.string.ordenar_InfoText1));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        startTimer(timerTime);
+                    }
+                });
+        alertDialog.show();
     }
 
     @Override
