@@ -1,5 +1,7 @@
 package com.sdm.uniovi.braingame.juegos.completar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +34,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void iniciarCompletar(View view) {
-        Intent intent = new Intent(this, JuegoCompletar.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, JuegoCompletar.class);
+//        startActivity(intent);
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+        alertDialog.setTitle("Under construciotn");
+        alertDialog.setMessage("Este juego todavía no está implementado.");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getResources().getString(R.string.ordenar_ok_button),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        closeApp();
+                    }
+                });
+        alertDialog.show();
+
+    }
+
+    public void closeApp(){
         this.finish();
     }
 

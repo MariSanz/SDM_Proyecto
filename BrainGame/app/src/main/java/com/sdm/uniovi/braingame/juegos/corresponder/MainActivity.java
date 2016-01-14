@@ -316,7 +316,6 @@ public class MainActivity extends AppCompatActivity implements OnResultadoListen
                     , points
                     , TipoJuego.CORRESPONDER.getIdServicio())
                     .execute();
-            Toast.makeText(this,"uploaded content", Toast.LENGTH_LONG).show();
         } else {
 
             onPause();
